@@ -6,6 +6,7 @@
     <title>Jollibee E-commerce</title>
 
     <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="banner.css">
   </head>
   <body>
     <header class="Jollibee-header">
@@ -34,16 +35,57 @@
     </header>
 
     <div class="banner-part">
-      <img src="images/jolibee-banner/banner1.jpg" class="banner-image" />
+      <!-- Slide 1 -->
+      <div class="slide">
+        <a href="#menu-part">
+          <img
+            src="images/jolibee-banner/banner1.jpg"
+            class="banner-image active"
+            alt="Banner 1"
+          />
+        </a>
+      </div>
 
-      <img src="images/jolibee-banner/banner2.jpg" class="banner-image" />
+      <!-- Slide 2 -->
+      <div class="slide">
+        <a href="#menu-part">
+          <img
+            src="images/jolibee-banner/banner2.jpg"
+            class="banner-image"
+            alt="Banner 2"
+          />
+        </a>
+      </div>
 
-      <img src="images/jolibee-banner/banner3.jpg" class="banner-image" />
+      <!-- Slide 3 -->
+      <div class="slide">
+        <a href="#menu-part">
+          <img
+            src="images/jolibee-banner/banner3.jpg"
+            class="banner-image"
+            alt="Banner 3"
+          />
+        </a>
+      </div>
 
-      <img src="images/jolibee-banner/banner4.jpg" class="banner-image" />
+      <!-- Slide 4 -->
+      <div class="slide">
+        <a href="#menu-part">
+          <img
+            src="images/jolibee-banner/banner4.jpg"
+            class="banner-image"
+            alt="Banner 4"
+          />
+        </a>
+      </div>
+
+      <!-- Navigation buttons -->
+      <button class="prev">&lt;</button>
+      <button class="next">&gt;</button>
     </div>
 
-    <div class="menu-part">
+
+    <div class="menu-part" id="menu-part">
       <div class="product-grid">
         <section class="main-dishes">
           <h2 class="section-title">Main dishes</h2>
@@ -363,5 +405,7 @@
         © 2025 Jollibee Foods Corporation. All Rights Reserved.
       </p>
     </footer>
+
+    <script src="main.js"></script>
   </body>
 </html>
