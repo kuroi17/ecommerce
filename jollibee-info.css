@@ -1,0 +1,31 @@
+.jolibee-info {
+  justify-content: flex-start;
+  text-align: left;
+  display: flex;
+  gap: 20px;
+}
+
+.jolibee-info-image {
+  margin-top: 10px;
+  width: 500px;
+  border-radius: 30px;
+  margin-left: 20px;
+}
+
+.jolibee-info-text {
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  color: #333;
+  max-width: 500px;
+  flex: 1;
+}
+
+.section-title-info {
+  font-family: "Fredoka One", sans-serif;
+  font-size: 25px;
+  color: rgb(170, 62, 62);
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
