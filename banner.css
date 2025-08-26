@@ -1,23 +1,25 @@
+/* General banner styles */
 .banner-part {
   position: relative;
   width: 100%;
-  max-width: 1200px; /* adjust based on your layout */
   margin: auto;
   overflow: hidden;
   border-radius: 10px;
+  aspect-ratio: 16 / 9; /* Maintain a responsive aspect ratio */
 }
 
 .banner-image {
   width: 100%;
-  height: auto; 
+  height: 100%;
   display: none;
-  object-fit: cover; 
+  object-fit: cover; /* Ensures the image fills the container while cropping */
 }
 
 .banner-image.active {
   display: block;
 }
 
+/* Navigation buttons */
 .prev,
 .next {
   position: absolute;
@@ -35,6 +37,15 @@
 .prev {
   left: 10px;
 }
+
 .next {
   right: 10px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .banner-part {
+    aspect-ratio: 4 / 3; /* Adjust aspect ratio for smaller screens */
+    border-radius: 0; /* Optional: Remove border-radius for full-width effect */
+  }
 }
