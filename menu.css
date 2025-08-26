@@ -1,0 +1,22 @@
+.menu-part {
+  padding: 20px;
+  background-color: bisque;
+}
+
+.section-title {
+  font-family: "Fredoka One", sans-serif;
+  font-size: 25px;
+  color: rgb(170, 62, 62);
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+
+.product-image {
+  background: transparent;
+}
+
+
+
+
