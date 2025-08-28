@@ -1,0 +1,20 @@
+.promotion-section {
+  background-color: rgb(184, 39, 39);
+  align-items: flex-start;
+  display: flex;
+  gap: 30px;
+  margin: 0 auto;
+  padding: 20px;
+  max-height: 475px;
+}
+.footer-image{
+  width: 300px;
+  object-fit: cover;
+  flex-shrink: 0;
+  padding: 20px;
+
+}
+.google-play{
+  width:40px;
+  height: 20px;
+}
