@@ -15,25 +15,30 @@
   padding: 20px;
 
 }
-.google-play{
-  width:40px;
-  height: 20px;
-}
-.apple-store{
-  width: 40px;
-  height:20px;
-}
-#h1{
-  text-align: left;
-  color: white;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;  
-  width: 5000px;
-  font-size: xx-large;
-  margin-top: 70px;
+
+.desciption-promotion{
+  justify-content: left;
+  width: 100px;
+  align-items: flex-start;
   
 }
-#sub-description{
-  text-align: center;
+
+.google-play{
+  width: 200px;
+}
+.apple-store{
+  width: 200px;
+}
+
+#h1{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: xx-large;
   color: white;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  margin-top: 90px;
+}
+#sub-description{
+  color: white;
+  width: 600px;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
