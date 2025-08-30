@@ -1,16 +1,15 @@
 .menu-part {
   padding: 20px;
-  background-color: bisque;
+  background: linear-gradient(135deg, #FFF5EE 0%, #FFE4C4 50%, #F5DEB3 100%);
 }
 
 .section-title {
-  font-family: "Fredoka One", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 25px;
-  color: rgb(170, 62, 62);
+  color: black;
   margin-bottom: 20px;
   text-align: center;
   text-transform: uppercase;
-  font-weight: lighter;
 }
 
 .main-dishes {
@@ -58,7 +57,7 @@
 }
 
 .product-price {
-  font-family: "Fredoka One", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: light;
   margin-bottom: 10px;
 }

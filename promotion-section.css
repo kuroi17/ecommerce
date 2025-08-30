@@ -40,8 +40,10 @@
 .google-play{
   width: 200px;
 }
+
 .apple-store{
   width: 200px;
+  
 }
 
 #h1{
@@ -64,3 +66,4 @@
             font-family: 'Poppins', sans-serif;
 
         }
+
