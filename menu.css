@@ -52,8 +52,8 @@
 
 .product-info {
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  margin-bottom: 5px;
+  font-size: 20px;
+  margin-bottom: 1px;
 }
 
 .product-price {
@@ -89,13 +89,12 @@
 .add-to-cart-text {
   border-radius: 5px;
   color: white;
-  background-color: rgb(4, 70, 4);
+  background-color: rgb(31, 159, 31);
   cursor: pointer;
-  padding: 4px;
   margin: 0;
   font-size: 15px;
   border: none;
   font-family: "Poppins", sans-serif;
-  height: 28px;
+  height: 32px;
   text-align: center;
 }
