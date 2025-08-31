@@ -77,3 +77,28 @@ font-family: 'Poppins', sans-serif;
   padding: 20px;
 }
 
+
+@media (max-width: 768px){
+  .promotion-section{
+    flex-direction: column;
+    text-align: center;
+    padding:40px 20px;
+    gap: 30px;
+  }
+
+  #h1{
+    font-size: 2.5rem;
+  }
+  #sub-description{
+    font-size: 1.1rem;
+  }
+
+  .footer-image{
+    width: 100%;
+    max-width: 350px;
+  }
+
+
+
+}
+
