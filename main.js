@@ -20,7 +20,7 @@ const menuData = {
         price: '66.00',
         image: 'images/jolibee-main-meals/burgersteak.png',
         id: 'burgersteak'
-       }
+       },
 
        {
         name: 'Jolli-Burger',
@@ -83,7 +83,67 @@ const menuData = {
     ]
 }
 
-menuData.forEach((menudata) =>{
+menuData.mainDishes.forEach((menudata) =>{
+    const html = `
+     <article class="product-container">
+              <div class="image-container">
+                <img
+                  src="${menudata.image}"
+                  class="product-image"
+                />
+              </div>
+
+              <div class="product-info">${menudata.name}</div>
+
+              <div class="product-price">${menudata.price}</div>
+              <button>
+                <img src="images/button-addtocart.png" class="add-to-cart-icon" />
+              </button>
+
+              <button>
+                <img
+                  src="images/minus-sign-icon-free-png.png"
+                  class="remove-to-cart-icon"
+                />
+              </button>
+
+              <button class="add-to-cart-text">Add to cart</button>
+            </article>
+    `;
+
+})
+
+menuData.drinks.forEach((menudata) =>{
+    const html = `
+     <article class="product-container">
+              <div class="image-container">
+                <img
+                  src="${menudata.image}"
+                  class="product-image"
+                />
+              </div>
+
+              <div class="product-info">${menudata.name}</div>
+
+              <div class="product-price">${menudata.price}</div>
+              <button>
+                <img src="images/button-addtocart.png" class="add-to-cart-icon" />
+              </button>
+
+              <button>
+                <img
+                  src="images/minus-sign-icon-free-png.png"
+                  class="remove-to-cart-icon"
+                />
+              </button>
+
+              <button class="add-to-cart-text">Add to cart</button>
+            </article>
+    `;
+
+})
+
+menuData.desserts.forEach((menudata) =>{
     const html = `
      <article class="product-container">
               <div class="image-container">
