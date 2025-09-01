@@ -41,7 +41,7 @@ const menuData = {
         {
         name: 'Jolibee Coke',
         price: '66.00',
-        image: 'images/jolibee-drinks/cokes.jpg',
+        image: 'images/jolibee-drinks/coke.jpg',
         id: 'coke'
         },
         {
@@ -53,7 +53,7 @@ const menuData = {
         {
         name: 'Water',
         price: '66.00',
-        image: 'images/jolibee-drinks/Pineapple-Juice-Regular.webp',
+        image: 'images/jolibee-drinks/water.jpg',
         id: 'water'
         }
 
@@ -76,7 +76,7 @@ const menuData = {
     {
         name: 'Coke Float',
         price: '66.00',
-        image: 'images/jolibee-drinks/cokefloat.webp',
+        image: 'images/jolibee-desserts/cokefloat.webp',
         id: 'cokefloat'
     },
 
@@ -116,7 +116,7 @@ menuData.mainDishes.forEach((menudata) =>{
 mainDishesContainer.innerHTML = mainDisheshtml;
 
 const DrinksContainer = document.querySelector(".js-drinks");
-let DrinksHtml = ' '
+let DrinksHtml = ' ';
 
 menuData.drinks.forEach((menudata) =>{
      DrinksHtml += `
