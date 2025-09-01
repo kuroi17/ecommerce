@@ -82,9 +82,10 @@ const menuData = {
 
     ]
 }
-
+const mainDishesContainer = document.querySelector(".js-main-dishes");
+let mainDisheshtml = ' ';
 menuData.mainDishes.forEach((menudata) =>{
-    const html = `
+    mainDisheshtml += `
      <article class="product-container">
               <div class="image-container">
                 <img
@@ -111,10 +112,14 @@ menuData.mainDishes.forEach((menudata) =>{
             </article>
     `;
 
-})
+});
+mainDishesContainer.innerHTML = mainDisheshtml;
+
+const DrinksContainer = document.querySelector(".js-drinks");
+let DrinksHtml = ' '
 
 menuData.drinks.forEach((menudata) =>{
-    const html = `
+     DrinksHtml += `
      <article class="product-container">
               <div class="image-container">
                 <img
@@ -141,13 +146,17 @@ menuData.drinks.forEach((menudata) =>{
             </article>
     `;
 
-})
+});
+
+DrinksContainer.innerHTML = DrinksHtml;
 
 
+const dessertsContainer = document.querySelector(".js-desserts")
+let dessertshtml = ' ';
 menuData.desserts.forEach((menudata) =>{
   
 
-    const html = `
+    dessertshtml += `
      <article class="product-container">
               <div class="image-container">
                 <img
@@ -175,4 +184,6 @@ menuData.desserts.forEach((menudata) =>{
     `;
 
 })
+
+dessertsContainer.innerHTML = dessertshtml;
 
