@@ -1,91 +1,86 @@
 const menuData = {
-    mainDishes: [
-       
-       {
-        name: '1PC ChickenJoy',
-        price: '66.00 pesos',
-        image: 'images/jolibee-main-meals/jolli-friedchicken.png ',
-        id: 'chickenjoy'
-
-       },
-       {
-         name: '1PC Jolli-spaghetti',
-        price: '66.00 pesos',
-        image: 'images/jolibee-main-meals/jolli-spaghetti.png',
-        id: 'spaghetti'
-       },
-       
-       {
-        name: '1PC Burgersteak',
-        price: '66.00 pesos',
-        image: 'images/jolibee-main-meals/burgersteak.png',
-        id: 'burgersteak'
-       },
-
-       {
-        name: 'Jolli-Burger',
-        price: '66.00 pesos',
-        image: 'images/jolibee-main-meals/burger.png',
-        id: 'burger'
-       },
-
-       {
-        name: '1PC Jolli-Fries',
-        price: '66.00 pesos',
-        image: 'images/jolibee-main-meals/fries.png',
-        id: 'fries'
-       }
-    ],
-
-    drinks: [
-        {
-        name: 'Jolibee Coke',
-        price: '66.00 pesos',
-        image: 'images/jolibee-drinks/coke.jpg',
-        id: 'coke'
-        },
-        {
-        name: 'Pineapple Juice',
-        price: '66.00 pesos',
-        image: 'images/jolibee-drinks/Pineapple-Juice-Regular.webp',
-        id: 'pineapple'
-        },
-        {
-        name: 'Water',
-        price: '66.00 pesos',
-        image: 'images/jolibee-drinks/water.jpg',
-        id: 'water'
-        }
-
-
-    ],
-
-    desserts: [
+  mainDishes: [
     {
-        name: 'Mango Pie',
-        price: '66.00 pesos',
-        image: 'images/jolibee-desserts/mango pie.png',
-        id: 'mangopie'
+      name: "1PC ChickenJoy",
+      price: 66,
+      image: "images/jolibee-main-meals/jolli-friedchicken.png ",
+      id: "chickenjoy",
     },
     {
-        name: 'Joli-sundae',
-        price: '66.00 pesos',
-        image: 'images/jolibee-desserts/sundae.png',
-        id: 'pineapple'
-    },
-    {
-        name: 'Coke Float',
-        price: '66.00 pesos',
-        image: 'images/jolibee-desserts/cokefloat.webp',
-        id: 'cokefloat'
+      name: "1PC Jolli-spaghetti",
+      price: 66,
+      image: "images/jolibee-main-meals/jolli-spaghetti.png",
+      id: "spaghetti",
     },
 
-    ]
-}
+    {
+      name: "1PC Burgersteak",
+      price: 66,
+      image: "images/jolibee-main-meals/burgersteak.png",
+      id: "burgersteak",
+    },
+
+    {
+      name: "Jolli-Burger",
+      price: 66,
+      image: "images/jolibee-main-meals/burger.png",
+      id: "burger",
+    },
+
+    {
+      name: "1PC Jolli-Fries",
+      price: 66,
+      image: "images/jolibee-main-meals/fries.png",
+      id: "fries",
+    },
+  ],
+
+  drinks: [
+    {
+      name: "Jolibee Coke",
+      price: 6600,
+      image: "images/jolibee-drinks/coke.jpg",
+      id: "coke",
+    },
+    {
+      name: "Pineapple Juice",
+      price: 6600,
+      image: "images/jolibee-drinks/Pineapple-Juice-Regular.webp",
+      id: "pineapple",
+    },
+    {
+      name: "Water",
+      price: 6600,
+      image: "images/jolibee-drinks/water.jpg",
+      id: "water",
+    },
+  ],
+
+  desserts: [
+    {
+      name: "Mango Pie",
+      price: 6600,
+      image: "images/jolibee-desserts/mango pie.png",
+      id: "mangopie",
+    },
+    {
+      name: "Joli-sundae",
+      price: 6600,
+      image: "images/jolibee-desserts/sundae.png",
+      id: "pineapple",
+    },
+    {
+      name: "Coke Float",
+      price: 6600,
+      image: "images/jolibee-desserts/cokefloat.webp",
+      id: "cokefloat",
+    },
+  ],
+};
 const mainDishesContainer = document.querySelector(".js-main-dishes");
-let mainDisheshtml = ' ';
-menuData.mainDishes.forEach((menudata) =>{
-    mainDisheshtml += `
+let mainDisheshtml = " ";
+menuData.mainDishes.forEach((menudata) => {
+  mainDisheshtml += `
      <article class="product-container">
               <div class="image-container">
                 <img
@@ -96,7 +91,9 @@ menuData.mainDishes.forEach((menudata) =>{
 
               <div class="product-info">${menudata.name}</div>
 
-              <div class="product-price">${menudata.price}</div>
+              <div class="product-price">${(menudata.price / 100).toFixed(
+                2
+              )}pesos</div>
               <button>
                 <img src="images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
@@ -111,15 +108,14 @@ menuData.mainDishes.forEach((menudata) =>{
               <button class="add-to-cart-text">Add to cart</button>
             </article>
     `;
-
 });
 mainDishesContainer.innerHTML = mainDisheshtml;
 
 const DrinksContainer = document.querySelector(".js-drinks");
-let DrinksHtml = ' ';
+let DrinksHtml = " ";
 
-menuData.drinks.forEach((menudata) =>{
-     DrinksHtml += `
+menuData.drinks.forEach((menudata) => {
+  DrinksHtml += `
      <article class="product-container">
               <div class="image-container">
                 <img
@@ -130,7 +126,9 @@ menuData.drinks.forEach((menudata) =>{
 
               <div class="product-info">${menudata.name}</div>
 
-              <div class="product-price">${menudata.price}</div>
+              <div class="product-price">${(menudata.price / 100).toFixed(
+                2
+              )} pesos</div>
               <button>
                 <img src="images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
@@ -145,18 +143,14 @@ menuData.drinks.forEach((menudata) =>{
               <button class="add-to-cart-text">Add to cart</button>
             </article>
     `;
-
 });
 
 DrinksContainer.innerHTML = DrinksHtml;
 
-
-const dessertsContainer = document.querySelector(".js-desserts")
-let dessertshtml = ' ';
-menuData.desserts.forEach((menudata) =>{
-  
-
-    dessertshtml += `
+const dessertsContainer = document.querySelector(".js-desserts");
+let dessertshtml = " ";
+menuData.desserts.forEach((menudata) => {
+  dessertshtml += `
      <article class="product-container">
               <div class="image-container">
                 <img
@@ -167,7 +161,9 @@ menuData.desserts.forEach((menudata) =>{
 
               <div class="product-info">${menudata.name}</div>
 
-              <div class="product-price">${menudata.price}</div>
+              <div class="product-price">${(menudata.price / 100).toFixed(
+                2
+              )} pesos</div>
               <button>
                 <img src="images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
@@ -182,8 +178,6 @@ menuData.desserts.forEach((menudata) =>{
               <button class="add-to-cart-text">Add to cart</button>
             </article>
     `;
-
-})
+});
 
 dessertsContainer.innerHTML = dessertshtml;
-
