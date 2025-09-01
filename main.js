@@ -2,34 +2,34 @@ const menuData = {
   mainDishes: [
     {
       name: "1PC ChickenJoy",
-      price: 66,
+      price: 6600,
       image: "images/jolibee-main-meals/jolli-friedchicken.png ",
       id: "chickenjoy",
     },
     {
       name: "1PC Jolli-spaghetti",
-      price: 66,
+      price: 6600,
       image: "images/jolibee-main-meals/jolli-spaghetti.png",
       id: "spaghetti",
     },
 
     {
       name: "1PC Burgersteak",
-      price: 66,
+      price: 6600,
       image: "images/jolibee-main-meals/burgersteak.png",
       id: "burgersteak",
     },
 
     {
       name: "Jolli-Burger",
-      price: 66,
+      price: 6600,
       image: "images/jolibee-main-meals/burger.png",
       id: "burger",
     },
 
     {
       name: "1PC Jolli-Fries",
-      price: 66,
+      price: 6600,
       image: "images/jolibee-main-meals/fries.png",
       id: "fries",
     },
@@ -105,7 +105,9 @@ menuData.mainDishes.forEach((menudata) => {
                 />
               </button>
 
-              <button class="add-to-cart-text">Add to cart</button>
+              <button class="add-to-cart-text js-button" data-menudata-id="${
+                menudata.id
+              }">Add to cart</button>
             </article>
     `;
 });
@@ -140,7 +142,9 @@ menuData.drinks.forEach((menudata) => {
                 />
               </button>
 
-              <button class="add-to-cart-text">Add to cart</button>
+              <button class="add-to-cart-text js-button" data-menudata-id="${
+                menudata.id
+              }">Add to cart</button>
             </article>
     `;
 });
@@ -175,9 +179,36 @@ menuData.desserts.forEach((menudata) => {
                 />
               </button>
 
-              <button class="add-to-cart-text">Add to cart</button>
+              <button class="add-to-cart-text js-button" data-menudata-id="${
+                menudata.id
+              }"
+              
+              >Add to cart</button>
             </article>
     `;
 });
 
 dessertsContainer.innerHTML = dessertshtml;
+
+document.querySelectorAll(".js-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    const productId = button.dataset.menudataId;
+
+    let matchingitem;
+    cart.forEach((item) => {
+      if (item.menuDataId === productId) {
+        matchingitem = item;
+      }
+    });
+    if (matchingitem) {
+      matchingitem.quantity += 1;
+    } else {
+      cart.push({
+        menuDataId: productId,
+        quantity: 1,
+      });
+    }
+
+    console.log(cart);
+  });
+});
