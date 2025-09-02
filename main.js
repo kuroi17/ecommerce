@@ -228,8 +228,18 @@ document.querySelectorAll(".SubtractQuantity").forEach((button) => {
       }
     });
 
-    if (matchingitem && matchingitem.quantity >= 0) {
+    if (matchingitem) {
       matchingitem.quantity -= 1;
+
+      if (matchingitem.quantity <= 0) {
+        function findMenuItemIndex(item) {
+          return item.menuDataId === productId;
+        } // return indexes
+        const index = cart.findIndex(findMenuItemIndex);
+        if (index !== 1) {
+          cart.splice(index, 1);
+        }
+      }
     }
     console.log(cart);
   });
