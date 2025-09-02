@@ -94,11 +94,13 @@ menuData.mainDishes.forEach((menudata) => {
               <div class="product-price">${(menudata.price / 100).toFixed(
                 2
               )}pesos</div>
-              <button>
+              <button class="AddQuantity" data-menudata-id="${menudata.id}">
                 <img src="images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
 
-              <button>
+              <button class="SubtractQuantity" data-menudata-id="${
+                menudata.id
+              }">
                 <img
                   src="images/minus-sign-icon-free-png.png"
                   class="remove-to-cart-icon"
@@ -131,11 +133,11 @@ menuData.drinks.forEach((menudata) => {
               <div class="product-price">${(menudata.price / 100).toFixed(
                 2
               )} pesos</div>
-              <button>
+              <button class="AddQuantity" data-menudata-id="${menudata.id}">
                 <img src="images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
 
-              <button>
+              <button class="SubtractQuantity"data-menudata-id="${menudata.id}">
                 <img
                   src="images/minus-sign-icon-free-png.png"
                   class="remove-to-cart-icon"
@@ -168,11 +170,13 @@ menuData.desserts.forEach((menudata) => {
               <div class="product-price">${(menudata.price / 100).toFixed(
                 2
               )} pesos</div>
-              <button>
+              <button class="AddQuantity" data-menudata-id="${menudata.id}">
                 <img src="images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
 
-              <button>
+              <button class="SubtractQuantity" data-menudata-id="${
+                menudata.id
+              }">
                 <img
                   src="images/minus-sign-icon-free-png.png"
                   class="remove-to-cart-icon"
@@ -190,7 +194,7 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
-document.querySelectorAll(".js-button").forEach((button) => {
+document.querySelectorAll(".AddQuantity").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.dataset.menudataId;
 
@@ -209,6 +213,24 @@ document.querySelectorAll(".js-button").forEach((button) => {
       });
     }
 
+    console.log(cart);
+  });
+});
+
+document.querySelectorAll(".SubtractQuantity").forEach((button) => {
+  button.addEventListener("click", () => {
+    const productId = button.dataset.menudataId;
+
+    let matchingitem;
+    cart.forEach((item) => {
+      if (item.menuDataId === productId) {
+        matchingitem = item;
+      }
+    });
+
+    if (matchingitem && matchingitem.quantity >= 0) {
+      matchingitem.quantity -= 1;
+    }
     console.log(cart);
   });
 });
