@@ -107,6 +107,10 @@ menuData.mainDishes.forEach((menudata) => {
                 />
               </button>
 
+              <div class="product-quantity">
+    Quantity: <span class="quantity">0</span>
+  </div>
+
               <button class="add-to-cart-text js-button" data-menudata-id="${
                 menudata.id
               }">Add to cart</button>
@@ -143,6 +147,11 @@ menuData.drinks.forEach((menudata) => {
                   class="remove-to-cart-icon"
                 />
               </button>
+
+              
+              <div class="product-quantity">
+    Quantity: <span class="quantity">0</span>
+  </div>
 
               <button class="add-to-cart-text js-button" data-menudata-id="${
                 menudata.id
@@ -183,6 +192,11 @@ menuData.desserts.forEach((menudata) => {
                 />
               </button>
 
+              
+              <div class="product-quantity">
+    Quantity: <span class="quantity">0</span>
+  </div>
+
               <button class="add-to-cart-text js-button" data-menudata-id="${
                 menudata.id
               }"
@@ -195,6 +209,7 @@ menuData.desserts.forEach((menudata) => {
 dessertsContainer.innerHTML = dessertshtml;
 
 document.querySelectorAll(".AddQuantity").forEach((button) => {
+  const quantityElement = button.parentElement.querySelector(".quantity");
   button.addEventListener("click", () => {
     const productId = button.dataset.menudataId;
 
@@ -207,17 +222,19 @@ document.querySelectorAll(".AddQuantity").forEach((button) => {
     if (matchingitem) {
       matchingitem.quantity += 1;
     } else {
-      cart.push({
+      matchingitem = {
         menuDataId: productId,
         quantity: 1,
-      });
+      };
+      cart.push(matchingitem);
     }
-
+    quantityElement.textContent = matchingitem.quantity; // THE ONE THAT UPDATES THE QUANTITY AND DISPLAYS IT
     console.log(cart);
   });
 });
 
 document.querySelectorAll(".SubtractQuantity").forEach((button) => {
+  const quantityElement = button.parentElement.querySelector(".quantity");
   button.addEventListener("click", () => {
     const productId = button.dataset.menudataId;
 
@@ -241,6 +258,51 @@ document.querySelectorAll(".SubtractQuantity").forEach((button) => {
         }
       }
     }
+    quantityElement.textContent = matchingitem.quantity;
+    console.log(cart);
+  });
+});
+
+function showPopup(message) {
+  const popup = document.getElementById("popup");
+  popup.textContent = message;
+  popup.classList.add("show");
+
+  setTimeout(() => {
+    popup.classList.remove("show");
+  }, 3000); // disappear after 3 seconds
+}
+
+document.querySelectorAll(".js-button").forEach(function (button) {
+  button.addEventListener("click", function () {
+    const productId = button.dataset.menudataId;
+
+    //find the product details from menuData using the productId
+    let product;
+    for (const category in menuData) {
+      product = menuData[category].find(function (item) {
+        return item.id === productId;
+      });
+      if (product) break;
+    }
+
+    let matchingItem = cart.find(function (item) {
+      return item.menuDataId === productId;
+    });
+
+    if (matchingItem) {
+      showPopup(`${product.name} already in cart!`);
+    } else {
+      cart.push({
+        menuDataId: productId,
+        quantity: 1,
+      });
+      matchingItem = cart.find(function (item) {
+        return item.menuDataId === productId;
+      });
+      showPopup(`${product.name} ${matchingItem.quantity}x added!`);
+    }
+
     console.log(cart);
   });
 });
