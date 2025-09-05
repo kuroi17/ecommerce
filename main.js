@@ -211,11 +211,13 @@ dessertsContainer.innerHTML = dessertshtml;
 document.querySelectorAll(".AddQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
   button.addEventListener("click", () => {
-    const productId = button.dataset.menudataId;
+    const productId = button.dataset.menudataId; // once clicked, it shows the id attributes
 
     let matchingitem;
-    cart.forEach((item) => {
+    TempHolder.forEach((item) => {
+      // for each item in the tempholder array
       if (item.menuDataId === productId) {
+        // it checks if the productid matches the id in the tempholder
         matchingitem = item;
       }
     });
@@ -226,10 +228,11 @@ document.querySelectorAll(".AddQuantity").forEach((button) => {
         menuDataId: productId,
         quantity: 1,
       };
-      cart.push(matchingitem);
+      TempHolder.push(matchingitem);
     }
-    quantityElement.textContent = matchingitem.quantity; // THE ONE THAT UPDATES THE QUANTITY AND DISPLAYS IT
-    console.log(cart);
+
+    quantityElement.textContent = matchingitem.quantity;
+    console.log(TempHolder);
   });
 });
 
@@ -239,7 +242,7 @@ document.querySelectorAll(".SubtractQuantity").forEach((button) => {
     const productId = button.dataset.menudataId;
 
     let matchingitem;
-    cart.forEach((item) => {
+    TempHolder.forEach((item) => {
       if (item.menuDataId === productId) {
         matchingitem = item;
       }
@@ -252,14 +255,14 @@ document.querySelectorAll(".SubtractQuantity").forEach((button) => {
         function findMenuItemIndex(item) {
           return item.menuDataId === productId;
         } // return indexes
-        const index = cart.findIndex(findMenuItemIndex);
+        const index = TempHolder.findIndex(findMenuItemIndex);
         if (index !== 1) {
-          cart.splice(index, 1);
+          TempHolder.splice(index, 1);
         }
       }
     }
     quantityElement.textContent = matchingitem.quantity;
-    console.log(cart);
+    console.log(TempHolder);
   });
 });
 
@@ -291,16 +294,19 @@ document.querySelectorAll(".js-button").forEach(function (button) {
     });
 
     if (matchingItem) {
+      // if found
       showPopup(`${product.name} already in cart!`);
     } else {
+      // else not found then push to cart
       cart.push({
         menuDataId: productId,
         quantity: 1,
       });
+
       matchingItem = cart.find(function (item) {
-        return item.menuDataId === productId;
+        return item.menuDataId === productId; // find the newly added item
       });
-      showPopup(`${product.name} ${matchingItem.quantity}x added!`);
+      showPopup(`${product.name} ${matchingItem.quantity}x added!`); // show popup
     }
 
     console.log(cart);
