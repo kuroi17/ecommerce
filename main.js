@@ -289,26 +289,28 @@ document.querySelectorAll(".js-button").forEach(function (button) {
       if (product) break;
     }
 
-    let matchingItem = cart.find(function (item) {
+    let tempItem = TempHolder.find(function (item) {
       return item.menuDataId === productId;
     });
 
-    if (matchingItem) {
-      // if found
-      showPopup(`${product.name} already in cart!`);
+    if (!tempItem || tempItem.quantity === 0) {
+      showPopup(`PLS SELECT QUANTITY OF ${product.name} FIRST!`);
+      return;
+    }
+
+    let cartItem = cart.find(function (item) {
+      return item.menuDataId === productId;
+    });
+    if (cartItem) {
+      cartItem.quantity += tempItem.quantity;
     } else {
       // else not found then push to cart
       cart.push({
         menuDataId: productId,
-        quantity: 1,
+        quantity: tempItem.quantity,
       });
-
-      matchingItem = cart.find(function (item) {
-        return item.menuDataId === productId; // find the newly added item
-      });
-      showPopup(`${product.name} ${matchingItem.quantity}x added!`); // show popup
     }
-
+    showPopup(`${product.name} ${tempItem.quantity}x added!`); // show popup
     console.log(cart);
   });
 });
