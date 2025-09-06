@@ -1,2 +1,0 @@
-const TempHolder = [];
-const cart = [];

@@ -1,4 +1,7 @@
-const menuData = {
+const TempHolder = [];
+const cart = [];
+
+export const menuData = {
   mainDishes: [
     {
       name: "1PC ChickenJoy",
