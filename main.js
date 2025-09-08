@@ -1,84 +1,6 @@
-import { AddToCart, RemoveFromCart, TempHolder,cart} from "./cart.js"
+import { AddToCart, RemoveFromCart, TempHolder, cart } from "./cart.js";
+import { menuData } from "./product.js";
 
-export const menuData = {
-  mainDishes: [
-    {
-      name: "1PC ChickenJoy",
-      price: 6600,
-      image: "images/jolibee-main-meals/jolli-friedchicken.png ",
-      id: "chickenjoy",
-    },
-    {
-      name: "1PC Jolli-spaghetti",
-      price: 6600,
-      image: "images/jolibee-main-meals/jolli-spaghetti.png",
-      id: "spaghetti",
-    },
-
-    {
-      name: "1PC Burgersteak",
-      price: 6600,
-      image: "images/jolibee-main-meals/burgersteak.png",
-      id: "burgersteak",
-    },
-
-    {
-      name: "Jolli-Burger",
-      price: 6600,
-      image: "images/jolibee-main-meals/burger.png",
-      id: "burger",
-    },
-
-    {
-      name: "1PC Jolli-Fries",
-      price: 6600,
-      image: "images/jolibee-main-meals/fries.png",
-      id: "fries",
-    },
-  ],
-
-  drinks: [
-    {
-      name: "Jolibee Coke",
-      price: 6600,
-      image: "images/jolibee-drinks/coke.jpg",
-      id: "coke",
-    },
-    {
-      name: "Pineapple Juice",
-      price: 6600,
-      image: "images/jolibee-drinks/Pineapple-Juice-Regular.webp",
-      id: "pineapple",
-    },
-    {
-      name: "Water",
-      price: 6600,
-      image: "images/jolibee-drinks/water.jpg",
-      id: "water",
-    },
-  ],
-
-  desserts: [
-    {
-      name: "Mango Pie",
-      price: 6600,
-      image: "images/jolibee-desserts/mango pie.png",
-      id: "mangopie",
-    },
-    {
-      name: "Joli-sundae",
-      price: 6600,
-      image: "images/jolibee-desserts/sundae.png",
-      id: "pineapple",
-    },
-    {
-      name: "Coke Float",
-      price: 6600,
-      image: "images/jolibee-desserts/cokefloat.webp",
-      id: "cokefloat",
-    },
-  ],
-};
 const mainDishesContainer = document.querySelector(".js-main-dishes");
 let mainDisheshtml = " ";
 menuData.mainDishes.forEach((menudata) => {
@@ -210,8 +132,6 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
-
-
 document.querySelectorAll(".AddQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
   button.addEventListener("click", () => {
@@ -232,7 +152,6 @@ document.querySelectorAll(".AddQuantity").forEach((button) => {
     console.log(TempHolder);
   });
 });
-
 
 document.querySelectorAll(".SubtractQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
