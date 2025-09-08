@@ -1,5 +1,4 @@
-const TempHolder = [];
-const cart = [];
+import { AddToCart, RemoveFromCart, TempHolder,cart} from "./cart.js"
 
 export const menuData = {
   mainDishes: [
@@ -211,18 +210,7 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
-function AddToCart(productId, matchingitem) {
-  if (!matchingitem) {
-    matchingitem = {
-      menuDataId: productId,
-      quantity: 1,
-    };
-    TempHolder.push(matchingitem);
-  } else {
-    matchingitem.quantity += 1;
-  }
-  return matchingitem;
-}
+
 
 document.querySelectorAll(".AddQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
@@ -245,23 +233,6 @@ document.querySelectorAll(".AddQuantity").forEach((button) => {
   });
 });
 
-function RemoveFromCart(productId, matchingitem) {
-  if (!matchingitem) {
-    return;
-  } else {
-    matchingitem.quantity -= 1;
-
-    if (matchingitem.quantity <= 0) {
-      function findMenuItemIndex(item) {
-        return item.menuDataId === productId;
-      } // return indexes
-      const index = TempHolder.findIndex(findMenuItemIndex);
-      if (index !== 1) {
-        TempHolder.splice(index, 1);
-      }
-    }
-  }
-}
 
 document.querySelectorAll(".SubtractQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
