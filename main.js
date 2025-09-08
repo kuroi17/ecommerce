@@ -132,6 +132,7 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
+// the add burron quantity
 document.querySelectorAll(".AddQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
   button.addEventListener("click", () => {
@@ -152,7 +153,7 @@ document.querySelectorAll(".AddQuantity").forEach((button) => {
     console.log(TempHolder);
   });
 });
-
+// the subtract button quantity
 document.querySelectorAll(".SubtractQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
   button.addEventListener("click", () => {

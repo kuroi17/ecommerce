@@ -3,12 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Check-out</title>
+    <title>Jollibee Checkout</title>
 
+    <!-- Header + Global CSS -->
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="promotion-section.css" />
+
+    <!-- Checkout Page CSS -->
+    <link rel="stylesheet" href="checkout.css" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <!-- ✅ Your Jollibee Header -->
     <header class="Jollibee-header">
       <div class="left-part">
         <a href="main.html" class="logo-link">
@@ -19,7 +34,7 @@
       <div class="middle-part">
         <input
           type="search"
-          placeholder="Search for Jolibee!"
+          placeholder="Search for Jollibee!"
           class="search-bar"
         />
         <button class="search-button">
@@ -29,15 +44,167 @@
 
       <div class="right-part">
         <a href="checkout.html">
-          <img src="images/redcart.svg  " class="cart-icon" />
+          <img src="images/redcart.svg" class="cart-icon" />
         </a>
       </div>
     </header>
 
+    <!-- ✅ Checkout Main Content -->
+    <main class="checkout-main">
+      <h1 class="page-title">Review your order</h1>
+
+      <div class="checkout-grid">
+        <!-- Order Summary -->
+        <div class="order-summary">
+          <!-- Example Item -->
+          <div class="cart-item-container">
+            <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
+
+            <div class="cart-item-details-grid">
+              <img
+                class="product-image"
+                src="images/menu/chickenjoy.jpg"
+                alt="Chickenjoy"
+              />
+
+              <div class="cart-item-details">
+                <div class="product-name">Chickenjoy Bucket</div>
+                <div class="product-price">₱499</div>
+                <div class="product-quantity">
+                  <span> Quantity: <span class="quantity-label">1</span> </span>
+                  <span class="update-quantity-link link-primary">Update</span>
+                  <span class="delete-quantity-link link-primary">Delete</span>
+                </div>
+              </div>
+
+              <div class="delivery-options">
+                <div class="delivery-options-title">
+                  Choose a delivery option:
+                </div>
+                <div class="delivery-option">
+                  <input
+                    type="radio"
+                    checked
+                    class="delivery-option-input"
+                    name="delivery-option-1"
+                  />
+                  <div>
+                    <div class="delivery-option-date">Tuesday, Sept 10</div>
+                    <div class="delivery-option-price">FREE Delivery</div>
+                  </div>
+                </div>
+                <div class="delivery-option">
+                  <input
+                    type="radio"
+                    class="delivery-option-input"
+                    name="delivery-option-1"
+                  />
+                  <div>
+                    <div class="delivery-option-date">Monday, Sept 9</div>
+                    <div class="delivery-option-price">₱49 Delivery Fee</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Another Example Item -->
+          <div class="cart-item-container">
+            <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
+
+            <div class="cart-item-details-grid">
+              <img
+                class="product-image"
+                src="images/menu/jolly-spaghetti.jpg"
+                alt="Jolly Spaghetti"
+              />
+
+              <div class="cart-item-details">
+                <div class="product-name">Jolly Spaghetti</div>
+                <div class="product-price">₱70</div>
+                <div class="product-quantity">
+                  <span> Quantity: <span class="quantity-label">2</span> </span>
+                  <span class="update-quantity-link link-primary">Update</span>
+                  <span class="delete-quantity-link link-primary">Delete</span>
+                </div>
+              </div>
+
+              <div class="delivery-options">
+                <div class="delivery-options-title">
+                  Choose a delivery option:
+                </div>
+                <div class="delivery-option">
+                  <input
+                    type="radio"
+                    checked
+                    class="delivery-option-input"
+                    name="delivery-option-2"
+                  />
+                  <div>
+                    <div class="delivery-option-date">Tuesday, Sept 10</div>
+                    <div class="delivery-option-price">FREE Delivery</div>
+                  </div>
+                </div>
+                <div class="delivery-option">
+                  <input
+                    type="radio"
+                    class="delivery-option-input"
+                    name="delivery-option-2"
+                  />
+                  <div>
+                    <div class="delivery-option-date">Monday, Sept 9</div>
+                    <div class="delivery-option-price">₱49 Delivery Fee</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment Summary -->
+        <div class="payment-summary">
+          <div class="payment-summary-title">Order Summary</div>
+
+          <div class="payment-summary-row">
+            <div>Items (3):</div>
+            <div class="payment-summary-money">₱639</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Delivery Fee:</div>
+            <div class="payment-summary-money">₱0</div>
+          </div>
+
+          <div class="payment-summary-row subtotal-row">
+            <div>Total before tax:</div>
+            <div class="payment-summary-money">₱639</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Estimated tax (12% VAT):</div>
+            <div class="payment-summary-money">₱76.68</div>
+          </div>
+
+          <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money">₱715.68</div>
+          </div>
+
+          <button class="place-order-button button-primary">
+            Place your order
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ✅ Jollibee Footer -->
     <footer class="footer">
       <p class="footer-text">
         © 2025 Jollibee Foods Corporation. All Rights Reserved.
       </p>
     </footer>
+
+    <!-- JS -->
+    <script src="checkout.js"></script>
   </body>
 </html>
