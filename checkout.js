@@ -1,17 +1,18 @@
 import { menuData } from "./product.js";
 import { cart } from "./cart.js";
 
+let checkoutHtml = " ";
 cart.forEach((item) => {
-  const productId = item.menuData.id;
+  const productId = item.menuDataId; // i-eequate ang lahat ng id na nasa cart into productId
 
   let matchingItem;
-  menuData.forEach((product) => {
-    if (product.id === productId) {
-      matchingItem = product;
-    }
-  });
-  console.log(matchingItem);
-  `
+  for (const category in menuData) {
+    matchingItem = menuData[category].find(function (product) {
+      return product.id === productId;
+    });
+    if (matchingItem) break;
+  }
+  checkoutHtml += `
   <div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
 
@@ -64,3 +65,4 @@ cart.forEach((item) => {
           </div>
   `;
 });
+document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
