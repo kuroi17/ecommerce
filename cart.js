@@ -1,6 +1,14 @@
 export const TempHolder = [];
- export const cart = [];
-
+export const cart = [
+  {
+    productId: "chickenjoy",
+    quantity: 2,
+  },
+  {
+    productId: "spaghetti",
+    quantity: 1,
+  },
+];
 
 export function AddToCart(productId, matchingitem) {
   if (!matchingitem) {
@@ -15,8 +23,7 @@ export function AddToCart(productId, matchingitem) {
   return matchingitem;
 }
 
-
- export function RemoveFromCart(productId, matchingitem) {
+export function RemoveFromCart(productId, matchingitem) {
   if (!matchingitem) {
     return;
   } else {

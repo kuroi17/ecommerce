@@ -18,15 +18,15 @@ cart.forEach((item) => {
             <div class="cart-item-details-grid">
               <img
                 class="product-image"
-                src="images/menu/chickenjoy.jpg"
+                src=""${matchingItem.image}
                 alt="Chickenjoy"
               />
 
               <div class="cart-item-details">
-                <div class="product-name">Chickenjoy Bucket</div>
-                <div class="product-price">₱499</div>
+                <div class="product-name"> ${matchingItem.name}t</div>
+                <div class="product-price">${matchingItem.price}</div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">1</span> </span>
+                  <span> Quantity: <span class="quantity-label">${item.quantity}</span> </span>
                   <span class="update-quantity-link link-primary">Update</span>
                   <span class="delete-quantity-link link-primary">Delete</span>
                 </div>

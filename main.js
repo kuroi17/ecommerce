@@ -46,7 +46,7 @@ mainDishesContainer.innerHTML = mainDisheshtml;
 const DrinksContainer = document.querySelector(".js-drinks");
 let DrinksHtml = " ";
 
-menuData.drinks.forEach((menudata) => {
+menuData.drinks.forEach((menudata) => { // menudata is the parameter
   DrinksHtml += `
      <article class="product-container">
               <div class="image-container">
