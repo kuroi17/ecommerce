@@ -1,11 +1,11 @@
 export const TempHolder = [];
 export const cart = [
   {
-    productId: "chickenjoy",
+    menuDataId: "chickenjoy",
     quantity: 2,
   },
   {
-    productId: "spaghetti",
+    menuDataId: "spaghetti",
     quantity: 1,
   },
 ];
@@ -34,7 +34,7 @@ export function RemoveFromCart(productId, matchingitem) {
         return item.menuDataId === productId;
       } // return indexes
       const index = TempHolder.findIndex(findMenuItemIndex);
-      if (index !== 1) {
+      if (index !== -1) {
         TempHolder.splice(index, 1);
       }
     }

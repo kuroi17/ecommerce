@@ -12,6 +12,12 @@ cart.forEach((item) => {
     });
     if (matchingItem) break;
   }
+
+  if (!matchingItem) {
+    console.error(`Product with ID ${productId} not found in menuData.`);
+    return;
+  }
+
   checkoutHtml += `
   <div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
@@ -19,12 +25,12 @@ cart.forEach((item) => {
             <div class="cart-item-details-grid">
               <img
                 class="product-image"
-                src=""${matchingItem.image}
+                src="${matchingItem.image}"
                 alt="Chickenjoy"
               />
 
               <div class="cart-item-details">
-                <div class="product-name"> ${matchingItem.name}t</div>
+                <div class="product-name"> ${matchingItem.name}</div>
                 <div class="product-price">${matchingItem.price}</div>
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label">${item.quantity}</span> </span>
@@ -65,4 +71,4 @@ cart.forEach((item) => {
           </div>
   `;
 });
-document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
+document.querySelector(".order-summary").innerHTML = checkoutHtml;
