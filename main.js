@@ -133,17 +133,16 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
-function SaveToLocalStorage() {
+export function SaveToLocalStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-function LoadFromLocalStorage() {
+export function LoadFromLocalStorage() {
   const storedCart = localStorage.getItem("cart");
   if (storedCart) {
     const parsedCart = JSON.parse(storedCart);
     cart.length = 0;
     cart.push(...parsedCart);
   }
-  
 }
 
 // the add burron quantity

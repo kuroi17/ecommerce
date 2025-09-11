@@ -1,7 +1,9 @@
 import { menuData } from "./product.js";
 import { cart } from "./cart.js";
+import { LoadFromLocalStorage } from "./main.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  LoadFromLocalStorage();
   let checkoutHtml = " ";
   cart.forEach((item) => {
     const productId = item.menuDataId;
