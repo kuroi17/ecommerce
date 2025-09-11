@@ -1,14 +1,5 @@
 export const TempHolder = [];
-export const cart = [
-  {
-    menuDataId: "chickenjoy",
-    quantity: 2,
-  },
-  {
-    menuDataId: "spaghetti",
-    quantity: 1,
-  },
-];
+export const cart = [];
 
 export function AddToCart(productId, matchingitem) {
   if (!matchingitem) {

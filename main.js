@@ -46,7 +46,8 @@ mainDishesContainer.innerHTML = mainDisheshtml;
 const DrinksContainer = document.querySelector(".js-drinks");
 let DrinksHtml = " ";
 
-menuData.drinks.forEach((menudata) => { // menudata is the parameter
+menuData.drinks.forEach((menudata) => {
+  // menudata is the parameter
   DrinksHtml += `
      <article class="product-container">
               <div class="image-container">
@@ -132,6 +133,19 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
+function SaveToLocalStorage() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+function LoadFromLocalStorage() {
+  const storedCart = localStorage.getItem("cart");
+  if (storedCart) {
+    const parsedCart = JSON.parse(storedCart);
+    cart.length = 0;
+    cart.push(...parsedCart);
+  }
+  
+}
+
 // the add burron quantity
 document.querySelectorAll(".AddQuantity").forEach((button) => {
   const quantityElement = button.parentElement.querySelector(".quantity");
@@ -150,6 +164,7 @@ document.querySelectorAll(".AddQuantity").forEach((button) => {
     matchingitem = AddToCart(productId, matchingitem);
 
     quantityElement.textContent = matchingitem.quantity;
+    SaveToLocalStorage();
     console.log(TempHolder);
   });
 });
@@ -167,10 +182,12 @@ document.querySelectorAll(".SubtractQuantity").forEach((button) => {
     });
     RemoveFromCart(productId, matchingitem);
     quantityElement.textContent = matchingitem.quantity;
-
+    SaveToLocalStorage();
     console.log(TempHolder);
   });
 });
+
+LoadFromLocalStorage();
 
 function showPopup(message) {
   const popup = document.getElementById("popup");
@@ -218,5 +235,6 @@ document.querySelectorAll(".js-button").forEach(function (button) {
     }
     showPopup(`${product.name} ${tempItem.quantity}x added!`); // show popup
     console.log(cart);
+    SaveToLocalStorage();
   });
 });

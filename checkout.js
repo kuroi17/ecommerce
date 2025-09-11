@@ -71,4 +71,4 @@ cart.forEach((item) => {
           </div>
   `;
 });
-document.querySelector(".order-summary").innerHTML = checkoutHtml;
+
