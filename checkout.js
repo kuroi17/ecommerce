@@ -1,24 +1,25 @@
 import { menuData } from "./product.js";
 import { cart } from "./cart.js";
 
-let checkoutHtml = " ";
-cart.forEach((item) => {
-  const productId = item.menuDataId; // i-eequate ang lahat ng id na nasa cart into productId
+document.addEventListener("DOMContentLoaded", () => {
+  let checkoutHtml = " ";
+  cart.forEach((item) => {
+    const productId = item.menuDataId;
 
-  let matchingItem;
-  for (const category in menuData) {
-    matchingItem = menuData[category].find(function (product) {
-      return product.id === productId;
-    });
-    if (matchingItem) break;
-  }
+    let matchingItem;
+    for (const category in menuData) {
+      matchingItem = menuData[category].find(function (product) {
+        return product.id === productId;
+      });
+      if (matchingItem) break;
+    }
 
-  if (!matchingItem) {
-    console.error(`Product with ID ${productId} not found in menuData.`);
-    return;
-  }
+    if (!matchingItem) {
+      console.error(`Product with ID ${productId} not found in menuData.`);
+      return;
+    }
 
-  checkoutHtml += `
+    checkoutHtml += `
   <div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
 
@@ -26,7 +27,7 @@ cart.forEach((item) => {
               <img
                 class="product-image"
                 src="${matchingItem.image}"
-                alt="Chickenjoy"
+                alt="${matchingItem.name}"
               />
 
               <div class="cart-item-details">
@@ -48,7 +49,7 @@ cart.forEach((item) => {
                     type="radio"
                     checked
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${productId}"
                   />
                   <div>
                     <div class="delivery-option-date">Tuesday, Sept 10</div>
@@ -59,7 +60,7 @@ cart.forEach((item) => {
                   <input
                     type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1"
+                    name="delivery-option-${productId}"
                   />
                   <div>
                     <div class="delivery-option-date">Monday, Sept 9</div>
@@ -70,5 +71,6 @@ cart.forEach((item) => {
             </div>
           </div>
   `;
+  });
+  document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
 });
-
