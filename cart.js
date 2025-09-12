@@ -44,3 +44,12 @@ export function LoadFromLocalStorage() {
   }
 }
 
+export function ClearCart(productId) {
+  const idx = cart.findIndex(item => item.menuDataId === productId);
+  if (idx !== -1){
+    cart.splice(idx, 1);
+    SaveToLocalStorage();
+    return true;
+  }
+  return false;
+}

@@ -15,6 +15,9 @@
   font-weight: 700;
   font-size: 22px;
   margin-bottom: 18px;
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
 }
 
 .checkout-grid {

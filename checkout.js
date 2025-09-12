@@ -1,6 +1,5 @@
-
 import { menuData } from "./product.js";
-import { cart, LoadFromLocalStorage } from "./cart.js";
+import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="product-quantity">
                   <span> Quantity: <span class="quantity-label">${item.quantity}</span> </span>
                   <span class="update-quantity-link link-primary">Update</span>
-                  <span class="delete-quantity-link link-primary">Delete</span>
+                  <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">Delete</span>
                 </div>
               </div>
 
@@ -75,4 +74,16 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   });
   document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
+
+  document.querySelectorAll(".js-delete-link").forEach(function (link) {
+    link.addEventListener("click", function () {
+      const productId = link.dataset.productId;
+      if (!productId) {
+        console.error("delete link missing data-product-id");
+        return;
+      }
+      ClearCart(productId);
+      location.reload();
+    });
+  });
 });
