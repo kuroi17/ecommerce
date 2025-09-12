@@ -1,6 +1,6 @@
+
 import { menuData } from "./product.js";
-import { cart } from "./cart.js";
-import { LoadFromLocalStorage } from "./main.js";
+import { cart, LoadFromLocalStorage } from "./cart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   Choose a delivery option:
                 </div>
                 <div class="delivery-option">
-                  <input
+                  <input 
                     type="radio"
                     checked
                     class="delivery-option-input"

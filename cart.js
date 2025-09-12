@@ -31,3 +31,16 @@ export function RemoveFromCart(productId, matchingitem) {
     }
   }
 }
+
+export function SaveToLocalStorage() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+export function LoadFromLocalStorage() {
+  const storedCart = localStorage.getItem("cart");
+  if (storedCart) {
+    const parsedCart = JSON.parse(storedCart);
+    cart.length = 0;
+    cart.push(...parsedCart);
+  }
+}
+

@@ -1,4 +1,4 @@
-import { AddToCart, RemoveFromCart, TempHolder, cart } from "./cart.js";
+import { AddToCart, RemoveFromCart, TempHolder, cart, SaveToLocalStorage, LoadFromLocalStorage } from "./cart.js";
 import { menuData } from "./product.js";
 
 const mainDishesContainer = document.querySelector(".js-main-dishes");
@@ -133,17 +133,7 @@ menuData.desserts.forEach((menudata) => {
 
 dessertsContainer.innerHTML = dessertshtml;
 
-export function SaveToLocalStorage() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
-export function LoadFromLocalStorage() {
-  const storedCart = localStorage.getItem("cart");
-  if (storedCart) {
-    const parsedCart = JSON.parse(storedCart);
-    cart.length = 0;
-    cart.push(...parsedCart);
-  }
-}
+
 
 // the add burron quantity
 document.querySelectorAll(".AddQuantity").forEach((button) => {
