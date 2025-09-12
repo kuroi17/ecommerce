@@ -64,6 +64,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     name="delivery-option-${productId}"
                   />
                   <div>
+                  
+                    <div class="delivery-option-date">Monday, Sept 9</div>
+                    <div class="delivery-option-price">₱49 Delivery Fee</div>
+                  </div>
+                </div>
+
+                <div class="delivery-option">
+                  <input
+                    type="radio"
+                    class="delivery-option-input"
+                    name="delivery-option-${productId}"
+                  />
+                  <div>
+                  
                     <div class="delivery-option-date">Monday, Sept 9</div>
                     <div class="delivery-option-price">₱49 Delivery Fee</div>
                   </div>
