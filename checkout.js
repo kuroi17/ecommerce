@@ -46,7 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let deliveryOptionsHtml = "";
     for (let i = 0; i < deliveryOptions.length; i++) {
       deliveryOptionsHtml += generateDeliveryOptionHtml(
-        deliveryOptions[i], productId
+        deliveryOptions[i],
+        productId
       );
     } // the variable deliveryOptionsHtml is the one that holds the generated HTML for all delivery options
     // from the function generateDeliveryOptionHtml
@@ -77,9 +78,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
               <div class="cart-item-details">
                 <div class="product-name"> ${matchingItem.name}</div>
-                <div class="product-price">${matchingItem.price}</div>
+                <div class="product-price">₱${(
+                  matchingItem.price / 100
+                ).toFixed(2)}  </div>
                 <div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">${item.quantity}</span> </span>
+                  <span> Quantity: <span class="quantity-label">${
+                    item.quantity
+                  }</span> </span>
                   <span class="update-quantity-link link-primary">Update</span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">Delete</span>
                 </div>
