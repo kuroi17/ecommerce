@@ -3,10 +3,18 @@ import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions } from "./deliveryOptions.js";
 const today = dayjs();
-// import {productId} from "./main.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
+
+  let totalItems = 0;
+  for (const item of cart) {
+    totalItems += item.quantity;
+  }
+  document.querySelector(
+    ".js-item-counter"
+  ).textContent = `Items (${totalItems}):`;
+
   let checkoutHtml = " ";
   cart.forEach((item) => {
     const productId = item.menuDataId;
@@ -114,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       location.reload();
     });
   });
+
   document.querySelectorAll(".js-update-link").forEach(function (link) {
     link.addEventListener("click", function () {
       updateQuantity(link);
