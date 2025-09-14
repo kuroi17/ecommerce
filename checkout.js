@@ -3,6 +3,7 @@ import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions } from "./deliveryOptions.js";
 const today = dayjs();
+// import {productId} from "./main.js"
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
@@ -85,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <span> Quantity: <span class="quantity-label">${
                     item.quantity
                   }</span> </span>
-                  <span class="update-quantity-link link-primary">Update</span>
+                  <span class="update-quantity-link link-primary js-update-link" data-product-id="${productId}" tabindex="0">Update</span>
                   <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">Delete</span>
                 </div>
               </div>
@@ -113,4 +114,49 @@ document.addEventListener("DOMContentLoaded", () => {
       location.reload();
     });
   });
+  document.querySelectorAll(".js-update-link").forEach(function (link) {
+    link.addEventListener("click", function () {
+      updateQuantity(link);
+    });
+    link.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        updateQuantity(link);
+      }
+    });
+  });
+
+  function updateQuantity(link) {
+    const productId = link.dataset.productId;
+    const quantityDisplay = link.parentElement.querySelector(".quantity-label");
+
+    const oldQuantity = parseInt(quantityDisplay.textContent);
+
+    const newQuantity = prompt("Enter new quantity: ", oldQuantity);
+
+    if (newQuantity === null) return;
+
+    const newQuantityNumber = parseInt(newQuantity);
+
+    if (isNaN(newQuantityNumber) || newQuantityNumber <= 0) {
+      alert("Please enter a valid quantity!");
+      return;
+    }
+
+    const updatedCart = [];
+
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].menuDataId === productId) {
+        updatedCart.push({
+          ...cart[i], // Keep all existing properties
+          quantity: newQuantityNumber, // Update quantity
+        });
+      } else {
+        updatedCart.push(cart[i]);
+      }
+    }
+
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    location.reload();
+  }
 });
