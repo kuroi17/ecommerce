@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let deliveryOptionsHtml = "";
     for (let i = 0; i < deliveryOptions.length; i++) {
       deliveryOptionsHtml += generateDeliveryOptionHtml(
-        deliveryOptions[i].productId
+        deliveryOptions[i], productId
       );
     } // the variable deliveryOptionsHtml is the one that holds the generated HTML for all delivery options
     // from the function generateDeliveryOptionHtml
