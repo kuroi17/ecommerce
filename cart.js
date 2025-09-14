@@ -43,7 +43,7 @@ export function LoadFromLocalStorage() {
     cart.push(...parsedCart);
   }
 }
-
+// the clear cart button function
 export function ClearCart(productId) {
   const idx = cart.findIndex(item => item.menuDataId === productId);
   if (idx !== -1){

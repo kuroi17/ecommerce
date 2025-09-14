@@ -1,13 +1,48 @@
 import { menuData } from "./product.js";
 import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
-
+import { deliveryOptions } from "./deliveryOptions.js";
 const today = dayjs();
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
   let checkoutHtml = " ";
   cart.forEach((item) => {
+    function generateDeliveryOptionHtml(option, productId) {
+      const deliveryTime = today
+        .add(option.deliveryTime, "minute")
+        .format("dddd, MMM D [at] h: mm A");
+
+      let checkedAttribute = "";
+      if (option.id === "1") {
+        checkedAttribute = "checked";
+      }
+      let priceText = "";
+
+      if (option.price === 0) {
+        priceText = "FREE Delivery";
+      } else {
+        priceText = `₱${option.price} Delivery Fee`;
+      }
+
+      return `
+      <div class="delivery-option">
+                  <input 
+                    type="radio"
+                    ${checkedAttribute}
+                    class="delivery-option-input"
+                    name="delivery-option-${productId}"
+                    value="${option.id}"
+                  />
+                  <div>
+                    <div class="delivery-option-date">${deliveryTime}</div>
+                    <div class="delivery-option-price">${priceText}</div>
+                  </div>
+                </div>
+      `;
+    }
+    
+
     const productId = item.menuDataId;
 
     let matchingItem;
