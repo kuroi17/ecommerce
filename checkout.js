@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
   let checkoutHtml = " ";
   cart.forEach((item) => {
+    const productId = item.menuDataId;
     function generateDeliveryOptionHtml(option, productId) {
       const deliveryTime = today
         .add(option.deliveryTime, "minute")
-        .format("dddd, MMM D [at] h: mm A");
+        .format("dddd, MMM D [at] h:mm A");
 
       let checkedAttribute = "";
       if (option.id === "1") {
@@ -41,9 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
       `;
     }
-    
 
-    const productId = item.menuDataId;
+    let deliveryOptionsHtml = "";
+    for (let i = 0; i < deliveryOptions.length; i++) {
+      deliveryOptionsHtml += generateDeliveryOptionHtml(
+        deliveryOptions[i].productId
+      );
+    } // the variable deliveryOptionsHtml is the one that holds the generated HTML for all delivery options
+    // from the function generateDeliveryOptionHtml
 
     let matchingItem;
     for (const category in menuData) {
@@ -83,43 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="delivery-options-title">
                   Choose a delivery option:
                 </div>
-                <div class="delivery-option">
-                  <input 
-                    type="radio"
-                    checked
-                    class="delivery-option-input"
-                    name="delivery-option-${productId}"
-                  />
-                  <div>
-                    <div class="delivery-option-date">Tuesday, Sept 10</div>
-                    <div class="delivery-option-price">FREE Delivery</div>
-                  </div>
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${productId}"
-                  />
-                  <div>
-                  
-                    <div class="delivery-option-date">Monday, Sept 9</div>
-                    <div class="delivery-option-price">₱49 Delivery Fee</div>
-                  </div>
-                </div>
-
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    class="delivery-option-input"
-                    name="delivery-option-${productId}"
-                  />
-                  <div>
-                  
-                    <div class="delivery-option-date">Monday, Sept 9</div>
-                    <div class="delivery-option-price">₱49 Delivery Fee</div>
-                  </div>
-                </div>
+                ${deliveryOptionsHtml} 
               </div>
             </div>
           </div>
