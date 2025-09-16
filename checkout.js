@@ -74,30 +74,44 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-function updatePaymentSummary(deliveryFee){
-const DeliveryFeeElement = document.querySelector(".js-delivery-fee");
-const TotalBeforeTaxElement = document.querySelector(".js-total-before-tax");
-const TotalAfterTaxElement = document.querySelector(".js-total-after-tax");
-const FinalAmountElement = document.querySelector(".js-final-amount");
+    function updatePaymentSummary(deliveryFee) {
+      const DeliveryFeeElement = document.querySelector(".js-delivery-fee");
+      const TotalBeforeTaxElement = document.querySelector(
+        ".js-total-before-tax"
+      );
+      const TotalAfterTaxElement = document.querySelector(
+        ".js-total-after-tax"
+      );
+      const FinalAmountElement = document.querySelector(".js-final-amount");
 
+      function CalculateTotalItems(cart) {
+        return cart.reduce(function (sum, item) {
+          const product = findProduct(item.menuDataId);
+          return sum + product.price * item.quantity;
+        }, 0);
+      }
+      const itemsTotal = CalculateTotalItems(cart);
 
-function CalculateTotalItems(cart){
-  return cart.reduce( function (sum, item){
-    const product = findProduct(item.menuDataId);
-    return sum + (product.price * item.quantity);
-  }, 0);
-}
-const itemsTotal = CalculateTotalItems(cart);
+      const totalBeforeTax = itemsTotal + deliveryFee;
+      const taxAmount = totalBeforeTax * 0.12;
+      const finalAmount = totalBeforeTax + taxAmount;
 
-const totalBeforeTax = itemsTotal + deliveryFee;
-const taxAmount = totalBeforeTax * 0.12;
-const finalAmount = totalBeforeTax + taxAmount;
-
-DeliveryFeeElement.textContent = `₱${(deliveryFee / 100).toFixed(2)}`;
-TotalBeforeTaxElement.textContent = `₱${(totalBeforeTax / 100).toFixed(2)}`;
-TotalAfterTaxElement.textContent = `₱${(taxAmount / 100).toFixed(2)}`;
-FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
-};
+      DeliveryFeeElement.textContent = `₱${(deliveryFee / 100).toFixed(2)}`;
+      TotalBeforeTaxElement.textContent = `₱${(totalBeforeTax / 100).toFixed(
+        2
+      )}`;
+      TotalAfterTaxElement.textContent = `₱${(taxAmount / 100).toFixed(2)}`;
+      FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
+      function findProduct(productId) {
+        for (const category in menuData) {
+          const product = menuData[category].find(function (p) {
+            return p.id === productId;
+          });
+          if (product) return product;
+        }
+        return null;
+      }
+    }
 
     checkoutHtml += `
   <div class="cart-item-container">
@@ -147,7 +161,8 @@ FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
       location.reload();
     });
   });
-  // update button in the checkout page
+
+  // the key for update button input, either clicked by enter or clicked by mouse
   document.querySelectorAll(".js-update-link").forEach(function (link) {
     link.addEventListener("click", function () {
       updateQuantity(link);
@@ -158,7 +173,7 @@ FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
       }
     });
   });
-
+  // update button in the checkout page
   function updateQuantity(link) {
     const productId = link.dataset.productId;
     const quantityDisplay = link.parentElement.querySelector(".quantity-label");
@@ -194,18 +209,7 @@ FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
     location.reload();
   }
 
- 
-});
-
-
-
-
-
-document.querySelectorAll(".delivery-option-input").forEach(function (input) {
-  if (input.value === "1") {
-    input.checked = true;
-
-    let paymentSummaryHtml = `
+   let paymentSummaryHtml = `
     <div class="payment-summary-title">Order Summary</div>
 
           <div class="payment-summary-row">
@@ -238,6 +242,31 @@ document.querySelectorAll(".delivery-option-input").forEach(function (input) {
           </button>
     `;
 
-    document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
-  }
+    document.querySelectorAll(".delivery-option-input").forEach((input) => {
+      if (input.value === "1") {
+        input.checked = true;
+        updatePaymentSummary(0);   
+    }
+    input.addEventListener("change", function (){
+      const selectedOption = deliveryOptions.find( function (option){
+        return option.id === this.value;
+      } );
+
+      if (selectedOption){
+        updatePaymentSummary(selectedOption.price);
+
+        const productId = this.getAttribute('name').replace('delivery-option-', '');
+        const cartItem = cart.find(function (item){
+          return item.menuDataId === productId;
+        });
+        if (cartItem){
+          cartItem.selectedDeliveryOptionId = selectedOption.id;
+          localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+
+      }
+    })
+   document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
 });
+
