@@ -65,7 +65,7 @@ function updatePaymentSummary(deliveryFee) {
   const taxAmount = totalBeforeTax * 0.12;
   const finalAmount = totalBeforeTax + taxAmount;
 
-  DeliveryFeeElement.textContent = `₱${(deliveryFee / 100).toFixed(2)}`;
+  DeliveryFeeElement.textContent = `₱${deliveryFee.toFixed(2)}`;
   TotalBeforeTaxElement.textContent = `₱${(totalBeforeTax / 100).toFixed(2)}`;
   TotalAfterTaxElement.textContent = `₱${(taxAmount / 100).toFixed(2)}`;
   FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
@@ -241,23 +241,27 @@ document.addEventListener("DOMContentLoaded", () => {
       input.checked = true;
       updatePaymentSummary(0);
     }
-    
-    input.addEventListener("change", function(event) {  // Get event parameter
+
+    input.addEventListener("change", function (event) {
+      // Get event parameter
       // Store the input value before using find
-      const inputValue = event.target.value;  // or this.value
-      
-      const selectedOption = deliveryOptions.find(function(option) {
-        return option.id === inputValue;  // Use stored value instead of this.value
+      const inputValue = event.target.value; // or this.value
+
+      const selectedOption = deliveryOptions.find(function (option) {
+        return option.id === inputValue; // Use stored value instead of this.value
       });
 
       if (selectedOption) {
         updatePaymentSummary(selectedOption.price);
 
-        const productId = this.getAttribute("name").replace("delivery-option-", "");
-        const cartItem = cart.find(function(item) {
+        const productId = this.getAttribute("name").replace(
+          "delivery-option-",
+          ""
+        );
+        const cartItem = cart.find(function (item) {
           return item.menuDataId === productId;
         });
-        
+
         if (cartItem) {
           cartItem.selectedDeliveryOptionId = selectedOption.id;
           localStorage.setItem("cart", JSON.stringify(cart));
