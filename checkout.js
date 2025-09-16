@@ -177,38 +177,55 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   });
 
+  // Calculate values before generating HTML
+  const itemsTotal = CalculateTotalItems(cart);
+  const deliveryFee = 0; // Initial delivery fee
+  const totalBeforeTax = itemsTotal + deliveryFee;
+  const taxAmount = totalBeforeTax * 0.12;
+  const finalAmount = totalBeforeTax + taxAmount;
+
   let paymentSummaryHtml = `
     <div class="payment-summary-title">Order Summary</div>
 
-          <div class="payment-summary-row">
-            <div class="js-item-counter">Items (3):</div>
-            <div class="payment-summary-money js-total-amount">₱639</div>
-          </div>
+    <div class="payment-summary-row">
+      <div class="js-item-counter">Items (${totalItems}):</div>
+      <div class="payment-summary-money js-total-amount">₱${(
+        itemsTotal / 100
+      ).toFixed(2)}</div>
+    </div>
 
-          <div class="payment-summary-row">
-            <div>Delivery Fee:</div>
-            <div class="payment-summary-money js-delivery-fee">₱0</div>
-          </div>
+    <div class="payment-summary-row">
+      <div>Delivery Fee:</div>
+      <div class="payment-summary-money js-delivery-fee">₱${(
+        deliveryFee / 100
+      ).toFixed(2)}</div>
+    </div>
 
-          <div class="payment-summary-row subtotal-row">
-            <div>Total before tax:</div>
-            <div class="payment-summary-money js-total-before-tax">₱639</div>
-          </div>
+    <div class="payment-summary-row subtotal-row">
+      <div>Total before tax:</div>
+      <div class="payment-summary-money js-total-before-tax">₱${(
+        totalBeforeTax / 100
+      ).toFixed(2)}</div>
+    </div>
 
-          <div class="payment-summary-row">
-            <div>Estimated tax (12% VAT):</div>
-            <div class="payment-summary-money js-total-after-tax">₱76.68</div>
-          </div>
+    <div class="payment-summary-row">
+      <div>Estimated tax (12% VAT):</div>
+      <div class="payment-summary-money js-total-after-tax">₱${(
+        taxAmount / 100
+      ).toFixed(2)}</div>
+    </div>
 
-          <div class="payment-summary-row total-row">
-            <div>Order total:</div>
-            <div class="payment-summary-money js-final-amount">₱715.68</div>
-          </div>
+    <div class="payment-summary-row total-row">
+      <div>Order total:</div>
+      <div class="payment-summary-money js-final-amount">₱${(
+        finalAmount / 100
+      ).toFixed(2)}</div>
+    </div>
 
-          <button class="place-order-button button-primary">
-            Place your order
-          </button>
-    `;
+    <button class="place-order-button button-primary">
+      Place your order
+    </button>
+  `;
 
   document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
   document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
