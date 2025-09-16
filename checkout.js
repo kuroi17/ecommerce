@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       location.reload();
     });
   });
-
+// update button in the checkout page
   document.querySelectorAll(".js-update-link").forEach(function (link) {
     link.addEventListener("click", function () {
       updateQuantity(link);
@@ -169,3 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
     location.reload();
   }
 });
+
+document.querySelectorAll(".delivery-option-input").forEach( function (input){
+  if (input.value === "1"){
+    input.checked = true;
+
+    
+  }
+
+})
