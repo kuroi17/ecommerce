@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       location.reload();
     });
   });
-// update button in the checkout page
+  // update button in the checkout page
   document.querySelectorAll(".js-update-link").forEach(function (link) {
     link.addEventListener("click", function () {
       updateQuantity(link);
@@ -170,11 +170,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.querySelectorAll(".delivery-option-input").forEach( function (input){
-  if (input.value === "1"){
+document.querySelectorAll(".delivery-option-input").forEach(function (input) {
+  if (input.value === "1") {
     input.checked = true;
 
-    
-  }
+    let paymentSummaryHtml = `
+    <div class="payment-summary-title">Order Summary</div>
 
-})
+          <div class="payment-summary-row">
+            <div class="js-item-counter">Items (3):</div>
+            <div class="payment-summary-money js-total-amount">₱639</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Delivery Fee:</div>
+            <div class="payment-summary-money js-delivery-fee">₱0</div>
+          </div>
+
+          <div class="payment-summary-row subtotal-row">
+            <div>Total before tax:</div>
+            <div class="payment-summary-money js-total-before-tax">₱639</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Estimated tax (12% VAT):</div>
+            <div class="payment-summary-money js-total-after-tax">₱76.68</div>
+          </div>
+
+          <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money js-final-amount">₱715.68</div>
+          </div>
+
+          <button class="place-order-button button-primary">
+            Place your order
+          </button>
+    `;
+
+    document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
+  }
+});
