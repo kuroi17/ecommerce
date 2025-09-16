@@ -74,6 +74,31 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+function updatePaymentSummary(deliveryFee){
+const DeliveryFeeElement = document.querySelector(".js-delivery-fee");
+const TotalBeforeTaxElement = document.querySelector(".js-total-before-tax");
+const TotalAfterTaxElement = document.querySelector(".js-total-after-tax");
+const FinalAmountElement = document.querySelector(".js-final-amount");
+
+
+function CalculateTotalItems(cart){
+  return cart.reduce( function (sum, item){
+    const product = findProduct(item.menuDataId);
+    return sum + (product.price * item.quantity);
+  }, 0);
+}
+const itemsTotal = CalculateTotalItems(cart);
+
+const totalBeforeTax = itemsTotal + deliveryFee;
+const taxAmount = totalBeforeTax * 0.12;
+const finalAmount = totalBeforeTax + taxAmount;
+
+DeliveryFeeElement.textContent = `₱${(deliveryFee / 100).toFixed(2)}`;
+TotalBeforeTaxElement.textContent = `₱${(totalBeforeTax / 100).toFixed(2)}`;
+TotalAfterTaxElement.textContent = `₱${(taxAmount / 100).toFixed(2)}`;
+FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
+};
+
     checkoutHtml += `
   <div class="cart-item-container">
             <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
@@ -109,8 +134,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
   `;
   });
-  document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
 
+  document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
   document.querySelectorAll(".js-delete-link").forEach(function (link) {
     link.addEventListener("click", function () {
       const productId = link.dataset.productId;
@@ -168,7 +193,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     location.reload();
   }
+
+ 
 });
+
+
+
+
 
 document.querySelectorAll(".delivery-option-input").forEach(function (input) {
   if (input.value === "1") {
