@@ -122,7 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update item quantity
   document.querySelectorAll(".js-update-link").forEach((link) => {
     link.addEventListener("click", () => updateQuantity(link)); // by click
-    link.addEventListener("keydown", (event) => { // from keyboard
+    link.addEventListener("keydown", (event) => {
+      // from keyboard
       if (event.key === "Enter") updateQuantity(link); // if enter key is cliked
     });
   });
@@ -144,15 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updatedCart = [];
 
-    for (let i = 0; i < cart.length; i++){
-      if (cart[i].menuDataId === productId){
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].menuDataId === productId) {
         updatedCart.push({
           menuDataId: cart[i].menuDataId,
           selectedDeliveryOptionId: cart[i].selectedDeliveryOptionId,
-          quantity: newQuantityNumber  // Only this property is changed
+          quantity: newQuantityNumber, // Only this property is changed
         });
-      }
-      else{
+      } else {
         updatedCart.push(cart[i]);
       }
     }
@@ -191,7 +191,9 @@ document.addEventListener("DOMContentLoaded", () => {
   //  Helper to find product
   function findProduct(productId) {
     for (const category in menuData) {
-      const product = menuData[category].find((p) => p.id === productId);
+      const product = menuData[category].find(function (p) {
+        return p.id === productId;
+      });
       if (product) return product;
     }
     return null;
@@ -224,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
     FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
   }
 
-  // 🟢 Delivery option listeners
+  // Delivery option listeners
   document.querySelectorAll(".delivery-option-input").forEach((input) => {
     if (input.value === "1") {
       input.checked = true;
