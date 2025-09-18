@@ -141,16 +141,27 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please enter a valid quantity!");
       return;
     }
-    
-    const updatedCart = cart.map((c) =>
-      c.menuDataId === productId ? { ...c, quantity: newQuantityNumber } : c
-    );
+
+    const updatedCart = [];
+
+    for (let i = 0; i < cart.length; i++){
+      if (cart[i].menuDataId === productId){
+        updatedCart.push({
+          menuDataId: cart[i].menuDataId,
+          selectedDeliveryOptionId: cart[i].selectedDeliveryOptionId,
+          quantity: newQuantityNumber  // Only this property is changed
+        });
+      }
+      else{
+        updatedCart.push(cart[i]);
+      }
+    }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     location.reload();
   }
 
-  // 🟢 Payment summary
+  //  Payment summary
   let paymentSummaryHtml = `
     <div class="payment-summary-title">Order Summary</div>
     <div class="payment-summary-row">
@@ -177,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
   document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
 
-  // 🟢 Helper to find product
+  //  Helper to find product
   function findProduct(productId) {
     for (const category in menuData) {
       const product = menuData[category].find((p) => p.id === productId);
@@ -186,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   }
 
-  // 🟢 Update payment summary
+  //  Update payment summary
   function updatePaymentSummary(deliveryFee) {
     const DeliveryFeeElement = document.querySelector(".js-delivery-fee");
     const TotalBeforeTaxElement = document.querySelector(
