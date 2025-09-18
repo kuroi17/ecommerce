@@ -8,7 +8,7 @@ const today = dayjs();
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
 
-  //  Show total items
+  // 🟢 Show total items
   let totalItems = 0;
   for (const item of cart) {
     totalItems += item.quantity;
@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ".js-item-counter"
   ).textContent = `Items (${totalItems}):`;
 
-  //  Generate checkout items
+  // 🟢 Generate checkout items
   let checkoutHtml = "";
   cart.forEach((item) => {
     const productId = item.menuDataId;
 
-    // generate delivery option, (THE HTML WITH ITS INFO GETTING FILLED IN)
+    // generate delivery option
     function generateDeliveryOptionHtml(option, productId) {
       const deliveryTime = today
         .add(option.deliveryTime, "minute")
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
     }
 
-    // loop throughevery delivery options
+    // loop delivery options
     let deliveryOptionsHtml = "";
     for (let i = 0; i < deliveryOptions.length; i++) {
       deliveryOptionsHtml += generateDeliveryOptionHtml(
