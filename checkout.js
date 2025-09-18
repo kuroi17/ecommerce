@@ -28,9 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
         .add(option.deliveryTime, "minute")
         .format("dddd, MMM D [at] h:mm A");
 
-      let checkedAttribute = option.id === "1" ? "checked" : "";
-      let priceText =
-        option.price === 0 ? "FREE Delivery" : `₱${option.price} Delivery Fee`;
+      let checkedAttribute = "";
+      if (option.id === "1") {
+        checkedAttribute - "checked";
+      }
+
+      let priceText = "";
+
+      if (option.price === 0) {
+        priceText = "FREE Delivery";
+      } else {
+        priceText = `₱${option.price} Delivery Fee`;
+      }
 
       return `
         <div class="delivery-option">
