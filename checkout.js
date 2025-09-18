@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // find product in menuData
     let matchingItem;
     for (const category in menuData) {
-      matchingItem = menuData[category].find(
-        (product) => product.id === productId
-      );
+      matchingItem = menuData[category].find(function (product) {
+        return product.id === productId;
+      });
       if (matchingItem) break;
     }
     if (!matchingItem) {
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 
           <div class="delivery-options">
-            <div class="delivery-options-title">Choose a delivery option:</div>
+            <div class="delivery-options-title">Choose Delivery Option </div>
             ${deliveryOptionsHtml} 
           </div>
         </div>
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
 
-  // 🟢 Delete item
+  // Delete item by delete button and using clearcart function from cart.js
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
@@ -114,24 +114,25 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("delete link missing data-product-id");
         return;
       }
-      ClearCart(productId);
+      ClearCart(productId); // from cart.js
       location.reload();
     });
   });
 
-  // 🟢 Update item quantity
+  // Update item quantity
   document.querySelectorAll(".js-update-link").forEach((link) => {
-    link.addEventListener("click", () => updateQuantity(link));
-    link.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") updateQuantity(link);
+    link.addEventListener("click", () => updateQuantity(link)); // by click
+    link.addEventListener("keydown", (event) => { // from keyboard
+      if (event.key === "Enter") updateQuantity(link); // if enter key is cliked
     });
   });
 
+  // the function that will update the quantity
   function updateQuantity(link) {
     const productId = link.dataset.productId;
-    const quantityDisplay = link.parentElement.querySelector(".quantity-label");
+    const quantityDisplay = link.parentElement.querySelector(".quantity-label"); // span that shows the quantity is stored in variable
     const oldQuantity = parseInt(quantityDisplay.textContent);
-    const newQuantity = prompt("Enter new quantity: ", oldQuantity);
+    const newQuantity = prompt("Enter new quantity: ", oldQuantity); // the prompt
 
     if (newQuantity === null) return;
     const newQuantityNumber = parseInt(newQuantity);
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Please enter a valid quantity!");
       return;
     }
-
+    
     const updatedCart = cart.map((c) =>
       c.menuDataId === productId ? { ...c, quantity: newQuantityNumber } : c
     );
