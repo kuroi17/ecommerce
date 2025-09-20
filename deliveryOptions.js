@@ -12,6 +12,6 @@ export const deliveryOptions = [
   {
     id: "3",
     deliveryTime: 20,
-    price: 1000,
+    price: 10000,
   },
 ];
