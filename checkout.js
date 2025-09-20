@@ -31,11 +31,22 @@ function updatePaymentSummary(deliveryFee) {
   const FinalAmountElement = document.querySelector(".js-final-amount");
 
   const itemsTotal = CalculateTotalItems(cart);
-  const totalBeforeTax = itemsTotal + deliveryFee;
+
+  let totalDeliveryfee = 0;
+  cart.forEach(function (item) {
+    if (item.selectedDeliveryOptionId) {
+      const selectedOption = deliveryOptions.find(function (option) {
+        return option.id === item.selectedDeliveryOptionId;
+      });
+      if (selectedOption) totalDeliveryfee += selectedOption.price;
+    }
+  });
+
+  const totalBeforeTax = itemsTotal + totalDeliveryfee;
   const taxAmount = totalBeforeTax * 0.12;
   const finalAmount = totalBeforeTax + taxAmount;
 
-  DeliveryFeeElement.textContent = `₱${(deliveryFee / 100).toFixed(2)}`;
+  DeliveryFeeElement.textContent = `₱${(totalDeliveryfee / 100).toFixed(2)}`;
   TotalBeforeTaxElement.textContent = `₱${(totalBeforeTax / 100).toFixed(2)}`;
   TotalAfterTaxElement.textContent = `₱${(taxAmount / 100).toFixed(2)}`;
   FinalAmountElement.textContent = `₱${(finalAmount / 100).toFixed(2)}`;
@@ -127,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     checkoutHtml += `
       <div class="cart-item-container">
         <div class="delivery-date">Delivery date: ${today.format(
-          "dddd of MMM D"
+          "dddd of MMM D" // deliveryTime sana kaso ayaw
         )}</div>
 
         <div class="cart-item-details-grid">
@@ -257,15 +268,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".delivery-option-input").forEach((input) => {
     if (input.value === "1") {
       input.checked = true;
-      updatePaymentSummary(0);
     }
     input.addEventListener("change", function () {
       const selectedOption = deliveryOptions.find(
         (option) => option.id === this.value
+        // function (option) {
+        //   return option.id === this.value;
+        // }
       );
       if (selectedOption) {
-        updatePaymentSummary(selectedOption.price);
-
         const productId = this.getAttribute("name").replace(
           "delivery-option-",
           ""
@@ -277,8 +288,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (cartItem) {
           cartItem.selectedDeliveryOptionId = selectedOption.id;
           localStorage.setItem("cart", JSON.stringify(cart));
+          updatePaymentSummary();
         }
       }
     });
   });
 });
+updatePaymentSummary();
