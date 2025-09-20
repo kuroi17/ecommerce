@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (option.price === 0) {
         priceText = "FREE Delivery";
       } else {
-        priceText = `₱${option.price} Delivery Fee`;
+        priceText = `₱${(option.price / 100).toFixed(2)} Delivery Fee`;
       }
 
       return `
@@ -226,9 +226,9 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
     <div class="payment-summary-row">
       <div>Delivery Fee:</div>
-      <div class="payment-summary-money js-delivery-fee">₱ ${(
-        initialDeliveryFee / 100
-      ).toFixed(2)}
+      <div class="payment-summary-money js-delivery-fee">₱ ${initialDeliveryFee.toFixed(
+        2
+      )}
        </div>
     </div>
     <div class="payment-summary-row subtotal-row">
