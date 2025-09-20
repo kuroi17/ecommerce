@@ -24,7 +24,7 @@ function CalculateTotalItems(cart) {
 }
 
 //  Update payment summary
-function updatePaymentSummary(deliveryFee) {
+function updatePaymentSummary() {
   const DeliveryFeeElement = document.querySelector(".js-delivery-fee");
   const TotalBeforeTaxElement = document.querySelector(".js-total-before-tax");
   const TotalAfterTaxElement = document.querySelector(".js-total-after-tax");
