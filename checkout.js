@@ -126,7 +126,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // add cart item html
     checkoutHtml += `
       <div class="cart-item-container">
-        <div class="delivery-date">Delivery date: Tuesday, Sept 10</div>
+        <div class="delivery-date">Delivery date: ${today.format(
+          "dddd of MMM D"
+        )}</div>
 
         <div class="cart-item-details-grid">
           <img class="product-image" src="${matchingItem.image}" alt="${
