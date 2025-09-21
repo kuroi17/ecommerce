@@ -67,9 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
   for (const item of cart) {
     totalItems += item.quantity;
   }
-  document.querySelector(
-    ".js-item-counter"
-  ).textContent = `Items (${totalItems}):`;
 
   //  Generate checkout items
   let checkoutHtml = "";
@@ -263,6 +260,10 @@ document.addEventListener("DOMContentLoaded", () => {
     <button class="place-order-button button-primary">Place your order</button>
   `;
   document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
+  document.querySelector(
+    ".js-item-counter"
+  ).textContent = `Items (${totalItems}):`;
+  updatePaymentSummary();
 
   // Delivery option listeners
   document.querySelectorAll(".delivery-option-input").forEach((input) => {
@@ -294,4 +295,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-updatePaymentSummary();
