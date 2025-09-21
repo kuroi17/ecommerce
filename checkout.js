@@ -2,29 +2,18 @@ import { menuData } from "./product.js";
 import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions } from "./deliveryOptions.js";
-import { CalculateTotalItems, updatePaymentSummary } from "./renderPayment.js";
-
+import {
+  CalculateTotalItems,
+  updatePaymentSummary,
+  paymentsummaryhtml,
+} from "./renderPayment.js";
 
 const today = dayjs();
-
 
 //  Helper to find product
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
-
-  //  Initial calculations
-  const itemsTotal = CalculateTotalItems(cart);
-  const initialDeliveryFee = 0;
-  const totalBeforeTax = itemsTotal + initialDeliveryFee;
-  const taxAmount = totalBeforeTax * 0.12;
-  const finalAmount = totalBeforeTax + taxAmount;
-
-  //  Show total items
-  let totalItems = 0;
-  for (const item of cart) {
-    totalItems += item.quantity;
-  }
 
   //  Generate checkout items
   let checkoutHtml = "";
@@ -182,74 +171,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //  Payment summary
-  let paymentSummaryHtml = `
-    <div class="payment-summary-title">Order Summary</div>
-    <div class="payment-summary-row">
-      <div class="js-item-counter">Items (${totalItems}):</div>
-      <div class="payment-summary-money js-total-amount">₱${(
-        itemsTotal / 100
-      ).toFixed(2)}</div>
-    </div>
-    <div class="payment-summary-row">
-      <div>Delivery Fee:</div>
-      <div class="payment-summary-money js-delivery-fee">₱ ${initialDeliveryFee.toFixed(
-        2
-      )}
-       </div>
-    </div>
-    <div class="payment-summary-row subtotal-row">
-      <div>Total before tax:</div>
-      <div class="payment-summary-money js-total-before-tax">₱${(
-        totalBeforeTax / 100
-      ).toFixed(2)}</div>
-    </div>
-    <div class="payment-summary-row">
-      <div>Estimated tax (12% VAT):</div>
-      <div class="payment-summary-money js-total-after-tax">₱${(
-        taxAmount / 100
-      ).toFixed(2)}</div>
-    </div>
-    <div class="payment-summary-row total-row">
-      <div>Order total:</div>
-      <div class="payment-summary-money js-final-amount">₱${(
-        finalAmount / 100
-      ).toFixed(2)}</div>
-    </div>
-    <button class="place-order-button button-primary">Place your order</button>
-  `;
-  document.querySelector(".payment-summary").innerHTML = paymentSummaryHtml;
-  document.querySelector(
-    ".js-item-counter"
-  ).textContent = `Items (${totalItems}):`;
-  updatePaymentSummary();
-
-  // Delivery option listeners
-  document.querySelectorAll(".delivery-option-input").forEach((input) => {
-    if (input.value === "1") {
-      input.checked = true;
-    }
-    input.addEventListener("change", function () {
-      const selectedOption = deliveryOptions.find(
-        (option) => option.id === this.value
-        // function (option) {
-        //   return option.id === this.value;
-        // }
-      );
-      if (selectedOption) {
-        const productId = this.getAttribute("name").replace(
-          "delivery-option-",
-          ""
-        );
-        const cartItem = cart.find(function (item) {
-          return item.menuDataId === productId;
-        });
-
-        if (cartItem) {
-          cartItem.selectedDeliveryOptionId = selectedOption.id;
-          localStorage.setItem("cart", JSON.stringify(cart));
-          updatePaymentSummary();
-        }
-      }
-    });
-  });
+  paymentsummaryhtml();
 });
