@@ -2,10 +2,7 @@ import { menuData } from "./product.js";
 import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions } from "./deliveryOptions.js";
-import {
-  updatePaymentSummary,
-  paymentSummaryHtml,
-} from "./renderPayment.js";
+import { updatePaymentSummary, paymentSummaryHtml } from "./renderPayment.js";
 
 const today = dayjs();
 
