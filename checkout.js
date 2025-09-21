@@ -3,60 +3,56 @@ import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions } from "./deliveryOptions.js";
 import {
-  CalculateTotalItems,
   updatePaymentSummary,
-  paymentsummaryhtml,
+  paymentSummaryHtml,
 } from "./renderPayment.js";
 
 const today = dayjs();
 
-//  Helper to find product
+// Helper function moved outside DOMContentLoaded
+function generateDeliveryOptionHtml(option, productId) {
+  const deliveryTime = today
+    .add(option.deliveryTime, "minute")
+    .format("dddd, MMM D [at] h:mm A");
+
+  let checkedAttribute = "";
+  if (option.id === "1") {
+    checkedAttribute = "checked";
+  }
+
+  let priceText = "";
+  if (option.price === 0) {
+    priceText = "FREE Delivery";
+  } else {
+    priceText = `₱${(option.price / 100).toFixed(2)} Delivery Fee`;
+  }
+
+  return `
+    <div class="delivery-option">
+      <input 
+        type="radio"
+        ${checkedAttribute}
+        class="delivery-option-input"
+        name="delivery-option-${productId}"
+        value="${option.id}"
+      />
+      <div>
+        <div class="delivery-option-date">${deliveryTime}</div>
+        <div class="delivery-option-price">${priceText}</div>
+      </div>
+    </div>
+  `;
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   LoadFromLocalStorage();
 
-  //  Generate checkout items
+  // Generate checkout items
   let checkoutHtml = "";
   cart.forEach((item) => {
     const productId = item.menuDataId;
 
-    // generate delivery option, (THE HTML WITH ITS INFO GETTING FILLED IN)
-    function generateDeliveryOptionHtml(option, productId) {
-      const deliveryTime = today
-        .add(option.deliveryTime, "minute")
-        .format("dddd, MMM D [at] h:mm A");
-
-      let checkedAttribute = "";
-      if (option.id === "1") {
-        checkedAttribute = "checked";
-      }
-
-      let priceText = "";
-
-      if (option.price === 0) {
-        priceText = "FREE Delivery";
-      } else {
-        priceText = `₱${(option.price / 100).toFixed(2)} Delivery Fee`;
-      }
-
-      return `
-        <div class="delivery-option">
-          <input 
-            type="radio"
-            ${checkedAttribute}
-            class="delivery-option-input"
-            name="delivery-option-${productId}"
-            value="${option.id}"
-          />
-          <div>
-            <div class="delivery-option-date">${deliveryTime}</div>
-            <div class="delivery-option-price">${priceText}</div>
-          </div>
-        </div>
-      `;
-    }
-
-    // loop throughevery delivery options
+    // Generate delivery options HTML
     let deliveryOptionsHtml = "";
     for (let i = 0; i < deliveryOptions.length; i++) {
       deliveryOptionsHtml += generateDeliveryOptionHtml(
@@ -65,57 +61,60 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
-    // find product in menuData
+    // Find product in menuData
     let matchingItem;
     for (const category in menuData) {
-      matchingItem = menuData[category].find(function (product) {
-        return product.id === productId;
-      });
+      matchingItem = menuData[category].find(
+        (product) => product.id === productId
+      );
       if (matchingItem) break;
     }
+
     if (!matchingItem) {
       console.error(`Product with ID ${productId} not found in menuData.`);
       return;
     }
 
-    // add cart item html
     checkoutHtml += `
       <div class="cart-item-container">
-        <div class="delivery-date">Delivery date: ${today.format(
-          "dddd of MMM D" // deliveryTime sana kaso ayaw
+        <div class="delivery-date">Order date: ${today.format(
+          "dddd, MMM D"
         )}</div>
-
         <div class="cart-item-details-grid">
           <img class="product-image" src="${matchingItem.image}" alt="${
       matchingItem.name
     }" />
-
           <div class="cart-item-details">
             <div class="product-name">${matchingItem.name}</div>
             <div class="product-price">₱${(matchingItem.price / 100).toFixed(
               2
             )}</div>
             <div class="product-quantity">
-              <span> Quantity: <span class="quantity-label">${
+              <span>Quantity: <span class="quantity-label">${
                 item.quantity
-              }</span> </span>
-              <span class="update-quantity-link link-primary js-update-link" data-product-id="${productId}" tabindex="0">Update</span>
-              <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${productId}">Delete</span>
+              }</span></span>
+              <span class="update-quantity-link link-primary js-update-link" 
+                data-product-id="${productId}" tabindex="0">Update</span>
+              <span class="delete-quantity-link link-primary js-delete-link" 
+                data-product-id="${productId}">Delete</span>
             </div>
           </div>
-
           <div class="delivery-options">
-            <div class="delivery-options-title">Choose Delivery Option </div>
-            ${deliveryOptionsHtml} 
+            <div class="delivery-options-title">Choose Delivery Option</div>
+            ${deliveryOptionsHtml}
           </div>
         </div>
       </div>
     `;
   });
 
+  // Insert checkout HTML
   document.querySelector(".js-checkout-items").innerHTML = checkoutHtml;
 
-  // Delete item by delete button and using clearcart function from cart.js
+  // Generate and insert payment summary
+  paymentSummaryHtml();
+
+  // Attach event listeners for delete buttons
   document.querySelectorAll(".js-delete-link").forEach((link) => {
     link.addEventListener("click", () => {
       const productId = link.dataset.productId;
@@ -123,53 +122,65 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("delete link missing data-product-id");
         return;
       }
-      ClearCart(productId); // from cart.js
+      ClearCart(productId);
       location.reload();
     });
   });
 
-  // Update item quantity
+  // Attach event listeners for update buttons
   document.querySelectorAll(".js-update-link").forEach((link) => {
-    link.addEventListener("click", () => updateQuantity(link)); // by click
+    link.addEventListener("click", () => updateQuantity(link));
     link.addEventListener("keydown", (event) => {
-      // from keyboard
-      if (event.key === "Enter") updateQuantity(link); // if enter key is cliked
+      if (event.key === "Enter") {
+        updateQuantity(link);
+      }
     });
   });
 
-  // the function that will update the quantity
-  function updateQuantity(link) {
-    const productId = link.dataset.productId;
-    const quantityDisplay = link.parentElement.querySelector(".quantity-label"); // span that shows the quantity is stored in variable
-    const oldQuantity = parseInt(quantityDisplay.textContent);
-    const newQuantity = prompt("Enter new quantity: ", oldQuantity); // the prompt
+  // Attach event listeners for delivery options
+  document.querySelectorAll(".delivery-option-input").forEach((input) => {
+    input.addEventListener("change", function () {
+      const selectedOption = deliveryOptions.find(
+        (option) => option.id === this.value
+      );
+      if (selectedOption) {
+        updatePaymentSummary(selectedOption.price);
 
-    if (newQuantity === null) return;
-    const newQuantityNumber = parseInt(newQuantity);
-
-    if (isNaN(newQuantityNumber) || newQuantityNumber <= 0) {
-      alert("Please enter a valid quantity!");
-      return;
-    }
-
-    const updatedCart = [];
-
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].menuDataId === productId) {
-        updatedCart.push({
-          menuDataId: cart[i].menuDataId,
-          selectedDeliveryOptionId: cart[i].selectedDeliveryOptionId,
-          quantity: newQuantityNumber, // Only this property is changed
-        });
-      } else {
-        updatedCart.push(cart[i]);
+        const productId = this.getAttribute("name").replace(
+          "delivery-option-",
+          ""
+        );
+        const cartItem = cart.find((item) => item.menuDataId === productId);
+        if (cartItem) {
+          cartItem.selectedDeliveryOptionId = selectedOption.id;
+          localStorage.setItem("cart", JSON.stringify(cart));
+        }
       }
-    }
+    });
+  });
+});
 
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    location.reload();
+function updateQuantity(link) {
+  const productId = link.dataset.productId;
+  const quantityDisplay = link.parentElement.querySelector(".quantity-label");
+  const oldQuantity = parseInt(quantityDisplay.textContent);
+  const newQuantity = prompt("Enter new quantity: ", oldQuantity);
+
+  if (newQuantity === null) return;
+  const newQuantityNumber = parseInt(newQuantity);
+
+  if (isNaN(newQuantityNumber) || newQuantityNumber <= 0) {
+    alert("Please enter a valid quantity!");
+    return;
   }
 
-  //  Payment summary
-  paymentsummaryhtml();
-});
+  const updatedCart = cart.map((item) => {
+    if (item.menuDataId === productId) {
+      return { ...item, quantity: newQuantityNumber };
+    }
+    return item;
+  });
+
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
+  location.reload();
+}
