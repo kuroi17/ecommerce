@@ -2,9 +2,12 @@ import { menuData } from "./product.js";
 import { cart, ClearCart, LoadFromLocalStorage } from "./cart.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { deliveryOptions } from "./deliveryOptions.js";
-
+import { renderPaymentSummary } from "./renderPayment.js";
+import { renderOrderSummary } from "./renderOrder.js";
 const today = dayjs();
 
+renderPaymentSummary();
+renderOrderSummary();
 //  Helper to find product
 function findProduct(productId) {
   for (const category in menuData) {
