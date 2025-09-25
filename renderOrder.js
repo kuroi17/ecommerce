@@ -1,11 +1,11 @@
-import { menuData } from "./product.js";
+
 import { cart, ClearCart } from "./cart.js";
 import { deliveryOptions } from "./deliveryOptions.js";
 import dayjs from "https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js";
 import { updatePaymentSummary } from "./renderPayment.js";
 
 const today = dayjs();
-
+    
 // Helper function moved outside DOMContentLoaded
 export function generateDeliveryOptionHtml(option, productId) {
   const deliveryTime = today
@@ -41,8 +41,8 @@ export function generateDeliveryOptionHtml(option, productId) {
   `;
 }
 
-export function deliveryOptionButtons() {
-  document.querySelectorAll(".delivery-option-input").forEach((input) => {
+export function deliveryOptionButtons(){
+     document.querySelectorAll(".delivery-option-input").forEach((input) => {
     input.addEventListener("change", function () {
       const selectedOption = deliveryOptions.find(
         (option) => option.id === this.value
@@ -62,7 +62,11 @@ export function deliveryOptionButtons() {
       }
     });
   });
-}
+};
+
+
+
+
 
 export function deleteProductButton() {
   // Attach event listeners for delete buttons
@@ -115,3 +119,4 @@ export function updateQuantity(link) {
   localStorage.setItem("cart", JSON.stringify(updatedCart));
   location.reload();
 }
+
