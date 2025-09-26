@@ -1,39 +1,48 @@
 <?php
 header("Content-Type: application/json");
 
+// Database credentials that can be used for phpMyAdmin or XAMPP
 $servername = "localhost";
-$username = "root";
-$password = "password123";
-$dbname - "ecommerce-db";
+$username   = "root";
+$password   = "password123";
+$dbname     = "ecommerce-db";
 
-$conn = new mysqli($servername , $username, $password, $dbname);
+// Connect to MySQL
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn-> connect_error){
+// Check connection
+if ($conn->connect_error) {
     http_response_code(500);
-    echo json_code(["success" => false, "message" => "Databased conn failed"]);
+    echo json_encode(["success" => false, "message" => "Database connection failed"]);
     exit();
 }
 
-$data = json_decode(file_get_contents("php://input"),true);
+// Read JSON body from request by using json_decode function and 
+// inside it we use file_get_contents function to get the raw POST data
+$data = json_decode(file_get_contents("php://input"), true);
 
-if (!isset($data["cart"])){
+// checks if cart data is present using isset function
+if (!isset($data["cart"])) {
     http_response_code(400);
     echo json_encode(["success" => false, "message" => "No cart data"]);
-    exit ();
+    exit();
 }
 
-$cartJson = $conn -> real_escape_string(json_encode($data["cart"]));
-$sql = "INSERT INTO orders (cart) VALUES ($cartJson)";
+// Convert cart array to JSON and use real escape string to prevent SQL injection
+$cartJson = $conn->real_escape_string(json_encode($data["cart"]));
 
+// Insert into database table
+$sql = "INSERT INTO orders (cart) VALUES ('$cartJson')";
+
+// return response based on the query result
 if ($conn->query($sql) === TRUE) {
-  $orderId = $conn->insert_id;
-  echo json_encode(["success" => true, "orderId" => $orderId]);
+    $orderId = $conn->insert_id;
+    echo json_encode(["success" => true, "orderId" => $orderId]);
 } else {
-  http_response_code(500);
-  echo json_encode(["success" => false, "message" => "DB insert failed"]);
+    http_response_code(500);
+    echo json_encode(["success" => false, "message" => "DB insert failed"]);
 }
 
+// Close connection
 $conn->close();
-
-
 ?>
