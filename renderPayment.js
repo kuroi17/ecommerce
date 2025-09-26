@@ -110,7 +110,7 @@ export function paymentSummaryHtml() {
   document
     .querySelector(".js-orderButton")
     .addEventListener("click", async () => {
-      const response = await fetch("placeOrder.php", {
+      const response = await fetch("https://musical-space-umbrella-x5w9xr4vw4gwc6647-8000.app.github.dev/placeOrder.php", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

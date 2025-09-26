@@ -1,7 +1,8 @@
 <?php
 
 // Allow requests from any origin (for testing)
-header("Access-Control-Allow-Origin: *");
+githeader("Access-Control-Allow-Origin: https://musical-space-umbrella-x5w9xr4vw4gwc6647-5503.app.github.dev");
+
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 
