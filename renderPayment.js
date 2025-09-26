@@ -103,9 +103,23 @@ export function paymentSummaryHtml() {
         finalAmount / 100
       ).toFixed(2)}</div>
     </div>
-    <button class="place-order-button button-primary">Place your order</button>`;
+    <button class="place-order-button button-primary js-orderButton">Place your order</button>`;
 
   document.querySelector(".payment-summary").innerHTML = html;
+
+  document.querySelector(".js-orderButton").addEventListener("click", async () => {
+    const response = await fetch("placeOrder", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        cart: cart,
+      }),
+    });
+    const orderInfo = await response.json();
+    console.log(orderInfo);
+  });
 
   document.querySelector(
     ".js-item-counter"
