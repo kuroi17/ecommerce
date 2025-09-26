@@ -107,19 +107,21 @@ export function paymentSummaryHtml() {
 
   document.querySelector(".payment-summary").innerHTML = html;
 
-  document.querySelector(".js-orderButton").addEventListener("click", async () => {
-    const response = await fetch("placeOrder", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({
-        cart: cart,
-      }),
+  document
+    .querySelector(".js-orderButton")
+    .addEventListener("click", async () => {
+      const response = await fetch("placeOrder.php", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          cart: cart,
+        }),
+      });
+      const orderInfo = await response.json();
+      console.log(orderInfo);
     });
-    const orderInfo = await response.json();
-    console.log(orderInfo);
-  });
 
   document.querySelector(
     ".js-item-counter"

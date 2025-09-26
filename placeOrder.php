@@ -5,7 +5,7 @@ header("Content-Type: application/json");
 $servername = "localhost";
 $username   = "root";
 $password   = "password123";
-$dbname     = "ecommerce-db";
+$dbname     = "ecommerce_db";
 
 // Connect to MySQL
 $conn = new mysqli($servername, $username, $password, $dbname);
