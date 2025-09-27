@@ -111,16 +111,13 @@ export function paymentSummaryHtml() {
     .querySelector(".js-orderButton")
     .addEventListener("click", async () => {
       try {
-        const response = await fetch(
-          "https://musical-space-umbrella-x5w9xr4vw4gwc6647-8000.app.github.dev/placeOrder.php",
-          {
-            method: "POST", 
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ cart }),
-          }
-        );
+        const response = await fetch("http://localhost/ecommerce-1/placeOrder.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ cart }),
+        });
 
         if (!response.ok) {
           // Read body as text so we can surface any error message the server returned
