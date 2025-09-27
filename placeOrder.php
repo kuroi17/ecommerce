@@ -1,7 +1,7 @@
 <?php
 
 // Allow requests from any origin (for testing)
-githeader("Access-Control-Allow-Origin: https://musical-space-umbrella-x5w9xr4vw4gwc6647-5503.app.github.dev");
+header("Access-Control-Allow-Origin: *");
 
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -17,7 +17,7 @@ header("Content-Type: application/json");
 // Database credentials that can be used for phpMyAdmin or XAMPP
 $servername = "localhost";
 $username   = "root";
-$password   = "password123";
+$password   = "";
 $dbname     = "ecommerce_db";
 
 // Connect to MySQL
