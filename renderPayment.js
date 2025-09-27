@@ -111,18 +111,26 @@ export function paymentSummaryHtml() {
     .querySelector(".js-orderButton")
     .addEventListener("click", async () => {
       try {
-        const response = await fetch("placeOrder.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ cart }),
-        });
+        const response = await fetch(
+          "https://musical-space-umbrella-x5w9xr4vw4gwc6647-8000.app.github.dev/placeOrder.php",
+          {
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ cart }),
+          }
+        );
 
         if (!response.ok) {
           // Read body as text so we can surface any error message the server returned
           const text = await response.text();
-          console.error("Order POST failed:", response.status, response.statusText, text);
+          console.error(
+            "Order POST failed:",
+            response.status,
+            response.statusText,
+            text
+          );
           return;
         }
 
@@ -132,7 +140,12 @@ export function paymentSummaryHtml() {
         try {
           orderInfo = raw ? JSON.parse(raw) : null;
         } catch (e) {
-          console.error("Failed to parse JSON response:", e, "raw response:", raw);
+          console.error(
+            "Failed to parse JSON response:",
+            e,
+            "raw response:",
+            raw
+          );
         }
 
         console.log("Order response:", orderInfo);
