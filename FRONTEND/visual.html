@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jollibee Admin Dashboard</title>
+    <link rel="stylesheet" href="Stylings/visual.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="images/jollibee.png" alt="Jollibee" class="admin-logo">
+                <h1>Admin Panel</h1>
+            </div>
+            <div class="admin-info">
+                <span>Welcome, Admin</span>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <ul class="nav-menu">
+                <li class="nav-item active">
+                    <a href="admin-dashboard.html">📊 Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-products.html">🍔 Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-orders.html">📋 Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a href="admin-customers.html">👥 Customers</a>
+                </li>
+                <li class="nav-item">
+                    <a href="main.html">🏠 View Website</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h2>Dashboard Overview</h2>
+                <p>Welcome to your Jollibee restaurant management system</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <h3>Total Orders</h3>
+                        <div class="stat-number">150</div>
+                        <div class="stat-change positive">+12% from last week</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-info">
+                        <h3>Revenue</h3>
+                        <div class="stat-number">₱45,000</div>
+                        <div class="stat-change positive">+8% from last week</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🍔</div>
+                    <div class="stat-info">
+                        <h3>Products</h3>
+                        <div class="stat-number">25</div>
+                        <div class="stat-change neutral">No change</div>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-info">
+                        <h3>Customers</h3>
+                        <div class="stat-number">89</div>
+                        <div class="stat-change positive">+5 new today</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Section -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h3>Recent Orders</h3>
+                    <a href="admin-orders.html" class="view-all-btn">View All Orders</a>
+                </div>
+                
+                <div class="orders-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#125</td>
+                                <td>2x Yumburger, 1x Chickenjoy</td>
+                                <td>₱205</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>2:30 PM</td>
+                                <td>
+                                    <button class="action-btn view">View</button>
+                                    <button class="action-btn edit">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#124</td>
+                                <td>3x Regular Fries</td>
+                                <td>₱165</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td>1:15 PM</td>
+                                <td>
+                                    <button class="action-btn view">View</button>
+                                    <button class="action-btn edit">Edit</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#123</td>
+                                <td>1x Spicy Chickenjoy</td>
+                                <td>₱95</td>
+                                <td><span class="status preparing">Preparing</span></td>
+                                <td>12:45 PM</td>
+                                <td>
+                                    <button class="action-btn view">View</button>
+                                    <button class="action-btn edit">Edit</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-section">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <button class="quick-action-btn">
+                        <span class="action-icon">➕</span>
+                        Add New Product
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="action-icon">📊</span>
+                        Generate Report
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="action-icon">🔔</span>
+                        Send Notification
+                    </button>
+                    <button class="quick-action-btn">
+                        <span class="action-icon">⚙️</span>
+                        Settings
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
