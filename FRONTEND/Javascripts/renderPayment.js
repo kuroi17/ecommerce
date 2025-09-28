@@ -111,7 +111,7 @@ export function paymentSummaryHtml() {
     .querySelector(".js-orderButton")
     .addEventListener("click", async () => {
       try {
-        const response = await fetch("http://localhost/ecommerce-1/placeOrder.php", {
+        const response = await fetch("http://localhost/ecommerce-1/BACKEND/placeOrder.php", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
