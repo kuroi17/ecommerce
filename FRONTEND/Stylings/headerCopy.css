@@ -1,0 +1,56 @@
+.Jollibee-header {
+  background: linear-gradient(135deg, #c41e3a 0%, #e53e3e 100%);
+  color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.left-part {
+  width: 150px;
+}
+
+.logo-link {
+  display: inline-block;
+  padding: 6px;
+  margin-right: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.logo-header {
+  height: 50px;
+  width: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  background: transparent;
+}
+
+.middle-part {
+  flex: 1;
+  max-width: 850px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+}
+
+.right-part {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background: transparent;
+  color: white;
+  background-color: white;
+  border-radius: 30%;
+}
