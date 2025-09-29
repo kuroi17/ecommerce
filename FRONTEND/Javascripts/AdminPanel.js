@@ -1,5 +1,6 @@
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");
+const ProductsHTML = document.querySelector(".js-products");
 
 async function fetchOrderCount() {
   try {
@@ -76,11 +77,52 @@ async function renderRevenueHTML() {
   RevenueHTML.innerHTML = Revenuehtml;
   console.log(revenueData);
 }
+
+async function fetchProductsCount() {
+  try {
+    const response = await fetch(
+      "http://localhost/ecommerce-1/BACKEND/ProductCounter.php"
+    );
+    const data = await response.json();
+
+    if (data.success) {
+      return {
+        count: data.productsCounter,
+        change: data.productsChange,
+      };
+    } else {
+      console.error("Error fetching product count:", error);
+      return { count: 0, change: 0 };
+    }
+  } catch (error) {
+    console.error("Error fetching product count:", error);
+    return { count: 0, change: 0 };
+  }
+}
+
+async function renderProductHTML() {
+  const productData = await fetchProductsCount();
+
+  let Producthtml = `
+            <div class="stats-icon">🍔</div>
+            <div class="stat-info">
+              <h3>Total Products</h3>
+              <div class="stat-number">${productData.count}</div>
+              <div class="change-stat">+${productData.count} items available</div>
+            </div>
+          `;
+
+  ProductsHTML.innerHTML = Producthtml;
+  console.log(productData);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderOrderHTML();
   renderRevenueHTML();
+  renderProductHTML();
 });
 setInterval(() => {
   renderOrderHTML();
   renderRevenueHTML();
+  renderProductHTML();
 }, 60000);
