@@ -11,7 +11,7 @@
       <div class="header-contents">
         <div class="logo-section">
           <img src="images/jollibee.png" alt="Jolibee" class="admin-logo" />
-          <h1>Admin Panel</h1>
+          <h1>Admin Dashboard</h1>
         </div>
 
         <div class="right-section">
@@ -54,13 +54,8 @@
         <!-- stats container -->
         <div class="stats-grid">
           <!-- individual stats card -->
-          <div class="stats-card">
-            <div class="stats-icon">📦</div>
-            <div class="stat-info">
-              <h3>Total Orders</h3>
-              <div class="stat-number">150</div>
-              <div class="change-stat">+12% performance</div>
-            </div>
+          <div class="stats-card js-order">
+            <!-- render by js -->
           </div>
 
           <div class="stats-card">
@@ -113,7 +108,7 @@
                 </tr>
               </thead>
 
-              <body>
+              <tbody>
                 <tr>
                   <td>#125</td>
                   <td>2x Yumburger, 1x Chickenjoy</td>
@@ -149,7 +144,7 @@
                     <button class="action-btn edit">Edit</button>
                   </td>
                 </tr>
-              </body>
+              </tbody>
             </table>
           </div>
         </div>
@@ -177,5 +172,8 @@
         </div>
       </main>
     </div>
+    <script type="module" src="Javascripts/AdminPanel.js"></script>
   </body>
+  
+
 </html>
