@@ -1,7 +1,16 @@
 <?php
-// Tell the browser we are returning JSON
-header("Content-Type: application/json");
+// Allow requests from any origin (for testing)
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+header("Content-Type: application/json");
 
 // Database settings
 $servername = "localhost";

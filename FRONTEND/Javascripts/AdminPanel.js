@@ -16,7 +16,10 @@ async function fetchOrderCount() {
         change: data.percentage_change,
       };
     } else {
-      console.error("Error fetching order count:", error);
+      console.error(
+        "Error fetching order count:",
+        data.error || "Unknown error"
+      );
       return { count: 0, change: 0 };
     }
   } catch (error) {

@@ -1,6 +1,16 @@
 <?php
-header("Content-Type: application/json");
+// Allow requests from any origin (for testing)
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type");
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+header("Content-Type: application/json");
 
 // Database credentials that can be used for phpMyAdmin or XAMPP
 $servername = "localhost";
@@ -13,7 +23,7 @@ try{
 
   if ( $conn -> connect_error) throw new Exception("Connection failed: ".$conn -> connect_error);
 
-  $sql = "SELECT COUNT (*) orderCounter FROM orders";
+  $sql = "SELECT COUNT(*) AS orderCounter FROM orders";
   $result = $conn -> query($sql); // query means execute the SQL statement 
   $row = $result -> fetch_assoc(); // fetch_assoc() puts the result into an associative array
   $currentOrders = $row['orderCounter'];
