@@ -1,6 +1,7 @@
 import { menuData } from "./product.js";
 import { cart } from "./cart.js";
 import { deliveryOptions } from "./deliveryOptions.js";
+import { API_ENDPOINTS } from "./CONFIGJS.js";
 
 export function calculateTotalItems(cart) {
   return cart.reduce((sum, item) => {
@@ -111,7 +112,7 @@ export function paymentSummaryHtml() {
     .querySelector(".js-orderButton")
     .addEventListener("click", async () => {
       try {
-        const response = await fetch("http://localhost/ecommerce-1/BACKEND/placeOrder.php", {
+        const response = await fetch(API_ENDPOINTS.placeOrder, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

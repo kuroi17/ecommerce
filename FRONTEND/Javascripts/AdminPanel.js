@@ -1,3 +1,4 @@
+import { API_ENDPOINTS } from "./CONFIGJS.js";
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");
 const ProductsHTML = document.querySelector(".js-products");
@@ -6,9 +7,7 @@ const orderTableHTML = document.querySelector(".js-orderTable");
 
 async function fetchOrderCount() {
   try {
-    const response = await fetch(
-      "http://localhost/ecommerce-1/BACKEND/OrderCounter.php"
-    );
+    const response = await fetch(API_ENDPOINTS.orderCounter);
     const data = await response.json();
 
     if (data.success) {
@@ -44,9 +43,7 @@ async function renderOrderHTML() {
 
 async function fetchRevenueCount() {
   try {
-    const response = await fetch(
-      "http://localhost/ecommerce-1/BACKEND/TotalRevenue.php"
-    );
+    const response = await fetch(API_ENDPOINTS.totalRevenue);
     const data = await response.json();
 
     if (data.success) {
@@ -71,7 +68,7 @@ async function renderRevenueHTML() {
    <div class="stats-icon">💰</div>
             <div class="stat-info">
               <h3>Revenue</h3>
-              <div class="stat-number">${revenueData.count}</div>
+              <div class="stat-number">₱${revenueData.count.toLocaleString()}</div>
               <div class="change-stat">+${revenueData.change}% performance</div>
             </div>
             `;
@@ -82,9 +79,7 @@ async function renderRevenueHTML() {
 
 async function fetchProductsCount() {
   try {
-    const response = await fetch(
-      "http://localhost/ecommerce-1/BACKEND/ProductCounter.php"
-    );
+    const response = await fetch(API_ENDPOINTS.productCounter);
     const data = await response.json();
 
     if (data.success) {
@@ -119,9 +114,7 @@ async function renderProductHTML() {
 
 async function fetchCustomersCount() {
   try {
-    const response = await fetch(
-      "http://localhost/ecommerce-1/BACKEND/CustomerCounter.php"
-    );
+    const response = await fetch(API_ENDPOINTS.customerCounter);
     const data = await response.json();
 
     if (data.success) {
@@ -155,9 +148,7 @@ async function renderCustomersHTML() {
 
 async function fetchOrderTable() {
   try {
-    const response = await fetch(
-      "http://localhost/ecommerce-1/BACKEND/TableOrder.php"
-    );
+    const response = await fetch(API_ENDPOINTS.tableOrder);
     const data = await response.json();
     if (data.success) {
       return data.orders;
@@ -183,7 +174,7 @@ async function renderOrderTableHTML() {
             </tr>`;
   } else {
     orders.forEach(function (order) {
-      let statusClass = "status";
+      let statusClass = "status ";
       switch (order.status) {
         case "pending":
           statusClass += "pending";
