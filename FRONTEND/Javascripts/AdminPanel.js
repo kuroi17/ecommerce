@@ -229,4 +229,4 @@ setInterval(() => {
   renderProductHTML();
   renderCustomersHTML();
   renderOrderTableHTML();
-}, 60000);
+}, 621130000); //60000
