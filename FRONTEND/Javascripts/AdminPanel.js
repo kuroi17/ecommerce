@@ -1,10 +1,67 @@
 import { API_ENDPOINTS } from "./CONFIGJS.js";
-import {renderDashboardOrdersTable } from "./OrderHistory.js";
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");
 const ProductsHTML = document.querySelector(".js-products");
 const CustomersHTML = document.querySelector(".js-customers");
 
+ async function renderDashboardOrdersTable() {
+  try {
+    // Fetch with limit=5 for dashboard
+    const response = await fetch(`${API_ENDPOINTS.tableOrder}?limit=5`);
+    const data = await response.json();
+    
+    if (data.success) {
+      const orders = data.orders; // This is your data
+      
+      let tablehtml = "";
+      if (orders.length == 0) { // Use 'orders', not 'recentOrders'
+        tablehtml = `<tr>
+          <td colspan="5" style="text-align: center; padding: 2rem;">
+            No recent orders found
+          </td>
+        </tr>`;
+      } else {
+        orders.forEach(function (order) { // Use 'orders', not 'recentOrders'
+          let statusClass = "status ";
+          switch (order.status) {
+            case "pending":
+              statusClass += "pending";
+              break;
+            case "preparing":
+              statusClass += "preparing";
+              break;
+            case "completed":
+              statusClass += "completed";
+              break;
+            default:
+              statusClass += "pending";
+          }
+
+          // NO ACTION BUTTONS - just info
+          tablehtml += `
+            <tr>
+              <td>#${order.id}</td>
+              <td>${order.items}</td>
+              <td>₱${order.total.toLocaleString()}</td>
+              <td><span class="${statusClass}">${
+            order.status.charAt(0).toUpperCase() + order.status.slice(1)
+          }</span></td>
+              <td>${order.time}</td>
+            </tr>
+          `;
+        });
+      }
+
+      const dashboardOrderTable = document.querySelector(".js-orderTable");
+      if (dashboardOrderTable) {
+        dashboardOrderTable.innerHTML = tablehtml;
+      }
+      console.log("Dashboard orders rendered:", orders.length, "recent orders");
+    }
+  } catch (error) {
+    console.error("Error fetching dashboard orders:", error);
+  }
+}
 
 async function fetchOrderCount() {
   try {
@@ -163,4 +220,4 @@ setInterval(() => {
   renderProductHTML();
   renderCustomersHTML();
   renderDashboardOrdersTable(); 
-}, 621130000); //60000
+}, 60000); //60000

@@ -72,62 +72,7 @@ export async function renderOrderTableHTML() {
 }
 
 // Dashboard version (simplified - no buttons, recent only)
-export async function renderDashboardOrdersTable() {
-  const orders = await fetchOrderTable();
 
-  // Get only recent 5 orders for dashboard
-  const recentOrders = orders.slice(0, 5);
-
-  let tablehtml = "";
-  if (recentOrders.length == 0) {
-    tablehtml = `<tr>
-      <td colspan="5" style="text-align: center; padding: 2rem;">
-        No recent orders found
-      </td>
-    </tr>`;
-  } else {
-    recentOrders.forEach(function (order) {
-      let statusClass = "status ";
-      switch (order.status) {
-        case "pending":
-          statusClass += "pending";
-          break;
-        case "preparing":
-          statusClass += "preparing";
-          break;
-        case "completed":
-          statusClass += "completed";
-          break;
-        default:
-          statusClass += "pending";
-      }
-
-      // NO ACTION BUTTONS - just info
-      tablehtml += `
-        <tr>
-          <td>#${order.id}</td>
-          <td>${order.items}</td>
-          <td>₱${order.total.toLocaleString()}</td>
-          <td><span class="${statusClass}">${
-        order.status.charAt(0).toUpperCase() + order.status.slice(1)
-      }</span></td>
-          <td>${order.time}</td>
-        </tr>
-      `;
-    });
-  }
-
-  // For dashboard, target different element
-  const dashboardOrderTable = document.querySelector(".js-orderTable");
-  if (dashboardOrderTable) {
-    dashboardOrderTable.innerHTML = tablehtml;
-  }
-  console.log(
-    "Dashboard orders rendered:",
-    recentOrders.length,
-    "recent orders"
-  );
-}
 
 // View/Edit functions (only for OrderHistory page)
 window.viewOrder = function (orderId) {
