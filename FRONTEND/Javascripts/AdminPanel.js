@@ -1,9 +1,10 @@
 import { API_ENDPOINTS } from "./CONFIGJS.js";
+import {renderDashboardOrdersTable } from "./OrderHistory.js";
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");
 const ProductsHTML = document.querySelector(".js-products");
 const CustomersHTML = document.querySelector(".js-customers");
-const orderTableHTML = document.querySelector(".js-orderTable");
+
 
 async function fetchOrderCount() {
   try {
@@ -149,84 +150,17 @@ async function renderCustomersHTML() {
   console.log(customersData);
 }
 
-export async function fetchOrderTable() {
-  try {
-    const response = await fetch(API_ENDPOINTS.tableOrder);
-    const data = await response.json();
-    if (data.success) {
-      return data.orders;
-    } else {
-      console.error("Error fetching order table:", error);
-      return [];
-    }
-  } catch (error) {
-    console.error("Error fetching order table:", error);
-    return [];
-  }
-}
-
- export async function renderOrderTableHTML() {
-  const orders = await fetchOrderTable();
-
-  let tablehtml = "";
-  if (orders.length == 0) {
-    tablehtml = ` <tr>
-                <td colspan="6" style="text-align: center; padding: 2rem;">
-                    No recent orders found
-                </td>
-            </tr>`;
-  } else {
-    orders.forEach(function (order) {
-      let statusClass = "status ";
-      switch (order.status) {
-        case "pending":
-          statusClass += "pending";
-          break;
-        case "preparing":
-          statusClass += "preparing";
-          break;
-        case "completed":
-          statusClass += "completed";
-          break;
-        default:
-          statusClass += "pending";
-      }
-      tablehtml += `
-        <tr>
-                    <td>#${order.id}</td>
-                    <td>${order.items}</td>
-                    <td>₱${order.total.toLocaleString()}</td>
-                    <td><span class="${statusClass}">${
-        order.status.charAt(0).toUpperCase() + order.status.slice(1)
-      }</span></td>
-                    <td>${order.time}</td>
-                    <td>
-                        <button class="action-btn view" onclick="viewOrder(${
-                          order.id
-                        })">View</button>
-                        <button class="action-btn edit" onclick="editOrder(${
-                          order.id
-                        })">Edit</button>
-                    </td>
-                </tr>
-      `;
-    });
-  }
-  orderTableHTML.innerHTML = tablehtml;
-  console.log(orders);
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   renderOrderHTML();
   renderRevenueHTML();
   renderProductHTML();
   renderCustomersHTML();
-  renderOrderTableHTML();
+  renderDashboardOrdersTable();
 });
 setInterval(() => {
   renderOrderHTML();
   renderRevenueHTML();
   renderProductHTML();
   renderCustomersHTML();
-  renderOrderTableHTML();
+  renderDashboardOrdersTable(); 
 }, 621130000); //60000
