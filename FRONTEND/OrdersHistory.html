@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel</title>
     <link rel="stylesheet" href="Stylings/AdminPanel.css" />
+    <title>Order History</title>
   </head>
   <body>
     <header class="admin-header">
@@ -26,14 +26,14 @@
       <nav class="sidebar">
         <ul class="sidebar-menu">
           <!-- ul means unordered list-->
-          <li class="nav-item active">
+          <li class="nav-item">
             <!-- li means list item-->
             <a href="AdminPanel.html"> 📊Dashboard </a>
           </li>
           <li class="nav-item">
             <a href="ProductAdmin.html"> 🍔Products</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a href="OrdersHistory.html"> 📋Orders</a>
           </li>
           <li class="nav-item">
@@ -47,34 +47,12 @@
 
       <main class="main-content">
         <div class="headermain">
-          <h2>Dashboard Overview</h2>
-          <p>Welcome to Jollibee Management System</p>
+          <h2>Order History</h2>
+          <p>Manage and track all Orders</p>
         </div>
-
-        <!-- stats container -->
-        <div class="stats-grid">
-          <!-- individual stats card -->
-          <div class="stats-card js-order">
-            <!-- render by js -->
-          </div>
-
-          <div class="stats-card js-revenue">
-            <!-- render by js -->
-          </div>
-
-          <div class="stats-card js-products">
-            <!-- render by js -->
-          </div>
-
-          <div class="stats-card js-customers">
-            <!-- render by js -->
-          </div>
-        </div>
-
         <div class="dashboard-section">
           <div class="section-header">
             <h3>Recent Orders</h3>
-            <a href="OrdersHistory.html" class="view-order-history">View Order History</a>
           </div>
 
           <div class="orders-table">
@@ -93,37 +71,15 @@
                 </tr>
               </thead>
 
-              <tbody class="js-orderTable"> 
+              <tbody class="js-orderTable">
                 <!-- Render by JS -->
               </tbody>
             </table>
           </div>
         </div>
-
-        <div class="dashboard-section">
-          <h3>Quick Actions</h3>
-          <div class="quick-actions">
-            <button class="quick-action-btn">
-              <span class="action-icon">➕</span>
-              Add New Product
-            </button>
-            <button class="quick-action-btn">
-              <span class="action-icon">📊</span>
-              Generate Sales Report
-            </button>
-            <button class="quick-action-btn">
-              <span class="action-icon">🔔</span>
-              Send Notification
-            </button>
-            <button class="quick-action-btn">
-              <span class="action-icon">⚙️</span>
-              Settings
-            </button>
-          </div>
-        </div>
       </main>
     </div>
-    <script type="module" src="Javascripts/AdminPanel.js"></script>
+    <script type="module" src="Javascripts/OrderHistory.js"></script>
     <script type="module" src="Javascripts/CONFIGJS.js"></script>
   </body>
 </html>

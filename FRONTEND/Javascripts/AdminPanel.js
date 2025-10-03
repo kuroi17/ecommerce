@@ -149,7 +149,7 @@ async function renderCustomersHTML() {
   console.log(customersData);
 }
 
-async function fetchOrderTable() {
+export async function fetchOrderTable() {
   try {
     const response = await fetch(API_ENDPOINTS.tableOrder);
     const data = await response.json();
@@ -165,7 +165,7 @@ async function fetchOrderTable() {
   }
 }
 
-async function renderOrderTableHTML() {
+ export async function renderOrderTableHTML() {
   const orders = await fetchOrderTable();
 
   let tablehtml = "";
