@@ -1,6 +1,6 @@
 import { API_ENDPOINTS } from "./CONFIGJS.js";
 
-const orderTableHTML = document.querySelector(".js-orderTable");
+const orderTableHTML = document.querySelector(".js-HistoryOrderTable");
 
 // Main fetch function (source of truth)
 export async function fetchOrderTable() {

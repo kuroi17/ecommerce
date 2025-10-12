@@ -4,24 +4,26 @@ const RevenueHTML = document.querySelector(".js-revenue");
 const ProductsHTML = document.querySelector(".js-products");
 const CustomersHTML = document.querySelector(".js-customers");
 
- async function renderDashboardOrdersTable() {
+async function renderDashboardOrdersTable() {
   try {
     // Fetch with limit=5 for dashboard
     const response = await fetch(`${API_ENDPOINTS.tableOrder}?limit=5`);
     const data = await response.json();
-    
+
     if (data.success) {
       const orders = data.orders; // This is your data
-      
+
       let tablehtml = "";
-      if (orders.length == 0) { // Use 'orders', not 'recentOrders'
+      if (orders.length == 0) {
+        // Use 'orders', not 'recentOrders'
         tablehtml = `<tr>
           <td colspan="5" style="text-align: center; padding: 2rem;">
             No recent orders found
           </td>
         </tr>`;
       } else {
-        orders.forEach(function (order) { // Use 'orders', not 'recentOrders'
+        orders.forEach(function (order) {
+          // Use 'orders', not 'recentOrders'
           let statusClass = "status ";
           switch (order.status) {
             case "pending":
@@ -52,7 +54,9 @@ const CustomersHTML = document.querySelector(".js-customers");
         });
       }
 
-      const dashboardOrderTable = document.querySelector(".js-orderTable");
+      const dashboardOrderTable = document.querySelector(
+        ".js-DashboardOrderTable"
+      );
       if (dashboardOrderTable) {
         dashboardOrderTable.innerHTML = tablehtml;
       }
@@ -219,5 +223,5 @@ setInterval(() => {
   renderRevenueHTML();
   renderProductHTML();
   renderCustomersHTML();
-  renderDashboardOrdersTable(); 
+  renderDashboardOrdersTable();
 }, 60000); //60000

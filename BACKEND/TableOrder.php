@@ -50,7 +50,16 @@ $prices = [
 ];
 
 // Get latest 5 orders
-$sql = "SELECT id, cart, created_at FROM orders ORDER BY created_at DESC LIMIT 5";
+// Check if a 'limit' query parameter exists in the URL
+$limit = isset($_GET['limit']) ? intval($_GET['limit']) : 0; // 0 means no limit
+
+// Build SQL dynamically
+if ($limit > 0) {
+    $sql = "SELECT id, cart, created_at FROM orders ORDER BY created_at DESC LIMIT $limit";
+} else {
+    $sql = "SELECT id, cart, created_at FROM orders ORDER BY created_at DESC";
+}
+
 $result = $conn->query($sql);
 
 $orders = [];
