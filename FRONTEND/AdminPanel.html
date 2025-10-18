@@ -3,32 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Product Page</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="Stylings/AdminPanel.css" />
-    <link rel="stylesheet" href="Stylings/ProductAdmin.css" />
   </head>
   <body>
     <header class="admin-header">
       <div class="header-contents">
         <div class="logo-section">
           <img src="images/jollibee.png" alt="Jolibee" class="admin-logo" />
-          <h1>Product Dashboard</h1>
+          <h1>Admin Dashboard</h1>
         </div>
 
         <div class="right-section">
-          <span>Welcome, Admin.</span>
+          <span> Welcome, Admin.</span>
           <button class="logout-btn">Logout</button>
         </div>
       </div>
     </header>
 
     <div class="main-container">
+      <!-- Sidebar Navigation -->
       <nav class="sidebar">
         <ul class="sidebar-menu">
-          <li class="nav-item">
+          <!-- ul means unordered list-->
+          <li class="nav-item active">
+            <!-- li means list item-->
             <a href="AdminPanel.html"> 📊Dashboard </a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a href="ProductAdmin.html"> 🍔Products</a>
           </li>
           <li class="nav-item">
@@ -44,39 +46,85 @@
       </nav>
 
       <main class="main-content">
-        <div class="product-admin-container">
-          <div class="products-header">
-            <div>
-              <h2>Products Stock Management</h2>
-              <p>Manage inventory and track stock levels</p>
-            </div>
-            <button class="add-product-btn">+ Add New Product</button>
+        <div class="headermain">
+          <h2>Dashboard Overview</h2>
+          <p>Welcome to Jollibee Management System</p>
+        </div>
+
+        <!-- stats container -->
+        <div class="stats-grid">
+          <!-- individual stats card -->
+          <div class="stats-card js-order">
+            <!-- render by js -->
           </div>
 
-          <div class="stock-section">
-            <h3 class="stock-section-title">Main Dishes</h3>
-            <div class="products-grid js-main-dishes-admin">
-              <!-- Render by js -->
-            </div>
+          <div class="stats-card js-revenue">
+            <!-- render by js -->
           </div>
 
-          <div class="stock-section">
-            <h3 class="stock-section-title">Drinks</h3>
-            <div class="products-grid js-drinks-admin">
-              <!-- Render by js -->
-            </div>
+          <div class="stats-card js-products">
+            <!-- render by js -->
           </div>
 
-          <div class="stock-section">
-            <h3 class="stock-section-title">Desserts</h3>
-            <div class="products-grid js-desserts-admin">
-              <!-- Render by js -->
-            </div>
+          <div class="stats-card js-customers">
+            <!-- render by js -->
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <div class="section-header">
+            <h3>Recent Orders</h3>
+            <a href="OrdersHistory.html" class="view-order-history"
+              >View Order History</a
+            >
+          </div>
+
+          <div class="orders-table">
+            <table>
+              <thead>
+                <!-- means table header-->
+                <tr>
+                  <!-- means table row-->
+                  <th>Order ID</th>
+                  <th>Items</th>
+                  <!-- th means table header cell-->
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+
+              <tbody class="js-DashboardOrderTable">
+                <!-- Render by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dashboard-section">
+          <h3>Quick Actions</h3>
+          <div class="quick-actions">
+            <button class="quick-action-btn">
+              <span class="action-icon">➕</span>
+              Add New Product
+            </button>
+            <button class="quick-action-btn">
+              <span class="action-icon">📊</span>
+              Generate Sales Report
+            </button>
+            <button class="quick-action-btn">
+              <span class="action-icon">🔔</span>
+              Send Notification
+            </button>
+            <button class="quick-action-btn">
+              <span class="action-icon">⚙️</span>
+              Settings
+            </button>
           </div>
         </div>
       </main>
     </div>
-
-    <!-- No JavaScript for now - just static HTML -->
+    <script type="module" src="Javascripts/AdminPanel.js"></script>
+    <script type="module" src="Javascripts/CONFIGJS.js"></script>
   </body>
 </html>
