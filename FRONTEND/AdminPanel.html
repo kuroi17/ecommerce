@@ -3,34 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Panel</title>
+    <title>Product Page</title>
     <link rel="stylesheet" href="Stylings/AdminPanel.css" />
+    <link rel="stylesheet" href="Stylings/ProductAdmin.css" />
   </head>
   <body>
     <header class="admin-header">
       <div class="header-contents">
         <div class="logo-section">
           <img src="images/jollibee.png" alt="Jolibee" class="admin-logo" />
-          <h1>Admin Dashboard</h1>
+          <h1>Product Dashboard</h1>
         </div>
 
         <div class="right-section">
-          <span> Welcome, Admin.</span>
+          <span>Welcome, Admin.</span>
           <button class="logout-btn">Logout</button>
         </div>
       </div>
     </header>
 
     <div class="main-container">
-      <!-- Sidebar Navigation -->
-      <nav class="sidebar">
+       <nav class="sidebar">
         <ul class="sidebar-menu">
-          <!-- ul means unordered list-->
-          <li class="nav-item active">
-            <!-- li means list item-->
+          <li class="nav-item">
             <a href="AdminPanel.html"> 📊Dashboard </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a href="ProductAdmin.html"> 🍔Products</a>
           </li>
           <li class="nav-item">
@@ -46,84 +44,410 @@
       </nav>
 
       <main class="main-content">
-        <div class="headermain">
-          <h2>Dashboard Overview</h2>
-          <p>Welcome to Jollibee Management System</p>
-        </div>
-
-        <!-- stats container -->
-        <div class="stats-grid">
-          <!-- individual stats card -->
-          <div class="stats-card js-order">
-            <!-- render by js -->
+        <div class="product-admin-container">
+          <div class="products-header">
+            <div>
+              <h2>Products Stock Management</h2>
+              <p>Manage inventory and track stock levels</p>
+            </div>
+            <button class="add-product-btn">+ Add New Product</button>
           </div>
 
-          <div class="stats-card js-revenue">
-            <!-- render by js -->
+          <div class="stock-section">
+            <h3 class="stock-section-title">Main Dishes</h3>
+            <div class="products-grid">
+              
+              <!-- Chickenjoy Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/chickenjoy.png" alt="Chickenjoy" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Chickenjoy</div>
+                    <div class="product-admin-price">₱89.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">45</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">23</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="45" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+              <!-- Spaghetti Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/spaghetti.png" alt="Jolly Spaghetti" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Jolly Spaghetti</div>
+                    <div class="product-admin-price">₱75.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">32</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">18</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="32" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+              <!-- Burger Steak Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/burgersteak.png" alt="Burger Steak" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Burger Steak</div>
+                    <div class="product-admin-price">₱95.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">28</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">12</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="28" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+              <!-- Yumburger Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/burger.png" alt="Yumburger" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Yumburger</div>
+                    <div class="product-admin-price">₱65.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">15</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">35</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-low-stock">
+                  Low Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="15" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+              <!-- Jolly Fries Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/fries.png" alt="Jolly Fries" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Jolly Fries</div>
+                    <div class="product-admin-price">₱45.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">22</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">28</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="22" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <div class="stats-card js-products">
-            <!-- render by js -->
+          <div class="stock-section">
+            <h3 class="stock-section-title">Drinks</h3>
+            <div class="products-grid">
+              
+              <!-- Coke Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/coke.png" alt="Coke" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Coke</div>
+                    <div class="product-admin-price">₱35.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">50</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">45</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="50" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+              <!-- Pineapple Juice Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/pineapple.png" alt="Pineapple Juice" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Pineapple Juice</div>
+                    <div class="product-admin-price">₱40.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">8</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">12</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-low-stock">
+                  Low Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="8" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+              <!-- Water Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/water.png" alt="Water" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Water</div>
+                    <div class="product-admin-price">₱25.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">100</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">25</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="100" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <div class="stats-card js-customers">
-            <!-- render by js -->
-          </div>
-        </div>
+          <div class="stock-section">
+            <h3 class="stock-section-title">Desserts</h3>
+            <div class="products-grid">
+              
+              <!-- Mango Pie Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/mangopie.png" alt="Mango Pie" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Mango Pie</div>
+                    <div class="product-admin-price">₱55.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">12</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">8</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-low-stock">
+                  Low Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="12" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
 
-        <div class="dashboard-section">
-          <div class="section-header">
-            <h3>Recent Orders</h3>
-            <a href="OrdersHistory.html" class="view-order-history">View Order History</a>
+              <!-- Coke Float Card -->
+              <div class="product-admin-card">
+                <div class="product-admin-header">
+                  <img src="images/cokefloat.png" alt="Coke Float" class="product-admin-image" />
+                  <div class="product-admin-info">
+                    <div class="product-admin-name">Coke Float</div>
+                    <div class="product-admin-price">₱45.00</div>
+                  </div>
+                </div>
+                
+                <div class="product-stock-info">
+                  <div class="stock-item">
+                    <div class="stock-label">Current Stock</div>
+                    <div class="stock-value">18</div>
+                  </div>
+                  <div class="stock-item">
+                    <div class="stock-label">Total Sold</div>
+                    <div class="stock-value">14</div>
+                  </div>
+                </div>
+                
+                <div class="stock-status status-in-stock">
+                  In Stock
+                </div>
+                
+                <div class="stock-quantity-container">
+                  <input type="number" class="stock-input" value="18" min="0">
+                  <button class="update-stock-btn">Update</button>
+                </div>
+                
+                <div class="product-actions">
+                  <button class="action-btn edit-btn">Edit</button>
+                  <button class="action-btn restock-btn">Restock</button>
+                  <button class="action-btn delete-btn">Delete</button>
+                </div>
+              </div>
+
+            </div>
           </div>
 
-          <div class="orders-table">
-            <table>
-              <thead>
-                <!-- means table header-->
-                <tr>
-                  <!-- means table row-->
-                  <th>Order ID</th>
-                  <th>Items</th>
-                  <!-- th means table header cell-->
-                  <th>Total</th>
-                  <th>Status</th>
-                  <th>Time</th>
-                  
-                </tr>
-              </thead>
-
-              <tbody class="js-DashboardOrderTable"> 
-                <!-- Render by JS -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="dashboard-section">
-          <h3>Quick Actions</h3>
-          <div class="quick-actions">
-            <button class="quick-action-btn">
-              <span class="action-icon">➕</span>
-              Add New Product
-            </button>
-            <button class="quick-action-btn">
-              <span class="action-icon">📊</span>
-              Generate Sales Report
-            </button>
-            <button class="quick-action-btn">
-              <span class="action-icon">🔔</span>
-              Send Notification
-            </button>
-            <button class="quick-action-btn">
-              <span class="action-icon">⚙️</span>
-              Settings
-            </button>
-          </div>
         </div>
       </main>
     </div>
-    <script type="module" src="Javascripts/AdminPanel.js"></script>
-    <script type="module" src="Javascripts/CONFIGJS.js"></script>
+
+    <!-- No JavaScript for now - just static HTML -->
   </body>
 </html>

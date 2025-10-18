@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Product Page</title>
     <link rel="stylesheet" href="Stylings/AdminPanel.css" />
-    <link rel="stylesheet" href="Stylings/menu.css" />
+    <link rel="stylesheet" href="Stylings/ProductAdmin.css" />
   </head>
   <body>
     <header class="admin-header">
@@ -23,11 +23,9 @@
     </header>
 
     <div class="main-container">
-       <nav class="sidebar">
+      <nav class="sidebar">
         <ul class="sidebar-menu">
-          <!-- ul means unordered list-->
           <li class="nav-item">
-            <!-- li means list item-->
             <a href="AdminPanel.html"> 📊Dashboard </a>
           </li>
           <li class="nav-item active">
@@ -46,34 +44,39 @@
       </nav>
 
       <main class="main-content">
-        
-          <div class="headermain">
-             <h2>Products Stock</h2>
-          <p>Manage and track all products stock</p>
+        <div class="product-admin-container">
+          <div class="products-header">
+            <div>
+              <h2>Products Stock Management</h2>
+              <p>Manage inventory and track stock levels</p>
+            </div>
+            <button class="add-product-btn">+ Add New Product</button>
           </div>
-           <div class="menu-part" id="menu-part">
-      <div class="product-grid">
-        <h2 class="section-title">Main Dishes</h2>
-        <section class="main-dishes js-main-dishes"></section>
 
-        <!-- disregard this first -->
-        <h2 class="section-title">Drinks</h2>
-        <section class="drinks js-drinks"></section>
+          <div class="stock-section">
+            <h3 class="stock-section-title">Main Dishes</h3>
+            <div class="products-grid js-main-dishes-admin">
+                <!-- render by js -->
+            </div>
+          </div>
 
-        <h2 class="section-title">Desserts</h2>
-        <section class="dessert js-desserts"></section>
-      </div>
+          <div class="stock-section">
+            <h3 class="stock-section-title">Drinks</h3>
+            <div class="products-grid js-drinks-admin">
+                <!-- render by js -->
+            </div>
+          </div>
+
+          <div class="stock-section">
+            <h3 class="stock-section-title">Desserts</h3>
+            <div class="products-grid js-desserts-admin">
+                <!-- render by js -->
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
 
-
-         
-        </main>
-         </div>
-
-
-
-   
-<script type="module" src="Javascripts/productAdmin.js"></script>
-<script type="module" src="Javascripts/main.js"></script>
+    <script type="module" src="Javascripts/productAdmin.js"></script>
   </body>
 </html>
