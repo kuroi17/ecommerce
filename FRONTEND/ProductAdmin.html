@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Page</title>
+    <link rel="stylesheet" href="Stylings/AdminPanel.css" />
+    <link rel="stylesheet" href="Stylings/menu.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <div class="header-contents">
+        <div class="logo-section">
+          <img src="images/jollibee.png" alt="Jolibee" class="admin-logo" />
+          <h1>Product Dashboard</h1>
+        </div>
+
+        <div class="right-section">
+          <span>Welcome, Admin.</span>
+          <button class="logout-btn">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-container">
+       <nav class="sidebar">
+        <ul class="sidebar-menu">
+          <!-- ul means unordered list-->
+          <li class="nav-item">
+            <!-- li means list item-->
+            <a href="AdminPanel.html"> 📊Dashboard </a>
+          </li>
+          <li class="nav-item active">
+            <a href="ProductAdmin.html"> 🍔Products</a>
+          </li>
+          <li class="nav-item">
+            <a href="OrdersHistory.html"> 📋Orders</a>
+          </li>
+          <li class="nav-item">
+            <a href="#">👥Costumers</a>
+          </li>
+          <li class="nav-item">
+            <a href="main.html" target="_blank">🏠 View Website</a>
+          </li>
+        </ul>
+      </nav>
+
+      <main class="main-content">
+        
+          <div class="headermain">
+             <h2>Products Stock</h2>
+          <p>Manage and track all products stock</p>
+          </div>
+           <div class="menu-part" id="menu-part">
+      <div class="product-grid">
+        <h2 class="section-title">Main Dishes</h2>
+        <section class="main-dishes js-main-dishes"></section>
+
+        <!-- disregard this first -->
+        <h2 class="section-title">Drinks</h2>
+        <section class="drinks js-drinks"></section>
+
+        <h2 class="section-title">Desserts</h2>
+        <section class="dessert js-desserts"></section>
+      </div>
+    </div>
+
+
+         
+        </main>
+         </div>
+
+
+
+   
+<script type="module" src="Javascripts/productAdmin.js"></script>
+<script type="module" src="Javascripts/main.js"></script>
+  </body>
+</html>
