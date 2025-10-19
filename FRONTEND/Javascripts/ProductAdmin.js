@@ -88,6 +88,7 @@ function renderProductAdmin(products, containerSelector) {
         </div>
         
         <!-- Input field and button to update stock quantity -->
+        <!-- spinner input for number only -->
         <div class="stock-quantity-container">
           <input type="number" class="stock-input" value="${stock.stock}" min="0" data-product-id="${product.id}">
           <button class="update-stock-btn" data-product-id="${product.id}">Update</button>
