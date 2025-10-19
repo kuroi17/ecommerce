@@ -1,354 +1,304 @@
-.product-admin-container {
-  padding: 20px;
-  background-color: #f8f9fa;
+/* ====== General Layout ====== */
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  margin: 0;
 }
 
+.product-admin-container {
+  padding: 30px;
+}
+
+/* ====== Header Section ====== */
 .products-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
   background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 24px 28px;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+  transition: all 0.3s ease;
 }
 
+.products-header:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.products-header h2 {
+  font-size: 24px;
+  color: #222;
+  margin: 0;
+}
+
+.products-header p {
+  color: #666;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* ====== Add Product Button ====== */
 .add-product-btn {
-  background-color: #28a745;
+  background: linear-gradient(135deg, #ff4757, #ff6b81);
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 5px;
+  padding: 12px 22px;
+  border-radius: 10px;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
-  font-size: 14px;
-  transition: background-color 0.3s;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(255, 107, 129, 0.3);
 }
 
 .add-product-btn:hover {
-  background-color: #218838;
+  background: linear-gradient(135deg, #ff6b81, #ff4757);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 129, 0.4);
 }
 
-/* Product Stock Grid Layout */
+/* ====== Section Titles ====== */
 .stock-section {
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 
 .stock-section-title {
-  font-family: "Poppins", sans-serif;
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid #007bff;
+  font-size: 22px;
+  color: #222;
+  margin-bottom: 18px;
+  font-weight: 600;
+  position: relative;
 }
 
+.stock-section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  border-radius: 4px;
+}
+
+/* ====== Product Grid ====== */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 25px;
 }
 
+/* ====== Product Card ====== */
 .product-admin-card {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 1px solid #f1f3f4;
+  border: 1px solid #eef1f5;
 }
 
 .product-admin-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: #e3f2fd;
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.15);
 }
 
+/* ====== Product Info ====== */
 .product-admin-header {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 .product-admin-image {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-right: 15px;
-  border: 2px solid #e9ecef;
-}
-
-.product-admin-info {
-  flex: 1;
+  border-radius: 10px;
+  margin-right: 18px;
+  border: 3px solid #f1f3f5;
+  background: #fafafa;
 }
 
 .product-admin-name {
-  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
-  color: #333;
-  margin-bottom: 5px;
+  color: #222;
+  margin-bottom: 4px;
 }
 
 .product-admin-price {
-  font-family: "Poppins", sans-serif;
   font-size: 16px;
   color: #28a745;
   font-weight: 500;
 }
 
+/* ====== Stock Info ====== */
 .product-stock-info {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 .stock-item {
   background: #f8f9fa;
+  border-radius: 8px;
   padding: 10px;
-  border-radius: 5px;
-  text-align: center;
 }
 
 .stock-label {
-  font-family: "Poppins", sans-serif;
   font-size: 12px;
-  color: #666;
-  margin-bottom: 5px;
+  color: #777;
 }
 
 .stock-value {
-  font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;
   color: #333;
 }
 
-/* Stock status badge - Improved with icons */
+/* ====== Stock Status ====== */
 .stock-status {
   display: inline-flex;
   align-items: center;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .status-in-stock {
-  background-color: #d4edda;
-  color: #155724;
-}
-
-.status-in-stock::before {
-  content: "✅ ";
-  margin-right: 4px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
 
 .status-low-stock {
-  background-color: #fff3cd;
-  color: #856404;
-}
-
-.status-low-stock::before {
-  content: "⚠️ ";
-  margin-right: 4px;
+  background-color: #fff8e1;
+  color: #f57f17;
 }
 
 .status-out-of-stock {
-  background-color: #f8d7da;
-  color: #721c24;
+  background-color: #ffebee;
+  color: #c62828;
 }
 
-.status-out-of-stock::before {
-  content: "❌ ";
-  margin-right: 4px;
-}
-
-/* Improved Button Layout - More organized and symmetric */
+/* ====== Actions ====== */
 .product-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
   margin-top: 15px;
 }
 
 .action-btn {
-  padding: 12px 16px;
+  padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  font-family: "Poppins", sans-serif;
   font-size: 13px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
   transition: all 0.3s ease;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  overflow: hidden;
-}
-
-.action-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: left 0.5s;
-}
-
-.action-btn:hover::before {
-  left: 100%;
-}
-
-.action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.action-btn:active {
-  transform: translateY(0);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Edit Button - Spans full width on top */
 .edit-btn {
   grid-column: 1 / 3;
   background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
-  font-size: 14px;
 }
 
 .edit-btn:hover {
-  background: linear-gradient(135deg, #0056b3, #004085);
+  background: linear-gradient(135deg, #0056b3, #003d80);
 }
 
-.edit-btn::after {
-  content: "✏️";
-  margin-left: 8px;
-}
-
-/* Restock Button - Bottom left */
 .restock-btn {
-  background: linear-gradient(135deg, #28a745, #1e7e34);
+  background: linear-gradient(135deg, #28a745, #218838);
   color: white;
 }
 
 .restock-btn:hover {
-  background: linear-gradient(135deg, #1e7e34, #155724);
+  background: linear-gradient(135deg, #218838, #1e7e34);
 }
 
-.restock-btn::after {
-  content: "📦";
-  margin-left: 8px;
-}
-
-/* Delete Button - Bottom right */
 .delete-btn {
-  background: linear-gradient(135deg, #dc3545, #c82333);
+  background: linear-gradient(135deg, #dc3545, #b02a37);
   color: white;
 }
 
 .delete-btn:hover {
-  background: linear-gradient(135deg, #c82333, #a02622);
+  background: linear-gradient(135deg, #b02a37, #861f28);
 }
 
-.delete-btn::after {
-  content: "🗑️";
-  margin-left: 8px;
-}
-
-/* Stock quantity input - Better alignment */
+/* ====== Quantity Section ====== */
 .stock-quantity-container {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 15px 0;
-  padding: 12px;
+  justify-content: space-between;
   background: #f8f9fa;
+  padding: 12px;
   border-radius: 8px;
   border: 1px solid #e9ecef;
+  margin: 15px 0;
 }
 
 .stock-input {
   width: 80px;
-  padding: 8px 12px;
+  padding: 10px;
   border: 2px solid #dee2e6;
-  border-radius: 6px;
+  border-radius: 8px;
   text-align: center;
-  font-family: "Poppins", sans-serif;
   font-weight: 600;
-  font-size: 14px;
-  transition: border-color 0.3s;
 }
 
 .stock-input:focus {
-  outline: none;
   border-color: #007bff;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  outline: none;
 }
 
 .update-stock-btn {
-  padding: 8px 16px;
   background: linear-gradient(135deg, #17a2b8, #138496);
   color: white;
   border: none;
-  border-radius: 6px;
+  padding: 10px 18px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .update-stock-btn:hover {
   background: linear-gradient(135deg, #138496, #117a8b);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-.update-stock-btn::before {
-  content: "💾 ";
-}
-
-/* Mobile responsiveness */
+/* ====== Responsive ====== */
 @media (max-width: 768px) {
-  .product-actions {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .products-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
   }
 
-  .edit-btn {
-    grid-column: 1;
+  .product-actions {
+    grid-template-columns: 1fr;
   }
 
   .stock-quantity-container {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
 
-  .stock-input {
+  .add-product-btn {
     width: 100%;
   }
 }
