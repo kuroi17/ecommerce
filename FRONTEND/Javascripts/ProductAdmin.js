@@ -137,7 +137,7 @@ function updateProductCard(productId) {
     }
   }
 }
-
+// clicked element means the button that was clicked
 // Event delegation - handle all button clicks with one listener
 document.addEventListener("click", function (event) {
   const clickedElement = event.target;
