@@ -81,22 +81,24 @@ function renderProductAdmin(products, containerSelector) {
         <!-- Input field and button to update stock quantity -->
         <!-- spinner input for number only -->
         <div class="stock-quantity-container">
-          <input type="number" class="stock-input" value="${
-            stockInfo.stock
-          }" min="0" data-product-id="${product.id}">
-          <button class="update-stock-btn" data-product-id="${
-            product.id
-          }">Update</button>
+  <button class="quantity-btn decrease-btn" data-product-id="${
+    product.id
+  }">−</button>
+  <input type="number" class="stock-input" value="${
+    stockInfo.stock
+  }" min="0" data-product-id="${product.id}">
+  <button class="quantity-btn increase-btn" data-product-id="${
+    product.id
+  }">+</button>
+          
         </div>
         
         <!-- Action buttons for managing the product -->
         <div class="product-actions">
-          <button class="action-btn edit-btn" data-product-id="${
+        
+          <button class="action-btn update-stock-btn" data-product-id="${
             product.id
-          }">Edit</button>
-          <button class="action-btn restock-btn" data-product-id="${
-            product.id
-          }">Restock</button>
+          }">Update </button>
           <button class="action-btn delete-btn" data-product-id="${
             product.id
           }">Delete</button>
@@ -142,6 +144,7 @@ document.addEventListener("click", function (event) {
 
   // UPDATE BUTTON CLICK
   if (elementClass && elementClass.indexOf("update-stock-btn") !== -1) {
+    // ito pala yung class ng update button
     const stockInput = document.querySelector(
       `input[data-product-id="${productId}"]`
     );
@@ -159,20 +162,26 @@ document.addEventListener("click", function (event) {
     }
   }
 
-  // EDIT BUTTON CLICK
-  if (elementClass && elementClass.indexOf("edit-btn") !== -1) {
-    console.log(`Edit product ${productId}`);
-    // TODO: Open edit modal or navigate to edit page
+  // DECREASE BUTTON (-1)
+  if (elementClass && elementClass.indexOf("decrease-btn") !== -1) {
+    const stockInput = document.querySelector(
+      `input[data-product-id="${productId}"]`
+    );
+    let currentValue = parseInt(stockInput.value);
+
+    if (currentValue > 0) {
+      stockInput.value = currentValue - 1;
+    }
   }
 
-  // RESTOCK BUTTON CLICK (+25)
-  if (elementClass && elementClass.indexOf("restock-btn") !== -1) {
-    // negative one means not found
-    if (stockData[productId]) {
-      stockData[productId].stock += 25;
-      updateProductCard(productId);
-      console.log(`Restocked product ${productId} (+25 items)`);
-    }
+  // INCREASE BUTTON (+1)
+  if (elementClass && elementClass.indexOf("increase-btn") !== -1) {
+    const stockInput = document.querySelector(
+      `input[data-product-id="${productId}"]`
+    );
+    let currentValue = parseInt(stockInput.value);
+
+    stockInput.value = currentValue + 1;
   }
 
   // DELETE BUTTON CLICK

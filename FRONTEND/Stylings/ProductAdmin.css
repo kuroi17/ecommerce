@@ -192,7 +192,7 @@ body {
 /* ====== Actions ====== */
 .product-actions {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr;
   gap: 12px;
   margin-top: 15px;
 }
@@ -209,25 +209,6 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.edit-btn {
-  grid-column: 1 / 3;
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  color: white;
-}
-
-.edit-btn:hover {
-  background: linear-gradient(135deg, #0056b3, #003d80);
-}
-
-.restock-btn {
-  background: linear-gradient(135deg, #28a745, #218838);
-  color: white;
-}
-
-.restock-btn:hover {
-  background: linear-gradient(135deg, #218838, #1e7e34);
-}
-
 .delete-btn {
   background: linear-gradient(135deg, #dc3545, #b02a37);
   color: white;
@@ -241,21 +222,37 @@ body {
 .stock-quantity-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   background: #f8f9fa;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #e9ecef;
   margin: 15px 0;
+  gap: 10px;
 }
 
 .stock-input {
+  display: center;
+  align-items: center;
   width: 80px;
   padding: 10px;
   border: 2px solid #dee2e6;
   border-radius: 8px;
   text-align: center;
   font-weight: 600;
+}
+
+/* For Chrome, Edge, Safari */
+.stock-input::-webkit-inner-spin-button,
+.stock-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  border: none;
+}
+
+/* For Firefox */
+.stock-input {
+  -moz-appearance: textfield;
 }
 
 .stock-input:focus {
@@ -279,6 +276,38 @@ body {
 
 .update-stock-btn:hover {
   background: linear-gradient(135deg, #138496, #117a8b);
+}
+
+.quantity-btn {
+  width: 36px;
+  height: 36px;
+  background-color: #f7c948; /* warm yellow, easier on eyes */
+  color: #222; /* soft black for better contrast */
+  border: none; /* remove hard border for cleaner look */
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* soft shadow */
+  transition: background-color 0.25s ease, transform 0.15s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Hover: smooth blue transition + floating feel */
+.quantity-btn:hover {
+  background-color: #4a90e2; /* calm blue */
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Click: pressed look */
+.quantity-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* ====== Responsive ====== */
