@@ -191,12 +191,14 @@ document.addEventListener("click", function (event) {
 document.addEventListener("DOMContentLoaded", function () {
   const addProductButton = document.querySelector(".add-product-btn");
 
+  // modals of the buttons
   const modalMain = document.getElementById("myModal");
   const addNewProductform = document.getElementById("addNewProductModal");
   const existingNewProductform = document.getElementById(
     "existingProductModal"
   );
 
+  //buttons of the modals
   const closeBtn = document.querySelectorAll(".close");
   const addNewProduct = document.querySelector(".addNewProduct");
   const existingProduct = document.querySelector(".existingProduct");
