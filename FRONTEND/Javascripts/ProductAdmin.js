@@ -140,7 +140,8 @@ document.addEventListener("click", function (event) {
   const elementClass = clickedElement.getAttribute("class");
 
   // UPDATE BUTTON CLICK
-  if (elementClass && elementClass.indexOf("update-stock-btn") !== -1) { // ito pala yung class ng update button
+  if (elementClass && elementClass.indexOf("update-stock-btn") !== -1) {
+    // ito pala yung class ng update button
     const stockInput = document.querySelector(
       `input[data-product-id="${productId}"]`
     );
@@ -189,35 +190,58 @@ document.addEventListener("click", function (event) {
 // ADD NEW PRODUCT BUTTON CLICK
 document.addEventListener("DOMContentLoaded", function () {
   const addProductButton = document.querySelector(".add-product-btn");
-  const modal = document.getElementById("myModal");
-  const openBtn = document.querySelector("add-product-btn");
-  const closeBtn = document.querySelector(".close");
+
+  const modalMain = document.getElementById("myModal");
+  const addNewProductform = document.getElementById("addNewProductModal");
+  const existingNewProductform = document.getElementById(
+    "existingProductModal"
+  );
+
+  const closeBtn = document.querySelectorAll(".close");
   const addNewProduct = document.querySelector(".addNewProduct");
   const existingProduct = document.querySelector(".existingProduct");
 
   if (addProductButton) {
     addProductButton.addEventListener("click", function () {
       console.log("Add new product clicked");
-     modal.style.display = "block";
+      modalMain.style.display = "block";
     });
   }
 
-  if (closeBtn){
-    closeBtn.onclick = function (){
-      modal.style.display = "none";
-    }
+  for (let i = 0; i < closeBtn.length; i++) {
+    closeBtn[i].addEventListener("click", function () {
+      modalMain.style.display = "none";
+      addNewProductform.style.display = "none";
+      existingNewProductform.style.display = "none";
+    });
   }
 
-  window.addEventListener("click" , function (event) {
-    if (event.target === modal){
-      modal.style.display = "none";
+  window.addEventListener("click", function (event) {
+    if (event.target === modalMain) {
+      modalMain.style.display = "none";
+    } else if (event.target === addNewProductform) {
+      addNewProductform.style.display = "none";
+    } else if (event.target === existingNewProductform) {
+      existingNewProductform.style.display = "none";
     }
   });
 
-  if (addNewProduct){
+  if (addNewProduct) {
     console.log("add product in the future");
+    addNewProduct.addEventListener("click", () => {
+      if (modalMain.style.display === "block") {
+        modalMain.style.display = "none";
+        addNewProductform.style.display = "block";
+      }
+    });
   }
-  if (existingProduct){
+  if (existingProduct) {
     console.log("existing product in the future");
+    existingProduct.addEventListener("click", () => {
+      if (modalMain.style.display === "block") {
+        modalMain.style.display = "none";
+        existingNewProductform.style.display = "block";
+      }
+    });
   }
 });

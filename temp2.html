@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Modal Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Modal Base */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Modal content */
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 350px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .close {
+      color: red;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Product Dashboard</h2>
+  <button id="openMainModal">Add New Product</button>
+
+  <!-- Main Modal -->
+  <div id="mainModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeMain">&times;</span>
+      <h3>Choose an Option</h3>
+      <button class="addNewProduct">Add New Product</button>
+      <button class="existingProduct">Existing Product</button>
+    </div>
+  </div>
+
+  <!-- Add New Product Modal -->
+  <div id="addNewProductModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeNew">&times;</span>
+      <h3>Add New Product</h3>
+      <input type="text" placeholder="Product Name"><br><br>
+      <input type="number" placeholder="Price"><br><br>
+      <button>Save Product</button>
+    </div>
+  </div>
+
+  <!-- Existing Product Modal -->
+  <div id="existingProductModal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeExisting">&times;</span>
+      <h3>Existing Product</h3>
+      <p>Select a product to update:</p>
+      <select>
+        <option>Chickenjoy</option>
+        <option>Spaghetti</option>
+        <option>Burger</option>
+      </select><br><br>
+      <button>Update</button>
+    </div>
+  </div>
+
+  <script>
+    const openMainModal = document.getElementById("openMainModal");
+    const mainModal = document.getElementById("mainModal");
+    const closeMain = document.getElementById("closeMain");
+
+    const newModal = document.getElementById("addNewProductModal");
+    const closeNew = document.getElementById("closeNew");
+
+    const existingModal = document.getElementById("existingProductModal");
+    const closeExisting = document.getElementById("closeExisting");
+
+    const addNewBtn = document.querySelector(".addNewProduct");
+    const existingBtn = document.querySelector(".existingProduct");
+
+    // Open main modal
+    openMainModal.onclick = () => (mainModal.style.display = "block");
+    closeMain.onclick = () => (mainModal.style.display = "none");
+
+    // When clicking outside any modal
+    window.onclick = function (event) {
+      [mainModal, newModal, existingModal].forEach(modal => {
+        if (event.target === modal) modal.style.display = "none";
+      });
+    };
+
+    // Inside modal actions
+    addNewBtn.onclick = () => {
+      mainModal.style.display = "none"; // Hide first
+      newModal.style.display = "block"; // Show new product modal
+    };
+
+    existingBtn.onclick = () => {
+      mainModal.style.display = "none";
+      existingModal.style.display = "block";
+    };
+
+    closeNew.onclick = () => (newModal.style.display = "none");
+    closeExisting.onclick = () => (existingModal.style.display = "none");
+  </script>
+</body>
+</html>
