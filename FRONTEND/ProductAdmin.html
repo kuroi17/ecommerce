@@ -45,73 +45,16 @@
 
       <main class="main-content">
         <div class="product-admin-container">
-          <div class="products-header">
+          <div class="products-header js-modalContainer">
             <div>
               <h2>Products Stock Management</h2>
               <p>Manage inventory and track stock levels</p>
             </div>
             <button class="add-product-btn">+ Add New Product</button>
-            <!-- main modal -->
-            <div id="myModal" class="modal">
-              <div class="modal-content">
-                <span class="close"> &times;</span>
-                <h3>Add Product</h3>
-                <button class="addNewProduct">Add a new product</button>
-                <!-- the button to add a new product -->
-                <button class="existingProduct">Add a existing product</button>
-                <!-- the button to add a existing product -->
-              </div>
-            </div>
+            
+            <!-- REMOVE ALL THE MODAL HTML FROM HERE -->
+  <!-- The modals will be created by JavaScript -->
 
-            <div id="addNewProductModal" class="modal">
-              <div class="modal-content">
-                <span class="close"> &times;</span>
-                <h3>Add New Product</h3>
-
-                <form id="newProductForm">
-                  <!-- the modal form -->
-                  <input type="text" placeholder="Product Name" /> <br /><br />
-                  <input type="number" placeholder="Price" /> <br /><br />
-
-                  <select id="productCategory" required>
-                    <option value="">Select Category</option>
-                    <option value="main-dishes">Main Dishes</option>
-                    <option value="drinks">Drinks</option>
-                    <option value="desserts">Desserts</option>
-                  </select>
-                  <br /><br />
-
-                  <input
-                    type="file"
-                    id="productImage"
-                    class="productImage"
-                    accept="image/*"
-                    required
-                  />
-                  
-                  
-                  <br /><br />
-                  <button class="saveProduct">Save Product</button>
-                </form>
-              </div>
-            </div>
-
-            <div id="existingProductModal" class="modal">
-              <!-- the modal form -->
-              <div class="modal-content">
-                <span class="close"> &times;</span>
-                <h3>Existing Product</h3>
-                <p>Select a product to add</p>
-                <select id="existing-product-select">
-                  <option value="">Choose Product...</option>
-                  <option value="chickenjoy">Chickenjoy</option>
-                  <option value="spaghetti">Spaghetti</option>
-                  <option value="burger">Burger</option>
-                </select>
-                <br /><br />
-                <button>Update</button>
-              </div>
-            </div>
           </div>
 
           <div class="section">

@@ -1,6 +1,5 @@
 import { menuData } from "./product.js";
 
-
 const stockData = {
   chickenjoy: { stock: 45, sold: 23 }, // Example: 45 items in stock, 23 sold
   spaghetti: { stock: 32, sold: 18 },
@@ -128,7 +127,7 @@ function updateProductCard(productId) {
         attachKeyEventListener(); // Reattach event listeners after re-rendering
 
         return;
-      } 
+      }
     }
   }
 }
@@ -192,6 +191,74 @@ document.addEventListener("click", function (event) {
     }
   }
 });
+
+const ModalContainer = document.querySelector(".js-modalContainer");
+
+let modalContainerHTML = ` 
+          <!-- main modal -->
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <span class="close"> &times;</span>
+                <h3>Add Product</h3>
+                <button class="addNewProduct">Add a new product</button>
+                <!-- the button to add a new product -->
+                <button class="existingProduct">Add a existing product</button>
+                <!-- the button to add a existing product -->
+              </div>
+            </div>
+
+            <div id="addNewProductModal" class="modal">
+              <div class="modal-content">
+                <span class="close"> &times;</span>
+                <h3>Add New Product</h3>
+
+                <form id="newProductForm">
+                  <!-- the modal form -->
+                  <input type="text" placeholder="Product Name" /> <br /><br />
+                  <input type="number" placeholder="Price" /> <br /><br />
+
+                  <select id="productCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="mainDishes">Main Dishes</option>
+                    <option value="drinks">Drinks</option>
+                    <option value="desserts">Desserts</option>
+                  </select>
+                  <br /><br />
+
+                  <input
+                    type="file"
+                    id="productImage"
+                    class="productImage"
+                    accept="image/*"
+                    required
+                  />
+                  
+                  
+                  <br /><br />
+                  <button class="saveProduct">Save Product</button>
+                </form>
+              </div>
+            </div>
+
+            <div id="existingProductModal" class="modal">
+              <!-- the modal form -->
+              <div class="modal-content">
+                <span class="close"> &times;</span>
+                <h3>Existing Product</h3>
+                <p>Select a product to add</p>
+                <select id="existing-product-select">
+                  <option value="">Choose Product...</option>
+                  <option value="chickenjoy">Chickenjoy</option>
+                  <option value="spaghetti">Spaghetti</option>
+                  <option value="burger">Burger</option>
+                </select>
+                <br /><br />
+                <button>Update</button>
+              </div>
+            </div>
+          `;
+
+ModalContainer.innerHTML += modalContainerHTML;
 
 // ADD NEW PRODUCT BUTTON CLICK
 document.addEventListener("DOMContentLoaded", function () {
