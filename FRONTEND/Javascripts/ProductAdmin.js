@@ -192,8 +192,21 @@ document.addEventListener("click", function (event) {
   }
 });
 
-const ModalContainer = document.querySelector(".js-modalContainer");
+// for (let products in stockData){
+//   products
+// }
 
+function generateOptionsModalExisting() {
+  let optionsHTML = `<option value="">Choose Product...</option> `;
+
+  for (let Eachproduct in stockData) {
+    // const productInfo = stockData[Eachproduct];
+    optionsHTML += `<option value="${Eachproduct}">${Eachproduct}</option>`;
+  }
+  return optionsHTML;
+}
+
+const ModalContainer = document.querySelector(".js-modalContainer");
 let modalContainerHTML = ` 
           <!-- main modal -->
             <div id="myModal" class="modal">
@@ -247,10 +260,8 @@ let modalContainerHTML = `
                 <h3>Existing Product</h3>
                 <p>Select a product to add</p>
                 <select id="existing-product-select">
-                  <option value="">Choose Product...</option>
-                  <option value="chickenjoy">Chickenjoy</option>
-                  <option value="spaghetti">Spaghetti</option>
-                  <option value="burger">Burger</option>
+                  ${generateOptionsModalExisting()}
+                  <!-- options rendered by js -->
                 </select>
                 <br /><br />
                 <button>Update</button>
