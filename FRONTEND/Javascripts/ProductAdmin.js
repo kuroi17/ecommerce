@@ -93,9 +93,6 @@ function renderProductAdmin(products, containerSelector) {
           <button class="action-btn update-stock-btn" data-product-id="${
             product.id
           }">Update </button>
-          <button class="action-btn restock-btn" data-product-id="${
-            product.id
-          }">Restock</button>
           <button class="action-btn delete-btn" data-product-id="${
             product.id
           }">Delete</button>
@@ -111,6 +108,7 @@ function renderProductAdmin(products, containerSelector) {
 renderProductAdmin(menuData.mainDishes, ".js-main-dishes-admin"); // ✅ Fixed selectors
 renderProductAdmin(menuData.drinks, ".js-drinks-admin");
 renderProductAdmin(menuData.desserts, ".js-desserts-admin");
+attachKeyEventListener();
 
 function updateProductCard(productId) {
   const containerSelectors = {
@@ -128,9 +126,34 @@ function updateProductCard(productId) {
       if (Eachproduct.id === productId) {
         const containerSelector = containerSelectors[categoryName];
         renderProductAdmin(products, containerSelector);
+        attachKeyEventListener(); // Reattach event listeners after re-rendering
+
         return;
-      }
+      } 
     }
+  }
+}
+
+// function that would let enter key (from keyboard) to update stock
+function attachKeyEventListener() {
+  const stockInputs = document.querySelectorAll(".stock-input");
+  for (let i = 0; i < stockInputs.length; i++) {
+    const input = stockInputs[i];
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        const productId = input.getAttribute("data-product-id");
+        const newStockValue = parseInt(input.value);
+        if (stockData[productId]) {
+          // ✅ Added safety check
+          stockData[productId].stock = newStockValue;
+
+          // Update the visual display
+          updateProductCard(productId);
+
+          console.log(`Updated stock for ${productId} to ${newStockValue}`);
+        }
+      }
+    });
   }
 }
 
@@ -156,22 +179,6 @@ document.addEventListener("click", function (event) {
       updateProductCard(productId);
 
       console.log(`Updated stock for ${productId} to ${newStockValue}`);
-    }
-  }
-
-  // EDIT BUTTON CLICK
-  if (elementClass && elementClass.indexOf("edit-btn") !== -1) {
-    console.log(`Edit product ${productId}`);
-    // TODO: Open edit modal or navigate to edit page
-  }
-
-  // RESTOCK BUTTON CLICK (+25)
-  if (elementClass && elementClass.indexOf("restock-btn") !== -1) {
-    // negative one means not found
-    if (stockData[productId]) {
-      stockData[productId].stock += 25;
-      updateProductCard(productId);
-      console.log(`Restocked product ${productId} (+25 items)`);
     }
   }
 
@@ -229,6 +236,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   if (addNewProduct) {
+    // if we clicked the add new product button
     console.log("add product in the future");
     addNewProduct.addEventListener("click", () => {
       if (modalMain.style.display === "block") {
@@ -238,6 +246,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   if (existingProduct) {
+    // if we clicked the existing product button
     console.log("existing product in the future");
     existingProduct.addEventListener("click", () => {
       if (modalMain.style.display === "block") {
