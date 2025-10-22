@@ -180,6 +180,16 @@ document.addEventListener("click", function (event) {
     }
   }
 
+  function showPopup(message) {
+    const popup = document.getElementById("popup");
+    popup.textContent = message;
+    popup.classList.add("show");
+
+    setTimeout(() => {
+      popup.classList.remove("show");
+    }, 3000); // disappear after 3 seconds
+  }
+
   // DELETE BUTTON CLICK
   if (elementClass && elementClass.indexOf("delete-btn") !== -1) {
     const confirmDelete = confirm(
@@ -187,7 +197,47 @@ document.addEventListener("click", function (event) {
     );
     if (confirmDelete) {
       console.log(`Deleted product ${productId}`);
-      // TODO: Actually remove from data and re-render
+      for (let categoryName in menuData) {
+        const productList = menuData[categoryName];
+
+        // Create a new list that will store the remaining products
+        const productNewList = [];
+
+        // Variable to check if we found the product to delete
+        let found = false;
+
+        // Loop through each product manually
+        for (let i = 0; i < productList.length; i++) {
+          const currentProduct = productList[i];
+
+          if (currentProduct.id === productId) {
+            // ✅ Found the product we want to delete
+            found = true;
+            showPopup(`Product ${productId} deleted.`);
+            console.log(`Product ${productId} deleted.`);
+            delete stockData[productId];
+          } else {
+            // If not the product we want to delete, keep it
+            productNewList.push(currentProduct);
+          }
+        }
+        // If we found the product, update that category and re-render
+        if (found) {
+          menuData[categoryName] = productNewList;
+
+          const containerSelectors = {
+            mainDishes: ".js-main-dishes-admin",
+            drinks: ".js-drinks-admin",
+            desserts: ".js-desserts-admin",
+          };
+
+          const containerSelector = containerSelectors[categoryName];
+          renderProductAdmin(productNewList, containerSelector);
+
+          console.log(`✅ Deleted product ${productId} successfully!`);
+          break; // Stop looping after deleting
+        }
+      }
     }
   }
 });
@@ -204,6 +254,57 @@ function generateOptionsModalExisting() {
     optionsHTML += `<option value="${Eachproduct}">${Eachproduct}</option>`;
   }
   return optionsHTML;
+}
+
+function addExistingProductButton() {
+  const addButton = document.querySelector(".addProductBtn");
+  const select = document.getElementById("existing-product-select");
+
+  if (!addButton || !select) return;
+
+  addButton.addEventListener("click", function () {
+    const selectedProduct = select.value;
+
+    // Check if a valid product is selected
+    if (selectedProduct === "") {
+      alert("Please select a product first.");
+      return;
+    }
+
+    // Find which category the product belongs to (mainDishes, drinks, or desserts)
+    for (let categoryName in menuData) {
+      const products = menuData[categoryName];
+
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i];
+
+        if (product.id === selectedProduct) {
+          // If product already exists, just show it again on the page
+          const containerSelectors = {
+            mainDishes: ".js-main-dishes-admin",
+            drinks: ".js-drinks-admin",
+            desserts: ".js-desserts-admin",
+          };
+
+          const container = document.querySelector(
+            containerSelectors[categoryName]
+          );
+
+          if (container) {
+            renderProductAdmin(products, containerSelectors[categoryName]);
+            attachKeyEventListener();
+            console.log(`✅ Added existing product: ${selectedProduct}`);
+          }
+
+          // Close modal after adding
+          const existingModal = document.getElementById("existingProductModal");
+          existingModal.style.display = "none";
+
+          return; // stop after adding one product
+        }
+      }
+    }
+  });
 }
 
 const ModalContainer = document.querySelector(".js-modalContainer");
@@ -264,12 +365,13 @@ let modalContainerHTML = `
                   <!-- options rendered by js -->
                 </select>
                 <br /><br />
-                <button>Update</button>
+                <button class="addProductBtn">Add</button>
               </div>
             </div>
           `;
 
 ModalContainer.innerHTML += modalContainerHTML;
+addExistingProductButton();
 
 // ADD NEW PRODUCT BUTTON CLICK
 document.addEventListener("DOMContentLoaded", function () {
