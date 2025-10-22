@@ -57,7 +57,9 @@
                 <span class="close"> &times;</span>
                 <h3>Add Product</h3>
                 <button class="addNewProduct">Add a new product</button>
+                <!-- the button to add a new product -->
                 <button class="existingProduct">Add a existing product</button>
+                <!-- the button to add a existing product -->
               </div>
             </div>
 
@@ -65,21 +67,37 @@
               <div class="modal-content">
                 <span class="close"> &times;</span>
                 <h3>Add New Product</h3>
+
                 <form id="newProductForm">
+                  <!-- the modal form -->
                   <input type="text" placeholder="Product Name" /> <br /><br />
                   <input type="number" placeholder="Price" /> <br /><br />
+
                   <select id="productCategory" required>
                     <option value="">Select Category</option>
                     <option value="main-dishes">Main Dishes</option>
                     <option value="drinks">Drinks</option>
                     <option value="desserts">Desserts</option>
                   </select>
+                  <br /><br />
+
+                  <input
+                    type="file"
+                    id="productImage"
+                    class="productImage"
+                    accept="image/*"
+                    required
+                  />
+                  
+                  
+                  <br /><br />
                   <button class="saveProduct">Save Product</button>
                 </form>
               </div>
             </div>
 
             <div id="existingProductModal" class="modal">
+              <!-- the modal form -->
               <div class="modal-content">
                 <span class="close"> &times;</span>
                 <h3>Existing Product</h3>
@@ -96,7 +114,7 @@
             </div>
           </div>
 
-          <div class="stock-section">
+          <div class="section">
             <h3 class="stock-section-title">Main Dishes</h3>
             <div class="products-grid js-main-dishes-admin">
               <!-- render by js -->

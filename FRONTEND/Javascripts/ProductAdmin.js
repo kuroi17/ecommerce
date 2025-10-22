@@ -1,7 +1,6 @@
 import { menuData } from "./product.js";
 
-// Mock stock data - simulates database information about product inventory
-// In a real application, this would come from a backend API/database
+
 const stockData = {
   chickenjoy: { stock: 45, sold: 23 }, // Example: 45 items in stock, 23 sold
   spaghetti: { stock: 32, sold: 18 },
@@ -58,7 +57,7 @@ function renderProductAdmin(products, containerSelector) {
             <div class="product-admin-price">₱${(product.price / 100).toFixed(
               2
             )}</div>
-          </div>
+          </div>  
         </div>
         
         <!-- Stock information display -->
