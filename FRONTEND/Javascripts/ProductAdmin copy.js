@@ -42,14 +42,10 @@ function renderProductAdmin(products, containerSelector) {
     productsHTML += `
       <div class="product-admin-card">
         <div class="product-admin-header">
-          <img src="${product.image}" alt="${
-      product.name
-    }" class="product-admin-image" />
+          <img src="${product.image}" alt="${product.name}" class="product-admin-image" />
           <div class="product-admin-info">
             <div class="product-admin-name">${product.name}</div>
-            <div class="product-admin-price">₱${(product.price / 100).toFixed(
-              2
-            )}</div>
+            <div class="product-admin-price">₱${(product.price / 100).toFixed(2)}</div>
           </div>  
         </div>
         
@@ -69,18 +65,12 @@ function renderProductAdmin(products, containerSelector) {
         </div>
 
         <div class="stock-quantity-container">
-          <input type="number" class="stock-input" value="${
-            stockInfo.stock
-          }" min="0" data-product-id="${product.id}">
+          <input type="number" class="stock-input" value="${stockInfo.stock}" min="0" data-product-id="${product.id}">
         </div>
         
         <div class="product-actions">
-          <button class="action-btn update-stock-btn" data-product-id="${
-            product.id
-          }">Update</button>
-          <button class="action-btn delete-btn" data-product-id="${
-            product.id
-          }">Delete</button>
+          <button class="action-btn update-stock-btn" data-product-id="${product.id}">Update</button>
+          <button class="action-btn delete-btn" data-product-id="${product.id}">Delete</button>
         </div>
       </div>
     `;
@@ -161,9 +151,7 @@ document.addEventListener("click", function (event) {
 
   // UPDATE BUTTON
   if (elementClass && elementClass.indexOf("update-stock-btn") !== -1) {
-    const stockInput = document.querySelector(
-      `input[data-product-id="${productId}"]`
-    );
+    const stockInput = document.querySelector(`input[data-product-id="${productId}"]`);
     const newStockValue = parseInt(stockInput.value);
 
     if (stockData[productId]) {
@@ -175,9 +163,7 @@ document.addEventListener("click", function (event) {
 
   // DELETE BUTTON
   if (elementClass && elementClass.indexOf("delete-btn") !== -1) {
-    const confirmDelete = confirm(
-      "Are you sure you want to delete this product?"
-    );
+    const confirmDelete = confirm("Are you sure you want to delete this product?");
     if (confirmDelete) {
       if (stockData[productId]) {
         stockData[productId].hidden = true;
@@ -255,7 +241,7 @@ let modalContainerHTML = `
       <h3>Add New Product</h3>
       <form id="newProductForm">
         <input class="js-productName" type="text" placeholder="Product Name" /> <br /><br />
-        <input class="js-productPrice" type="number" placeholder="Price" /> <br /><br />
+        <input class="js-productPrice type="number" placeholder="Price" /> <br /><br />
         <select id="productCategory" required>
           <option value="">Select Category</option>
           <option value="mainDishes">Main Dishes</option>
@@ -287,14 +273,18 @@ let modalContainerHTML = `
 ModalContainer.innerHTML += modalContainerHTML;
 addExistingProductButton();
 
+document.querySelector(".saveProduct").addEventListener("click", function (event){
+  
+
+
+});
+
 // 🔹 Modal handling
 document.addEventListener("DOMContentLoaded", function () {
   const addProductButton = document.querySelector(".add-product-btn");
   const modalMain = document.getElementById("myModal");
   const addNewProductForm = document.getElementById("addNewProductModal");
-  const existingNewProductForm = document.getElementById(
-    "existingProductModal"
-  );
+  const existingNewProductForm = document.getElementById("existingProductModal");
   const closeBtn = document.querySelectorAll(".close");
   const addNewProduct = document.querySelector(".addNewProduct");
   const existingProduct = document.querySelector(".existingProduct");
@@ -336,92 +326,6 @@ document.addEventListener("DOMContentLoaded", function () {
       existingNewProductForm.style.display = "block";
       refreshExistingProductDropdown(); // 🔹 Refresh every time modal opens
     });
-  }
-
-  const saveProductBtnFromNewProductModal =
-    document.querySelector(".saveProduct");
-  if (saveProductBtnFromNewProductModal) {
-    saveProductBtnFromNewProductModal.addEventListener(
-      "click",
-      function (event) {
-        event.preventDefault();
-
-        const productNameInput = document.querySelector(".js-productName");
-        const productPriceInput = document.querySelector(".js-productPrice");
-        const productCategorySelect =
-          document.getElementById("productCategory");
-        const productImageInput = document.getElementById("productImage");
-
-        const newProductPrice = parseInt(productPriceInput.value);
-        const newProductName = productNameInput.value;
-        const newProductCategory = productCategorySelect.value;
-        const productImageFile = productImageInput.files[0];
-
-        if (!newProductName) {
-          alert("Please enter a product name!");
-          return;
-        }
-
-        if (isNaN(newProductPrice) || newProductPrice <= 0) {
-          alert("Please enter a valid price greater than 0!");
-          return;
-        }
-
-        if (!newProductCategory) {
-          alert("Please select a product category!");
-          return;
-        }
-
-        if (!productImageFile) {
-          alert("Upload a product image! ");
-          return;
-        }
-
-        const productId = newProductName
-          .toLowerCase()
-          .replace(/\s+/g, "")
-          .replace(/[^a-z0-9]/gi, "");
-        const imageURL = URL.createObjectURL(productImageFile);
-        stockData[productId] = {
-          stock: 0,
-          sold: 0,
-          hidden: false,
-        };
-
-        const newProduct = {
-          id: productId,
-          name: newProductName,
-          price: newProductPrice,
-          image: imageURL,
-        };
-
-        if (menuData[newProductCategory]) {
-          menuData[newProductCategory].push(newProduct);
-        } else {
-          console.error("Invalid category selected.");
-          return;
-        }
-
-        renderAllCategories();
-
-        // 🔹 CLOSE MODAL AND RESET FORM
-        const addNewProductModal =
-          document.getElementById("addNewProductModal");
-        addNewProductModal.style.display = "none";
-
-        // Reset form
-        productNameInput.value = "";
-        productPriceInput.value = "";
-        productCategorySelect.value = "";
-        productImageInput.value = "";
-
-        // 🔹 SUCCESS FEEDBACK
-        showPopup(`✅ Added new product: ${newProductName}!`);
-        console.log(
-          `Added new product: ${newProductName} (${productId}) to ${newProductCategory}`
-        );
-      }
-    );
   }
 });
 
