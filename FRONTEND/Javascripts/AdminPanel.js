@@ -67,6 +67,32 @@ async function renderDashboardOrdersTable() {
   }
 }
 
+const quickActionsContainer = document.querySelector(".js-quick-actions-section");
+let quickActionsHTML = "";
+quickActionsHTML += `
+  <h3>Quick Actions</h3>
+          <div class="quick-actions">
+            <button class="quick-action-btn">
+              <span class="action-icon">➕</span>
+              Add New Product
+            </button>
+            <button class="quick-action-btn">
+              <span class="action-icon">📊</span>
+              Generate Sales Report
+            </button>
+            <button class="quick-action-btn">
+              <span class="action-icon">🔔</span>
+              Send Notification
+            </button>
+            <button class="quick-action-btn">
+              <span class="action-icon">⚙️</span>
+              Settings
+            </button>
+          </div>`;
+
+          quickActionsContainer.innerHTML = quickActionsHTML;
+
+
 async function fetchOrderCount() {
   try {
     const response = await fetch(API_ENDPOINTS.orderCounter);
