@@ -72,7 +72,7 @@ let quickActionsHTML = "";
 quickActionsHTML += `
   <h3>Quick Actions</h3>
           <div class="quick-actions">
-            <button class="quick-action-btn">
+            <button class="quick-action-btn js-add-new-product-btn">
               <span class="action-icon">➕</span>
               Add New Product
             </button>
@@ -92,7 +92,8 @@ quickActionsHTML += `
 
           quickActionsContainer.innerHTML = quickActionsHTML;
 
-
+          
+// BACKEND SECTION FOR THE DASHBOARD (4 CARDS)
 async function fetchOrderCount() {
   try {
     const response = await fetch(API_ENDPOINTS.orderCounter);
