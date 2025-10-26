@@ -11,6 +11,7 @@ async function renderDashboardOrdersTable() {
     // Fetch with limit=5 for dashboard
     const response = await fetch(`${API_ENDPOINTS.tableOrder}?limit=5`);
     const data = await response.json();
+    console.log("Dashboard orders data:", data);
 
     if (data.success) {
       const orders = data.orders; // This is your data

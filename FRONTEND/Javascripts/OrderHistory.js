@@ -5,8 +5,9 @@ const orderTableHTML = document.querySelector(".js-HistoryOrderTable");
 // Main fetch function (source of truth)
 export async function fetchOrderTable() {
   try {
-    const response = await fetch(API_ENDPOINTS.tableOrder);
+    const response = await fetch(`${API_ENDPOINTS.tableOrder}?limit=all`);
     const data = await response.json();
+     console.log("Fetched order data:", data);
     if (data.success) {
       return data.orders;
     } else {
