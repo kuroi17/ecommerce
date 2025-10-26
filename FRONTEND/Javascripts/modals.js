@@ -1,5 +1,5 @@
 import { menuData } from "./product.js";
-import { stockData,renderAllCategories,showPopup,refreshExistingProductDropdown, generateOptionsModalExisting} from "./ProductAdmin.js";
+import { stockData,renderAllCategories,showPopup,refreshExistingProductDropdown, generateOptionsModalExisting, } from "./ProductAdmin.js";
 export function modalGenerator (){
 
 // 🔹 Generate options for hidden (deleted) products
@@ -90,6 +90,7 @@ addExistingProductButton();
 // the modals of the buttons
 document.addEventListener("DOMContentLoaded", function () {
   const addProductButton = document.querySelector(".add-product-btn");
+  const addProductButtonAdminPanel = document.querySelector(".add-product-btn1");
   const modalMain = document.getElementById("myModal");
   const addNewProductForm = document.getElementById("addNewProductModal");
   const existingNewProductForm = document.getElementById(
@@ -100,11 +101,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const addNewProduct = document.querySelector(".addNewProduct");
   const existingProduct = document.querySelector(".existingProduct");
 
-  if (addProductButton) {
-    addProductButton.addEventListener("click", function () {
-      modalMain.style.display = "block";
-    });
-  }
+    if (addProductButton) {
+      addProductButton.addEventListener("click", function () {
+        modalMain.style.display = "block";
+      });
+    }
+    if (addProductButtonAdminPanel){
+      addProductButtonAdminPanel.addEventListener("click", function () {
+        modalMain.style.display = "block";
+      });
+    }
+
 
   for (let i = 0; i < closeBtn.length; i++) {
     closeBtn[i].addEventListener("click", function () {

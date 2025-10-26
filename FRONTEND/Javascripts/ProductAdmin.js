@@ -31,6 +31,8 @@ function renderProductAdmin(products, containerSelector) {
   const container = document.querySelector(containerSelector);
   let productsHTML = "";
 
+  if (!container) return;
+
   const visibleProducts = products.filter((product) => {
     const productData = stockData[product.id];
     return !productData || productData.hidden === false;
@@ -225,8 +227,9 @@ export function refreshExistingProductDropdown() {
 //   }
 // }
 
-// 🔹 Inject modal generator
-modalGenerator();
+
 
 // 🔹 Initial render
 renderAllCategories();
+// 🔹 Inject modal generator
+modalGenerator();

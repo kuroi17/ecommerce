@@ -1,4 +1,6 @@
 import { API_ENDPOINTS } from "./CONFIGJS.js";
+import { modalGenerator } from "./modals.js";
+
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");
 const ProductsHTML = document.querySelector(".js-products");
@@ -67,12 +69,14 @@ async function renderDashboardOrdersTable() {
   }
 }
 
-const quickActionsContainer = document.querySelector(".js-quick-actions-section");
+const quickActionsContainer = document.querySelector(
+  ".js-quick-actions-section"
+);
 let quickActionsHTML = "";
 quickActionsHTML += `
   <h3>Quick Actions</h3>
           <div class="quick-actions">
-            <button class="quick-action-btn js-add-new-product-btn">
+            <button class="quick-action-btn add-product-btn1"> 
               <span class="action-icon">➕</span>
               Add New Product
             </button>
@@ -90,9 +94,8 @@ quickActionsHTML += `
             </button>
           </div>`;
 
-          quickActionsContainer.innerHTML = quickActionsHTML;
+quickActionsContainer.innerHTML = quickActionsHTML;
 
-          
 // BACKEND SECTION FOR THE DASHBOARD (4 CARDS)
 async function fetchOrderCount() {
   try {
@@ -252,3 +255,4 @@ setInterval(() => {
   renderCustomersHTML();
   renderDashboardOrdersTable();
 }, 60000); //60000
+modalGenerator();
