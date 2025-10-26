@@ -10,7 +10,7 @@ export function modalGenerator (){
 
 // 🔹 Add button logic for restoring hidden products
 function addExistingProductButton() {
-  const addButton = document.querySelector(".addProductBtn");
+  const addButton = document.querySelector(".addProductBtn"); 
   const select = document.getElementById("existing-product-select");
 
   if (!addButton || !select) return;
@@ -89,29 +89,30 @@ addExistingProductButton();
 
 // the modals of the buttons
 document.addEventListener("DOMContentLoaded", function () {
-  const addProductButton = document.querySelector(".add-product-btn");
-  const addProductButtonAdminPanel = document.querySelector(".add-product-btn1");
+  const addProductButtons = document.querySelectorAll("[data-modal-trigger='add-product']");
   const modalMain = document.getElementById("myModal");
   const addNewProductForm = document.getElementById("addNewProductModal");
   const existingNewProductForm = document.getElementById(
     "existingProductModal"
   );
+
+  addProductButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      modalMain.style.display = "block";
+    });
+  });
   // buttons of modals
   const closeBtn = document.querySelectorAll(".close");
   const addNewProduct = document.querySelector(".addNewProduct");
   const existingProduct = document.querySelector(".existingProduct");
 
-    if (addProductButton) {
-      addProductButton.addEventListener("click", function () {
-        modalMain.style.display = "block";
+    if (addProductButtons) {
+      addProductButtons.forEach(button => {
+        button.addEventListener("click", function () {
+          modalMain.style.display = "block";
+        });
       });
     }
-    if (addProductButtonAdminPanel){
-      addProductButtonAdminPanel.addEventListener("click", function () {
-        modalMain.style.display = "block";
-      });
-    }
-
 
   for (let i = 0; i < closeBtn.length; i++) {
     closeBtn[i].addEventListener("click", function () {

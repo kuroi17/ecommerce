@@ -76,7 +76,7 @@ let quickActionsHTML = "";
 quickActionsHTML += `
   <h3>Quick Actions</h3>
           <div class="quick-actions">
-            <button class="quick-action-btn add-product-btn1"> 
+            <button class="quick-action-btn add-product-btn" data-modal-trigger="add-product">
               <span class="action-icon">➕</span>
               Add New Product
             </button>
