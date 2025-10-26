@@ -68,7 +68,7 @@ body {
   transition: all 0.3s ease;
 }
 
-.admin-panel-page .add-product-btn:hover{ /* the modified css button for the quick actions section */
+.admin-panel-page .add-product-btn:hover{ /* the modified button in the quick actions section */
   background: linear-gradient(135deg, #ff9800, #f57c00);  
   box-shadow: 0 6px 20px rgba(245, 124, 0, 0.4);
 }
