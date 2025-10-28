@@ -21,7 +21,7 @@ customerPageHTML += `
             <p>Phone: ${customerInfo.phone}</p>
             <p>Address: ${customerInfo.address}</p>
           </div>
-
+  
           <div class="customer-card">
             <div class="image-container">
               <img src="${customerInfo.imagetwo}" alt="#" />

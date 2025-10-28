@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Full page center */
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #fafafa;
+}
+
+.formContainer {
+  background: #ffffff;
+  padding: 30px 35px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.logo {
+  width: 70px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #d52124; /* Jollibee Red */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+label {
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+}
+
+input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #d52124;
+  box-shadow: 0 0 3px rgba(213, 33, 36, 0.4);
+}
+
+.login-btn {
+  background: #d52124;
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.25s;
+}
+
+.login-btn:hover {
+  background: #b81b1e;
+}

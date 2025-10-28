@@ -28,4 +28,23 @@ CUSTOMER DASHBOARD:
 - make a db for the costumer for holder when someone logs in
 --- make the info of each customer dynamic that its info as well as its pfp depends on the input when logging in
 
-    
+PLAN FOR LEARNING PHP
+1. Continue the course **only until**:
+- variables
+- echo
+- conditionals
+- loops
+- functions
+
+2. Jump directly to:
+✅ Form Handling
+✅ password_hash / password_verify
+✅ $_POST / $_SESSION handling
+✅ mysqli or PDO database CRUD
+✅ Database + PHP Connection
+✅ Using PHP as authentication
+✅ Implement Google/Platform accounts to sign in
+
+
+
+

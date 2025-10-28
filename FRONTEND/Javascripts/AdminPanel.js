@@ -6,6 +6,7 @@ const RevenueHTML = document.querySelector(".js-revenue");
 const ProductsHTML = document.querySelector(".js-products");
 const CustomersHTML = document.querySelector(".js-customers");
 
+// BACKEND SECTION FOR THE DASHBOARD (RECENT ORDERS TABLE)
 async function renderDashboardOrdersTable() {
   try {
     // Fetch with limit=5 for dashboard
@@ -70,6 +71,7 @@ async function renderDashboardOrdersTable() {
   }
 }
 
+// QUICK ACTIONS SECTION
 const quickActionsContainer = document.querySelector(
   ".js-quick-actions-section"
 );

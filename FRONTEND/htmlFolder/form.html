@@ -4,21 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Log in Form</title>
-    <link rel="stylesheet" href="../Stylings/AdminPanel.css" />
+    <link rel="stylesheet" href="../Stylings/formStyling.css" />
   </head>
   <body>
-    <main>
-      <form action="../../BACKEND/formHandling.php" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
-        <br /><br />
+    <main class="center-wrapper">
+      <div class="formContainer">
+        <img src="../images/jollibee.png" class="logo" alt="Jollibee" />
+        <h1>Log in</h1>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
-        <br /><br />
+        <form action="../../BACKEND/formHandling.php" method="POST">
+          <label>Username</label>
+          <input type="text" name="username" required />
 
-        <input type="submit" value="submit" />
-      </form>
+          <label>Password</label>
+          <input type="password" name="password" required />
+
+          <button type="submit" class="login-btn">Log In</button>
+        </form>
+      </div>
     </main>
   </body>
 </html>
