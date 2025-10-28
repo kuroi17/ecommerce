@@ -1,66 +1,104 @@
-# Code Citations
+tree -L 4 
+to see the all the file paths
 
-## License: unknown
+# Code Citations.md
+├── BACKEND
+│   ├── CustomerCounter.php
+│   ├── OrderCounter.php
+│   ├── ProductCounter.php
+│   ├── TableOrder.php
+│   ├── TotalRevenue.php
+│   ├── ecommerce_db.sql
+│   ├── formHandling.php
+│   └── placeOrder.php
+├── FRONTEND
+│   ├── Javascripts
+│   │   ├── AdminPanel.js
+│   │   ├── CONFIGJS.js
+│   │   ├── OrderHistory.js
+│   │   ├── ProductAdmin.js
+│   │   ├── banner.js
+│   │   ├── cart.js
+│   │   ├── checkout.js
+│   │   ├── customerPage.js
+│   │   ├── deliveryOptions.js
+│   │   ├── main.js
+│   │   ├── modals.js
+│   │   ├── product.js
+│   │   ├── renderOrder.js
+│   │   └── renderPayment.js
+│   ├── Screenshots
+│   │   ├── Banner-Screenshot-1000x800.png
+│   │   ├── Banner-Screenshot.png
+│   │   ├── Contact-1000x800.png
+│   │   ├── Contact.png
+│   │   ├── Descirption-1000x800.png
+│   │   ├── Descirption.png
+│   │   ├── MenuData-1000x800.png
+│   │   ├── MenuData.png
+│   │   ├── Order-Webpage-1000x800.png
+│   │   └── Order-Webpage.png
+│   ├── Stylings
+│   │   ├── AdminPanel.css
+│   │   ├── CustomerPage.css
+│   │   ├── OrderHistory.css
+│   │   ├── ProductAdmin.css
+│   │   ├── banner.css
+│   │   ├── checkout.css
+│   │   ├── header.css
+│   │   ├── headerCopy.css
+│   │   ├── jollibee-info.css
+│   │   ├── menu.css
+│   │   └── promotion-section.css
+│   ├── htmlFolder
+│   │   ├── AdminPanel.html
+│   │   ├── OrdersHistory.html
+│   │   ├── ProductAdmin.html
+│   │   ├── checkout.html
+│   │   ├── customerPage.html
+│   │   ├── form.html
+│   │   ├── main.html
+│   │   └── visual.html
+│   └── images
+│       ├── apple.svg
+│       ├── boy pfp.png
+│       ├── button-addtocart.png
+│       ├── footer-image.webp
+│       ├── get-it-on-google-play.svg
+│       ├── google play icon.png
+│       ├── jolibee-banner
+│       │   ├── banner1.jpg
+│       │   ├── banner2.jpg
+│       │   ├── banner3.jpg
+│       │   └── banner4.jpg
+│       ├── jolibee-desserts
+│       │   ├── cokefloat.webp
+│       │   ├── mango pie.png
+│       │   └── sundae.png
+│       ├── jolibee-drinks
+│       │   ├── Pineapple-Juice-Regular.webp
+│       │   ├── coke.jpg
+│       │   └── water.jpg
+│       ├── jolibee-main-meals
+│       │   ├── burger.png
+│       │   ├── burgersteak.png
+│       │   ├── fries.png
+│       │   ├── jolli-friedchicken.png
+│       │   └── jolli-spaghetti.png
+│       ├── jolibee-picture.png
+│       ├── jolibeee logo.png
+│       ├── jollibee.png
+│       ├── minus-sign-icon-free-png.png
+│       ├── pfp girl.png
+│       ├── redcart.svg
+│       └── search-button.png
+├── HTML-CSS-Learning-Reference.md
+├── JavaScript-Learning-Reference.md
+├── README-BACKEND-SETUP.md
+├── README.md
+├── TO DO.md
+├── temp.html
+├── temp.js
+└── temp2.html
 
-https://github.com/precious-soda/E-Commerce-clone-/tree/31ca7964c18bbef6e6178c0c5705c7d9f956a831/checkout.js
-
-```
-<div class="product-quantity">
-                  <span> Quantity: <span class="quantity-label">${item.quantity}</span> </span>
-                  <span class="update-quantity-link link-primary">Update
-```
-
-## License: MIT
-
-https://github.com/directoreduardo/CursoJS/tree/8371b57ad65801f2ae530e647aa880ae7b2dda4c/SuperSimpleDevJS/main/checkout.html
-
-```
-span class="update-quantity-link link-primary">Update</span>
-                  <span class="delete-quantity-link link-primary">Delete</span>
-                </div>
-              </div>
-
-              <div class="delivery-options
-```
-
-## License: unknown
-
-https://github.com/SwethaVoora/javascript-amazon-project/tree/bc487ebfd834b3cf304a2b6249946f429ee20ef6/scripts/amazon.js
-
-```
-="quantity-label">${item.quantity}</span> </span>
-                  <span class="update-quantity-link link-primary">Update</span>
-                  <span class="delete-quantity-link link-primary"
-```
-
-## License: unknown
-
-https://github.com/keselj/amazon-project/tree/8bd66e41d12751cccf067b5df62df498b7ad2581/checkout.html
-
-```
-> </span>
-                  <span class="update-quantity-link link-primary">Update</span>
-                  <span class="delete-quantity-link link-primary">Delete</span>
-                </div>
-              </div>
-
-              <div
-```
-
-## License: unknown
-
-https://github.com/Femosky/javascript-amazon-project/tree/4edc4908dcee03a6ef961241998f278ab5c350d8/assignments/14/scripts/checkout.js
-
-```
--options-title">
-                  Choose a delivery option:
-                </div>
-                <div class="delivery-option">
-                  <input
-                    type="radio"
-                    checked
-                    class="delivery-option-input"
-                    name="delivery-option-1"
-                  />
-                  <div
-```
+12 directories, 88 files

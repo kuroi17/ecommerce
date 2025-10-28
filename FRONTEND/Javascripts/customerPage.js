@@ -3,8 +3,8 @@ const customerInfo = {
     email: "john.doe@example.com",
     phone: "+1-555-1234",
     address: "123 Main St, Anytown, USA",
-    image: "images/boy pfp.png",
-    imagetwo: "images/pfp girl.png"
+    image: "../images/boy pfp.png",
+    imagetwo: "../images/pfp girl.png"
 }
 
 
