@@ -7,7 +7,7 @@ USE ecommerce_db; -- use the created database
 -- cart as JSON to store cart data
 
 CREATE TABLE orders(
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    ID INT AUTO_INCREMENT PRIMARY KEY,
     cart JSON NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
