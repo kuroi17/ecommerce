@@ -1,5 +1,5 @@
 import { menuData } from "./product.js";
-import { stockData,renderAllCategories,showPopup,refreshExistingProductDropdown, generateOptionsModalExisting, } from "./ProductAdmin.js";
+import { stockData, renderAllCategories, showPopup, refreshExistingProductDropdown, generateOptionsModalExisting } from "../adminSide/ProductAdmin.js";
 export function modalGenerator (){
 
 // 🔹 Generate options for hidden (deleted) products

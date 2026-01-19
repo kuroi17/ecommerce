@@ -19,14 +19,14 @@ menuData.mainDishes.forEach((menudata) => {
                 2
               )}pesos</div>
               <button class="AddQuantity" data-menudata-id="${menudata.id}">
-                <img src="images/button-addtocart.png" class="add-to-cart-icon" />
+                <img src="../../images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
 
               <button class="SubtractQuantity" data-menudata-id="${
                 menudata.id
               }">
                 <img
-                  src="images/minus-sign-icon-free-png.png"
+                  src="../../images/minus-sign-icon-free-png.png"
                   class="remove-to-cart-icon"
                 />
               </button>
@@ -63,12 +63,12 @@ menuData.drinks.forEach((menudata) => {
                 2
               )} pesos</div>
               <button class="AddQuantity" data-menudata-id="${menudata.id}">
-                <img src="images/button-addtocart.png" class="add-to-cart-icon" />
+                <img src="../../images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
 
               <button class="SubtractQuantity"data-menudata-id="${menudata.id}">
                 <img
-                  src="images/minus-sign-icon-free-png.png"
+                  src="../../images/minus-sign-icon-free-png.png"
                   class="remove-to-cart-icon"
                 />
               </button>
@@ -105,14 +105,14 @@ menuData.desserts.forEach((menudata) => {
                 2
               )} pesos</div>
               <button class="AddQuantity" data-menudata-id="${menudata.id}">
-                <img src="images/button-addtocart.png" class="add-to-cart-icon" />
+                <img src="../../images/button-addtocart.png" class="add-to-cart-icon" />
               </button>
 
               <button class="SubtractQuantity" data-menudata-id="${
                 menudata.id
               }">
                 <img
-                  src="images/minus-sign-icon-free-png.png"
+                  src="../../images/minus-sign-icon-free-png.png"
                   class="remove-to-cart-icon"
                 />
               </button>

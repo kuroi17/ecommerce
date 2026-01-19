@@ -1,5 +1,5 @@
-import { API_ENDPOINTS } from "./CONFIGJS.js";
-import { modalGenerator } from "./modals.js";
+import { API_ENDPOINTS } from "../CONFIGJS.js";
+import { modalGenerator } from "../clientSide/modals.js";
 
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");

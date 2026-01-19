@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost/ecommerce-1/BACKEND";
+  export const API_URL = "http://localhost/ecommerce/BACKEND";
 
 export const API_ENDPOINTS = {
   placeOrder: `${API_URL}/placeOrder.php`,

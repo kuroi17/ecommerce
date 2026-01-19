@@ -1,4 +1,4 @@
-import { API_ENDPOINTS } from "./CONFIGJS.js";
+import { API_ENDPOINTS } from "../CONFIGJS.js";
 
 const orderTableHTML = document.querySelector(".js-HistoryOrderTable");
 

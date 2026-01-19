@@ -1,5 +1,5 @@
-import { menuData } from "./product.js";
-import {modalGenerator } from "./modals.js";
+import { menuData } from "../clientSide/product.js";
+import { modalGenerator } from "../clientSide/modals.js";
 
 // 🔹 Stock data with hidden property
 export const stockData = {

@@ -1,7 +1,7 @@
 import { menuData } from "./product.js";
 import { cart } from "./cart.js";
 import { deliveryOptions } from "./deliveryOptions.js";
-import { API_ENDPOINTS } from "./CONFIGJS.js";
+import { API_ENDPOINTS } from "../CONFIGJS.js";
 
 export function calculateTotalItems(cart) {
   return cart.reduce((sum, item) => {
