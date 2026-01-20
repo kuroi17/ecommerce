@@ -1,79 +1,71 @@
 <?php
-header("Content-Type: application/json");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, OPTIONS");
+// ✅ Add CORS headers
+header("Access-Control-Allow-Origin: *"); // or specify "http://127.0.0.1:5508"
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
-
-if ($_SERVER["REQUEST_METHOD"] == "OPTIONS") {
-    exit(0);
+header("Content-Type: application/json");
+    
+// Handle preflight OPTIONS request
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    http_response_code(200);
+    exit;
 }
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-// checks if the request method is POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Read JSON input  
-    $input = file_get_contents("php://input");
-    $data = json_decode($input, true);
+    $form_username = trim($_POST["username"] ?? "");
+    $form_password = trim($_POST["password"] ?? "");
+    $form_email    = trim($_POST["email"] ?? "");
 
-// Get form data
-$form_username = trim($data["username"] ?? "");
-$form_email    = trim($data["email"] ?? "");
-$form_password = trim($data["password"] ?? "");
+    if (empty($form_username) || empty($form_password) || empty($form_email)) {
+        echo json_encode([
+            "success" => false,
+            "error" => "All fields are required."
+        ]);
+        exit;
+    }
 
-// Validate input
-if (empty($form_username) || empty($form_email) || empty($form_password)) {
-    echo json_encode(["success" => false, "message" => "Missing fields"]);
-    exit();
-}
+    $servername = "localhost";
+    $username   = "root";
+    $password   = "";
+    $dbname     = "ecommerce_db";
 
-// HASH PASSWORD (SECURE)
-$hashed_password = password_hash($form_password, PASSWORD_DEFAULT);
-
-// Database credentials
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "ecommerce_db";
     try {
         $conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($conn->connect_error) {
-            throw new Exception("Connection failed: " . $conn->connect_error);
+            throw new Exception("Connection failed");
         }
 
-        // prepare stament to prevent SQL injection
-        $sql = "INSERT INTO formhandling(username, passwordd, email) VALUES
-        ( ?, ?, ? );"; // unnamed parameter
+        $hashed_password = password_hash($form_password, PASSWORD_DEFAULT);
 
-         $statement = $conn -> prepare($sql); // prepare the sql statement
+        $sql = "INSERT INTO formhandling (username, passwordd, email)
+                VALUES (?, ?, ?)";
 
-         if (!$statement){
-            throw new Exception("Prepare failed: " . $conn -> error);
-         }
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $form_username, $hashed_password, $form_email);
 
-         $statement -> bind_param("sss", $form_username, $hashed_password, $form_email);
-        
-        $success =  $statement -> execute(); // execute the sql statement
-         
+        $stmt->execute();
 
-        if ($success){
-            $statement -> close();
-            $conn -> close();
-            header("Location: ../FRONTEND/htmlFolder/AdminPanel.html");
-            exit(); 
-        }
-        else{
-                throw new Exception("Execute failed: " . $statement -> error);
-            }
-    } catch (Exception $error) {
+        echo json_encode([
+            "success" => true,
+            "message" => "Registration successful"
+        ]);
+
+    } catch (Exception $e) {
         echo json_encode([
             "success" => false,
-            "error" => $error->getMessage()
+            "error" => $e->getMessage()
         ]);
     }
 
+    exit;
 }
 
-// If someone tries to open directly → show error
+// ❗ ONLY runs if NOT POST
 http_response_code(405);
-echo "Method Not Allowed";
+echo json_encode([
+    "success" => false,
+    "error" => "Method Not Allowed"
+]);
+exit;

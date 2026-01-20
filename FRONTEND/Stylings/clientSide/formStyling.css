@@ -59,7 +59,7 @@ input:focus {
   box-shadow: 0 0 3px rgba(213, 33, 36, 0.4);
 }
 
-.login-btn {
+.logButton {
   background: #d52124;
   border: none;
   color: white;

@@ -1,9 +1,9 @@
+import { API_ENDPOINTS } from "../CONFIGJS.js";
 const logButton = document.querySelector(".logButton");
 const usernameInput = document.getElementById("username");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
-// You can add form validation or other logic here if needed0
 // Disable login button initially
 logButton.disabled = true;
 
@@ -38,35 +38,43 @@ logButton.addEventListener("click", async (e) => {
   // Disable button to prevent multiple clicks
   logButton.disabled = true;
 
-
   try {
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
 
-    const response = await fetch("../../BACKEND/formHandling.php", {
+    // ✅ FIXED: Use relative path from HTML file location
+    // HTML is at: FRONTEND/htmlFolder/clientSide/form.html
+    // PHP is at: BACKEND/formHandling.php
+    const response = await fetch(API_ENDPOINTS.formHandling, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"},
-        body: JSON.stringify({ username, email, password }) // ✅ Added username
-  });
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
+      body: formData
+    });
 
-  const result = await response.json();
+    // ✅ Read response as text first to debug
+    const text = await response.text();
+    console.log("Raw response:", text);
 
-  console.log("Server response:", result);
+    // ✅ Check if response is empty
+    if (!text) {
+      throw new Error("Empty response from server");
+    }
 
-  if (result.success) {
-    alert("Login successful!");
-    // Redirect to admin dashboard or another page
-    window.location.href = "../../htmlFolder/adminSide/AdminPanel.html";
+    // ✅ Try to parse JSON
+    const result = JSON.parse(text);
+    console.log("Server response:", result);
+
+    if (result.success) {
+      alert("Registration successful!");
+      window.location.href = "../adminSide/AdminPanel.html";
+    } else {
+      alert("Registration failed: " + (result.error || "Unknown error"));
+      logButton.disabled = false;
+    }
+  } catch (error) {
+    console.error("Error during registration:", error);
+    alert("An error occurred. Please try again later.");
+    logButton.disabled = false;
   }
-  else{
-    alert("Login failed: " + (result.message || "Unknown error"));
-    logButton.disabled = false; // ✅ Re-enable button
-  }
-} catch (error){
-  console.error("Error during login:", error);
-  alert("An error occurred during login. Please try again later.");
-  logButton.disabled = false; // ✅ Re-enable button
-}; 
 });
