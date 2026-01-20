@@ -83,7 +83,7 @@ quickActionsHTML += `
               <span class="action-icon">➕</span>
               Add New Product
             </button>
-            <button class="quick-action-btn">
+            <button class="quick-action-btn generate-report-btn">
               <span class="action-icon">📊</span>
               Generate Sales Report
             </button>
@@ -98,6 +98,13 @@ quickActionsHTML += `
           </div>`;
 
 quickActionsContainer.innerHTML = quickActionsHTML;
+
+// SalesReport Button Event Listener
+const generateSalesReport = document.querySelector(".generate-report-btn");
+generateSalesReport.addEventListener("click", () => {
+  alert("📊 Sales Report generated successfully!");
+
+})
 
 // BACKEND SECTION FOR THE DASHBOARD (4 CARDS)
 async function fetchOrderCount() {

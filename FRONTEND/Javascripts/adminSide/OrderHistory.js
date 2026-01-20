@@ -76,18 +76,112 @@ export async function renderOrderTableHTML() {
 
 
 // View/Edit functions (only for OrderHistory page)
-window.viewOrder = function (orderId) {
+
+// view function
+window.viewOrder = async function (orderId) {
   console.log(`Viewing order #${orderId}`);
-  alert(
-    `📋 Viewing Order #${orderId}\n\nComplete order details will be shown here.\n\n🚀 Coming Soon!`
-  );
+  
+  // Fetch all orders and find the specific one
+  const orders = await fetchOrderTable();
+  const order = orders.find(o => o.id == orderId); // Changed === to ==
+  
+  console.log("Looking for order ID:", orderId, "Type:", typeof orderId);
+  console.log("Available orders:", orders.map(o => ({ id: o.id, type: typeof o.id })));
+  console.log("Found order:", order);
+  
+  if (!order) {
+    alert("Order not found!");
+    return;
+  }
+  
+  // Create detailed alert message
+  const alertMessage = `
+📋 ORDER DETAILS
+━━━━━━━━━━━━━━━━━━━━━━
+Order ID: #${order.id}
+Status: ${order.status.toUpperCase()}
+Date & Time: ${order.time}
+
+Items:
+${order.items}
+
+Total Amount: ₱${order.total.toLocaleString()}
+━━━━━━━━━━━━━━━━━━━━━━
+  `.trim();
+  
+  alert(alertMessage);
 };
 
-window.editOrder = function (orderId) {
+
+// edit function 
+window.editOrder = async function (orderId) {
   console.log(`Editing order #${orderId}`);
-  alert(
-    `✏️ Editing Order #${orderId}\n\nModify order details, quantities, and status.\n\n🚀 Coming Soon!`
-  );
+  
+  // Fetch all orders and find the specific one
+  const orders = await fetchOrderTable();
+  const order = orders.find(o => o.id == orderId);
+  
+  if (!order) {
+    alert("Order not found!");
+    return;
+  }
+  
+  // Show current order info
+  const currentInfo = `
+Current Order #${order.id}
+━━━━━━━━━━━━━━━━━━━━━━
+Status: ${order.status.toUpperCase()}
+Items: ${order.items}
+Total: ₱${order.total.toLocaleString()}
+
+  `;
+  
+  const newItemsInput = prompt(currentInfo + "\n\nEnter new items (example: 2x Burger, 1x Fries):");
+  
+  if (!newItemsInput) {
+    return; // User cancelled
+  }
+
+  const newQuantityInput = prompt("Enter new quantity (number only):", order.quantity);
+
+  if (!newQuantityInput || isNaN(newQuantityInput) || newQuantityInput <= 0){
+    alert("Invalid amount entered!");
+    return;
+  }
+  
+  const newTotalInput = prompt("Enter new total amount (number only):", order.total);
+  
+  if (!newTotalInput || isNaN(newTotalInput) || newTotalInput <= 0){
+    alert("Invalid total amount entered!");
+    return;
+  }
+  
+  // Update order via API
+  try {
+    const response = await fetch(`${API_ENDPOINTS.tableOrder}/${orderId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        items: newItemsInput,
+        quantity: parseInt(newQuantityInput),
+        total: parseFloat(newTotalInput)
+      })
+    });
+    
+    const data = await response.json();
+    
+    if (data.success) {
+      alert(`✅ Order #${orderId} status updated successfully!`);
+      renderOrderTableHTML(); // Refresh the table
+    } else {
+      alert(`❌ Error: ${data.error || 'Failed to update order'}`);
+    }
+  } catch (error) {
+    console.error("Error updating order:", error);
+    alert("❌ Failed to update order. Please try again.");
+  }
 };
 
 // Initialize OrderHistory page
