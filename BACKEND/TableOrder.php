@@ -34,7 +34,6 @@ try {
 
     // Handle PUT request (Update order)
     if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-        // Get order ID from URL (e.g., /TableOrder.php/13)
         $requestUri = $_SERVER['REQUEST_URI'];
         $uriParts = explode('/', $requestUri);
         $orderId = end($uriParts);
@@ -47,7 +46,6 @@ try {
             exit;
         }
 
-        // Get PUT data
         $putData = json_decode(file_get_contents("php://input"), true);
 
         if (!$putData) {
@@ -58,23 +56,23 @@ try {
             exit;
         }
 
-        // Build update query dynamically based on what fields are provided
         $updateFields = [];
         $params = [];
         $types = "";
 
-        // Check if items are being updated (stored as cart in database)
-        if (isset($putData['items'])) {
-            // You might need to convert items back to cart format
-            // For now, we'll store it as a simple note in a separate column
-            // Or you can parse it and update the cart JSON
-            $updateFields[] = "notes = ?";
-            $params[] = $putData['items'];
+        // Update cart if provided
+        if (isset($putData['cart'])) {
+            $updateFields[] = "cart = ?";
+            $params[] = $putData['cart'];
             $types .= "s";
         }
 
-        // Note: quantity and total are calculated from cart, not stored separately
-        // If you want to update them, you'll need to modify your database schema
+        // Update notes if provided
+        if (isset($putData['notes'])) {
+            $updateFields[] = "notes = ?";
+            $params[] = $putData['notes'];
+            $types .= "s";
+        }
 
         if (empty($updateFields)) {
             echo json_encode([
@@ -108,8 +106,34 @@ try {
         exit;
     }
 
-    // Handle GET request (existing code)
+    // Handle GET request
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        // Check if requesting raw cart data for a specific order
+        if (isset($_GET['raw']) && isset($_GET['id'])) {
+            $orderId = intval($_GET['id']);
+            $sql = "SELECT id, cart, notes FROM orders WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $orderId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $order = $result->fetch_assoc();
+                echo json_encode([
+                    "success" => true,
+                    "order" => $order
+                ]);
+            } else {
+                echo json_encode([
+                    "success" => false,
+                    "error" => "Order not found"
+                ]);
+            }
+            $stmt->close();
+            $conn->close();
+            exit;
+        }
+
         // Price list (lookup table)
         $prices = [
             'chickenjoy' => 82.00,
@@ -130,9 +154,9 @@ try {
 
         // Build SQL dynamically
         if ($limit > 0) {
-            $sql = "SELECT id, cart, created_at FROM orders ORDER BY created_at DESC LIMIT $limit";
+            $sql = "SELECT id, cart, notes, created_at FROM orders ORDER BY created_at DESC LIMIT $limit";
         } else {
-            $sql = "SELECT id, cart, created_at FROM orders ORDER BY created_at DESC";
+            $sql = "SELECT id, cart, notes, created_at FROM orders ORDER BY created_at DESC";
         }
 
         $result = $conn->query($sql);
@@ -168,6 +192,7 @@ try {
                 $orders[] = [
                     "id" => $row['id'],
                     "items" => implode(', ', $items),
+                    "notes" => $row['notes'] ? $row['notes'] : "",
                     "total" => $total,
                     "status" => $status,
                     "time" => $time
