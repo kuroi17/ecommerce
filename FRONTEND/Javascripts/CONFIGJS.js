@@ -7,5 +7,6 @@ export const API_ENDPOINTS = {
   productCounter: `${API_URL}/ProductCounter.php`,
   customerCounter: `${API_URL}/CustomerCounter.php`,
   tableOrder: `${API_URL}/TableOrder.php`,
-  formHandling: `${API_URL}/formHandling.php`
+  formHandling: `${API_URL}/formHandling.php`,
+  salesReport: `${API_URL}/generateSalesReport.php`,
 };

@@ -1,5 +1,6 @@
 import { API_ENDPOINTS } from "../CONFIGJS.js";
 import { modalGenerator } from "../clientSide/modals.js";
+import { initSalesReport } from "./generateSalesReport.js";
 
 const OrderHTML = document.querySelector(".js-order");
 const RevenueHTML = document.querySelector(".js-revenue");
@@ -99,12 +100,6 @@ quickActionsHTML += `
 
 quickActionsContainer.innerHTML = quickActionsHTML;
 
-// SalesReport Button Event Listener
-const generateSalesReport = document.querySelector(".generate-report-btn");
-generateSalesReport.addEventListener("click", () => {
-  alert("📊 Sales Report generated successfully!");
-
-})
 
 // BACKEND SECTION FOR THE DASHBOARD (4 CARDS)
 async function fetchOrderCount() {
@@ -257,6 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProductHTML();
   renderCustomersHTML();
   renderDashboardOrdersTable();
+   initSalesReport();
 });
 setInterval(() => {
   renderOrderHTML();
@@ -264,5 +260,6 @@ setInterval(() => {
   renderProductHTML();
   renderCustomersHTML();
   renderDashboardOrdersTable();
+ 
 }, 60000); //60000
 modalGenerator();
